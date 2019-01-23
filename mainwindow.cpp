@@ -7,8 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     setupUi(this);
     MainMenu* mainmenu = new MainMenu(layoutMainMenu);
-    QString imageReleased = "C:/Users/theof/Pictures/ImageProjetQt/menu.png";
-    QString imagePressed = "C:/Users/theof/Pictures/ImageProjetQt/menuHighlighted.png";
+    QString imageReleased = "img/menu.png";
+    QString imagePressed = "img/menuHighlighted.png";
     ImageButton* img = new ImageButton(imagePressed, imageReleased, 50, 50, this);
     menu->addWidget(img);
     ImageButton* img2 = new ImageButton("C:/Users/theof/Pictures/ImageProjetQt/loupePressed.png","C:/Users/theof/Pictures/ImageProjetQt/loupe.png", 40, 40, this);

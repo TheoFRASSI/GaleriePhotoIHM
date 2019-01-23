@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QVBoxLayout>
 #include <QFrame>
+#include <QEvent>
 
 class MainMenu : public QVBoxLayout
 {
