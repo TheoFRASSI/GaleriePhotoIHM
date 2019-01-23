@@ -68,8 +68,9 @@ bool ImageButton::loadImagePressed(const QString &file)
 
 void ImageButton::pressedSlot()
 {
-    if (!isCheckable())
+    if (!isCheckable()){
         setImagePressed();
+    }
 }
 
 void ImageButton::releasedSlot()

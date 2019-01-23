@@ -9,6 +9,9 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+
+public slots:
+    void modif();
 };
 
 #endif // MAINWINDOW_H
