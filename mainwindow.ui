@@ -590,9 +590,9 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QVBoxLayout" name="layoutMainMenu">
           <item>
-           <widget class="QFrame" name="frametest">
+           <widget class="QFrame" name="frameMainMenu">
             <property name="minimumSize">
              <size>
               <width>80</width>

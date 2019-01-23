@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    imagebutton.cpp
+    imagebutton.cpp \
+    mainmenu.cpp
 
 HEADERS += \
         mainwindow.h \
-    imagebutton.h
+    imagebutton.h \
+    mainmenu.h
 
 FORMS += \
         mainwindow.ui

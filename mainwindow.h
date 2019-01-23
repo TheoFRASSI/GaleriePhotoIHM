@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include "ui_mainwindow.h"
 
@@ -9,9 +8,5 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-
-public slots:
-    void modif();
 };
 
-#endif // MAINWINDOW_H

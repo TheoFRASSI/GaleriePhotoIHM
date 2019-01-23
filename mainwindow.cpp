@@ -1,10 +1,12 @@
 #include "mainwindow.h"
 #include "imagebutton.h"
+#include "mainmenu.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
     setupUi(this);
+    MainMenu* mainmenu = new MainMenu(layoutMainMenu);
     QString imageReleased = "C:/Users/theof/Pictures/ImageProjetQt/menu.png";
     QString imagePressed = "C:/Users/theof/Pictures/ImageProjetQt/menuHighlighted.png";
     ImageButton* img = new ImageButton(imagePressed, imageReleased, 50, 50, this);
@@ -21,11 +23,5 @@ MainWindow::MainWindow(QWidget *parent) :
     layoutSettings->addWidget(img6);
     layoutSearch->addSpacerItem(horizontalSpacer);
 
-    connect(img,SIGNAL(clicked()),this,SLOT(modif()));
-}
-
-void MainWindow::modif()
-{
-    frametest->setMinimumWidth(300);
-    frametest->setMaximumWidth(300);
+    connect(img,SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
 }
