@@ -21,6 +21,10 @@
         <file alias="imageLarge">img/button/boutonPhotoLarge.png</file>
         <file alias="menu">img/button/boutonMenu.png</file>
         <file alias="menuHighlighted">img/button/boutonMenuHighlighted.png</file>
+        <file alias="albumAdd">img/button/boutonAddAlbum.png</file>
+        <file alias="albumAddHighlighted">img/button/boutonAddAlbumHighlighted.png</file>
+        <file alias="imageAdd">img/button/boutonAddPhoto.png</file>
+        <file alias="imageAddHighlighted">img/button/boutonAddPhotoHighlighted.png</file>
     </qresource>
     <qresource lang="fr" prefix="/img/window">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>
