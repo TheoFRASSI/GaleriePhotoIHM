@@ -62,6 +62,11 @@ bool ImageButton::loadImagePressed(const QString &file)
     return imagePressed.load(file);
 }
 
+void ImageButton::resizeButton(int w, int h){
+    resize(w,h);
+    setIconSize (QSize(w,h));
+}
+
 /**********
 ** SLOTS **
 **********/

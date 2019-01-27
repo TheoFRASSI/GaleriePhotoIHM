@@ -16,6 +16,7 @@ public:
 
     bool loadImageReleased(const QString &file);
     bool loadImagePressed(const QString &file);
+    void resizeButton(int w, int h);
 
 public slots:
     void pressedSlot();

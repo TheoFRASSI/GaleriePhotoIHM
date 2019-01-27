@@ -1,0 +1,28 @@
+<RCC>
+    <qresource lang="fr" prefix="/img/button">
+        <file alias="loupe">img/button/loupe.png</file>
+        <file alias="loupePressed">img/button/loupePressed.png</file>
+        <file alias="album">img/button/boutonAlbum.png</file>
+        <file alias="albumHighlighted">img/button/boutonAlbumHighlighted.png</file>
+        <file alias="help">img/button/boutonHelp.png</file>
+        <file alias="helpHighlighted">img/button/boutonHelpHighlighted.png</file>
+        <file alias="image">img/button/boutonPhoto.png</file>
+        <file alias="imageHighlighted">img/button/boutonPhotoHighlighted.png</file>
+        <file>img/button/gallery-icon.png</file>
+        <file alias="home">img/button/boutonHome.png</file>
+        <file alias="homeHighlighted">img/button/boutonHomeHighlighted.png</file>
+        <file alias="albumHighlightedLarge">img/button/boutonAlbumHighlightedLarge.png</file>
+        <file alias="albumLarge">img/button/boutonAlbumLarge.png</file>
+        <file alias="helpHighlightedLarge">img/button/boutonHelpHighlightedLarge.png</file>
+        <file alias="helpLarge">img/button/boutonHelpLarge.png</file>
+        <file alias="homeHighlightedLarge">img/button/boutonHomeHighlightedLarge.png</file>
+        <file alias="homeLarge">img/button/boutonHomeLarge.png</file>
+        <file alias="imageHighlightedLarge">img/button/boutonPhotoHighlightedLarge.png</file>
+        <file alias="imageLarge">img/button/boutonPhotoLarge.png</file>
+        <file alias="menu">img/button/boutonMenu.png</file>
+        <file alias="menuHighlighted">img/button/boutonMenuHighlighted.png</file>
+    </qresource>
+    <qresource lang="fr" prefix="/img/window">
+        <file alias="gallery-icon">img/window/gallery-icon.png</file>
+    </qresource>
+</RCC>
