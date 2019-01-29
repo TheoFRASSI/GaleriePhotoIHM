@@ -1018,7 +1018,7 @@
                 <property name="font">
                  <font>
                   <family>Verdana</family>
-                  <pointsize>16</pointsize>
+                  <pointsize>14</pointsize>
                   <weight>75</weight>
                   <bold>true</bold>
                  </font>
@@ -2059,7 +2059,7 @@
                 <property name="font">
                  <font>
                   <family>Verdana</family>
-                  <pointsize>16</pointsize>
+                  <pointsize>14</pointsize>
                   <weight>75</weight>
                   <bold>true</bold>
                  </font>
@@ -3095,7 +3095,7 @@
                 <property name="font">
                  <font>
                   <family>Verdana</family>
-                  <pointsize>16</pointsize>
+                  <pointsize>14</pointsize>
                   <weight>75</weight>
                   <bold>true</bold>
                  </font>
@@ -3647,13 +3647,13 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>70</height>
+         <height>50</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>70</height>
+         <height>50</height>
         </size>
        </property>
        <property name="palette">
