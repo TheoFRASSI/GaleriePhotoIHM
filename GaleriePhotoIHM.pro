@@ -30,14 +30,16 @@ SOURCES += \
     imagebutton.cpp \
     mainmenu.cpp \
     accueilwindow.cpp \
-    albumwindow.cpp
+    albumwindow.cpp \
+    imagewindow.cpp
 
 HEADERS += \
         mainwindow.h \
     imagebutton.h \
     mainmenu.h \
     accueilwindow.h \
-    albumwindow.h
+    albumwindow.h \
+    imagewindow.h
 
 FORMS += \
         mainwindow.ui \
