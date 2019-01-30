@@ -31,7 +31,9 @@ SOURCES += \
     mainmenu.cpp \
     accueilwindow.cpp \
     albumwindow.cpp \
-    imagewindow.cpp
+    imagewindow.cpp \
+    album.cpp \
+    image.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +41,9 @@ HEADERS += \
     mainmenu.h \
     accueilwindow.h \
     albumwindow.h \
-    imagewindow.h
+    imagewindow.h \
+    album.h \
+    image.h
 
 FORMS += \
         mainwindow.ui \
