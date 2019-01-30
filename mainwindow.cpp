@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include "imagebutton.h"
-#include "mainmenu.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -23,5 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     layoutSettings->addWidget(img6);
     layoutSearch->addSpacerItem(horizontalSpacer);
 
+    layoutOnglet->addWidget(new AccueilWindow());
+
     connect(img,SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
+    connect(img2,SIGNAL(clicked()),this,SLOT(changeWid()));
+}
+
+void MainWindow::changeWid(){
+   //layoutOnglet->addWidget(new AlbumWindow());
 }

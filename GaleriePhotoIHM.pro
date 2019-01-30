@@ -28,15 +28,21 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     imagebutton.cpp \
-    mainmenu.cpp
+    mainmenu.cpp \
+    accueilwindow.cpp \
+    albumwindow.cpp
 
 HEADERS += \
         mainwindow.h \
     imagebutton.h \
-    mainmenu.h
+    mainmenu.h \
+    accueilwindow.h \
+    albumwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    accueilwindow.ui \
+    albumwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
