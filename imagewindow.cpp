@@ -2,5 +2,5 @@
 
 ImageWindow::ImageWindow(QWidget *parent) : QWidget(parent)
 {
-
+    setupUi(this);
 }

@@ -48,7 +48,8 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     accueilwindow.ui \
-    albumwindow.ui
+    albumwindow.ui \
+    imagewindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
