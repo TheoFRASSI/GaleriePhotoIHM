@@ -86,3 +86,17 @@ void MainMenu::changeButtons(){
 
     }
 }
+
+//--Getters Setters-----------------------------------------------------------------------------
+ImageButton* MainMenu::getButtonHome(){
+    return this->buttonHome;
+}
+
+ImageButton* MainMenu::getButtonAlbum(){
+    return this->buttonAlbum;
+}
+
+ImageButton* MainMenu::getButtonImage(){
+    return this->buttonImage;
+}
+//----------------------------------------------------------------------------------------------

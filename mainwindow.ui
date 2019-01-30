@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
-    <height>632</height>
+    <width>952</width>
+    <height>390</height>
    </rect>
   </property>
   <property name="palette">
@@ -456,7 +456,7 @@
    <string>Galerie Photo</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="res.qrc">
+   <iconset>
     <normaloff>:/img/window/gallery-icon</normaloff>:/img/window/gallery-icon</iconset>
   </property>
   <property name="autoFillBackground">
@@ -2089,7 +2089,14 @@
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="layoutOnglet"/>
+         <layout class="QVBoxLayout" name="layoutOnglet">
+          <item>
+           <widget class="QStackedWidget" name="stackWidget">
+            <widget class="QWidget" name="page"/>
+            <widget class="QWidget" name="page_2"/>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -2099,8 +2106,6 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

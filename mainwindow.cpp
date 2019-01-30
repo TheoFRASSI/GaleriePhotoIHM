@@ -4,7 +4,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
     setupUi(this);
-    MainMenu* mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
+    this->mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
+    this->accW = new AccueilWindow();
+    this->albW = new AlbumWindow();
+    stackWidget->addWidget(this->accW);
+    stackWidget->addWidget(this->albW);
+
+
+
     QString imageReleased = ":/img/button/menu";
     QString imagePressed = ":/img/button/menuHighlighted";
     ImageButton* img = new ImageButton(imagePressed, imageReleased, 50, 50, this);
@@ -21,14 +28,20 @@ MainWindow::MainWindow(QWidget *parent) :
     layoutSettings->addWidget(img6);
     layoutSearch->addSpacerItem(horizontalSpacer);
 
-    accW = new AccueilWindow();
-    albW = new AlbumWindow();
-    layoutOnglet->addWidget(accW);
-
+   /* QWidget* widget = new AccueilWindow();
+    layoutOnglet->addWidget(widget);
+    currentW = widget;
+*/
     connect(img,SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
-    connect(img2,SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonHome(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonAlbum(),SIGNAL(clicked()),this,SLOT(changeWid()));
 }
 
 void MainWindow::changeWid(){
-    layoutOnglet->removeWidget(accW);
+    stackWidget->setCurrentWidget(assoTab.value(sender()));
+}
+
+void MainWindow::initMap(){
+    this->assoTab.insert(this->mainmenu->getButtonHome(), this->accW);
+    this->assoTab.insert(this->mainmenu->getButtonAlbum(), this->albW);
 }

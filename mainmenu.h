@@ -11,15 +11,33 @@ class MainMenu : public QFrame
     Q_OBJECT
 
 public:
+
+    //--Constructeur Destructeur-------------
     MainMenu(QFrame* container, QVBoxLayout* layoutHome, QVBoxLayout* layoutAlbum, QVBoxLayout* layoutImage, QVBoxLayout* layoutHelp);
     ~MainMenu();
+    //---------------------------------------
+
+    //--Getters------------------------------
+    ImageButton* getButtonHome();
+    ImageButton* getButtonAlbum();
+    ImageButton* getButtonImage();
+    //---------------------------------------
+
+    //--Setters------------------------------
+    //---------------------------------------
 
 private:
+
+    //--Attributs Constants------------------
     const int MINWIDTH = 70;
     const int MAXWIDTH = 170;
+    //---------------------------------------
+
+    //--Attributs----------------------------
     bool open = false;
 
     QFrame* container;
+    //---------------------------------------
 
     //--Layouts boutons----------------------
     QVBoxLayout* layoutHome;
