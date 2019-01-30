@@ -8,9 +8,9 @@ class AlbumWindow : public QWidget, private Ui::AlbumWindow
 public:
     explicit AlbumWindow(QWidget *parent = nullptr);
 
-private:
-
 signals:
 
 public slots:
+    void changeTab();
+private slots:
 };
