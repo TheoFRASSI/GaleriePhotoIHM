@@ -21,12 +21,14 @@ MainWindow::MainWindow(QWidget *parent) :
     layoutSettings->addWidget(img6);
     layoutSearch->addSpacerItem(horizontalSpacer);
 
-    layoutOnglet->addWidget(new AccueilWindow());
+    accW = new AccueilWindow();
+    albW = new AlbumWindow();
+    layoutOnglet->addWidget(accW);
 
     connect(img,SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
     connect(img2,SIGNAL(clicked()),this,SLOT(changeWid()));
 }
 
 void MainWindow::changeWid(){
-   //layoutOnglet->addWidget(new AlbumWindow());
+    layoutOnglet->removeWidget(accW);
 }

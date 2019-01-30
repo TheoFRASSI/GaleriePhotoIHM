@@ -2,7 +2,7 @@
 
 #include "ui_accueilwindow.h"
 
-class AccueilWindow : public QWidget, private Ui::Form
+class AccueilWindow : public QWidget, private Ui::AccueilWindow
 {
     Q_OBJECT
 public:
