@@ -3,12 +3,19 @@
 
 #include <QObject>
 #include <QWidget>
+#include "ui_accueilwindow.h"
 
-class ImageWindow : public QWidget
+#include <map>
+
+
+class ImageWindow : public QWidget, private Ui::AccueilWindow
 {
     Q_OBJECT
 public:
     explicit ImageWindow(QWidget *parent = nullptr);
+
+private:
+    //std::map<, > listButtons;
 
 signals:
 
