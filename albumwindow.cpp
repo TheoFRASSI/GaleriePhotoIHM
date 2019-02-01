@@ -1,5 +1,7 @@
 #include "albumwindow.h"
-#include <QDesktopServices>
+#include <QFileDialog>
+#include <QDebug>
+#include <QPixmap>
 
 AlbumWindow::AlbumWindow(QWidget *parent) : QWidget(parent)
 {
@@ -7,8 +9,7 @@ AlbumWindow::AlbumWindow(QWidget *parent) : QWidget(parent)
 
     connect(albPersoButton, SIGNAL(clicked()), this, SLOT(changeTab()));
     connect(albAutoButton, SIGNAL(clicked()), this, SLOT(changeTab()));
-
-    //QString PicturesPath = QDesktopServices::storageLocation(QDesktopServices::PicturesLocation);
+    connect(newImageButton, SIGNAL(clicked()),this, SLOT(searchImage()));
 
 }
 
@@ -21,4 +22,28 @@ void AlbumWindow::changeTab()
     }
 
 }
+void AlbumWindow::searchImage()
+{
+    QUrl imgPath = QFileDialog::getOpenFileUrl(this);
+    if (!imgPath.isEmpty()) {
+        qDebug() << "GG";
+        labelImg->setPixmap(QPixmap(imgPath.url()));
+    }
+
+        //openImage(fileName);
+}
+
+/*void AlbumWindow::openImage(const QString &fileName)
+{
+
+    QFile file(fileName);
+
+    QTextStream in(&file);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    textEdit->setPlainText(in.readAll());
+    QApplication::restoreOverrideCursor();
+
+    setCurrentFile(fileName);
+    statusBar()->showMessage(tr("File loaded"), 2000);
+}*/
 
