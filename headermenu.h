@@ -1,11 +1,79 @@
-#ifndef HEADERMENU_H
-#define HEADERMENU_H
+#pragma once
 
+#include <iostream>
+#include <QVBoxLayout>
+#include <QFrame>
+#include <QEvent>
+#include <imagebutton.h>
 
-class HeaderMenu
+class HeaderMenu : public QFrame
 {
-public:
-    HeaderMenu();
-};
+    Q_OBJECT
 
-#endif // HEADERMENU_H
+public:
+
+    //--Constructeur Destructeur-------------
+    HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings, QSpacerItem* horizontalSpacer);
+    ~HeaderMenu();
+    //---------------------------------------
+
+    //--Getters------------------------------
+    ImageButton* getButtonMenu();
+    ImageButton* getButtonSearch();
+    ImageButton* getButtonNewAlbum();
+    ImageButton* getButtonNewPhoto();
+    ImageButton* getButtonDisplay();
+    ImageButton* getButtonSettings();
+    //---------------------------------------
+
+    //--Setters------------------------------
+    //---------------------------------------
+
+private:
+
+    //--Attributs Constants------------------
+    //---------------------------------------
+
+    //--Attributs----------------------------
+    QFrame* headerMenuFrame;
+    QSpacerItem* horizontalSpacer;
+    //---------------------------------------
+
+    //--Layouts boutons----------------------
+    QHBoxLayout* menu;
+    QHBoxLayout* layoutSearch;
+    QHBoxLayout* layoutNewAlbum;
+    QHBoxLayout* layoutNewPhoto;
+    QHBoxLayout* layoutDisplay;
+    QHBoxLayout* layoutSettings;
+    //---------------------------------------
+
+    //--Boutons------------------------------
+    ImageButton* buttonMenu;
+    ImageButton* buttonSearch;
+    ImageButton* buttonNewAlbum;
+    ImageButton* buttonNewPhoto;
+    ImageButton* buttonDisplay;
+    ImageButton* buttonSettings;
+    //---------------------------------------
+
+    //--Images-------------------------------
+    QString imageButtonMenuReleased = ":/img/button/menu";
+    QString imageButtonMenuPressed = ":/img/button/menuHighlighted";
+    QString imageButtonSearchReleased = ":/img/button/search";
+    QString imageButtonSearchPressed = ":/img/button/searchHighlighted";
+    QString imageButtonNewAlbumReleased = ":/img/button/albumAdd";
+    QString imageButtonNewAlbumPressed = ":/img/button/albumAddHighlighted";
+    QString imageButtonNewPhotoReleased = ":/img/button/imageAdd";
+    QString imageButtonNewPhotoPressed = ":/img/button/imageAddHighlighted";
+    QString imageButtonDisplayReleased = ":/img/button/display";
+    QString imageButtonDisplayPressed = ":/img/button/displayHighlighted";
+    QString imageButtonSettingsReleased = ":/img/button/settings";
+    QString imageButtonSettingsPressed = ":/img/button/settingsHighlighted";
+    //---------------------------------------
+
+    //--Fonctions----------------------------
+    //---------------------------------------
+
+public slots:
+};

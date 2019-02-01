@@ -1,7 +1,5 @@
 <RCC>
-    <qresource lang="fr" prefix="/img/button">
-        <file alias="loupe">img/button/loupe.png</file>
-        <file alias="loupePressed">img/button/loupePressed.png</file>
+    <qresource prefix="/img/button" lang="fr">
         <file alias="album">img/button/boutonAlbum.png</file>
         <file alias="albumHighlighted">img/button/boutonAlbumHighlighted.png</file>
         <file alias="help">img/button/boutonHelp.png</file>
@@ -25,8 +23,14 @@
         <file alias="albumAddHighlighted">img/button/boutonAddAlbumHighlighted.png</file>
         <file alias="imageAdd">img/button/boutonAddPhoto.png</file>
         <file alias="imageAddHighlighted">img/button/boutonAddPhotoHighlighted.png</file>
+        <file alias="display">img/button/boutonDisplay.png</file>
+        <file alias="displayHighlighted">img/button/boutonDisplayHighlighted.png</file>
+        <file alias="search">img/button/boutonSearch.png</file>
+        <file alias="searchHighlighted">img/button/boutonSearchHighlighted.png</file>
+        <file alias="settings">img/button/boutonSettings.png</file>
+        <file alias="settingsHighlighted">img/button/boutonSettingsHighlighted.png</file>
     </qresource>
-    <qresource lang="fr" prefix="/img/window">
+    <qresource prefix="/img/window" lang="fr">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>
     </qresource>
 </RCC>

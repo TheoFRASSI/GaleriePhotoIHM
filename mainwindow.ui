@@ -456,7 +456,7 @@
    <string>Galerie Photo</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="res.qrc">
     <normaloff>:/img/window/gallery-icon</normaloff>:/img/window/gallery-icon</iconset>
   </property>
   <property name="autoFillBackground">
@@ -496,7 +496,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QFrame" name="frame">
+         <widget class="QFrame" name="headerMenuFrame">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -1495,6 +1495,9 @@
            </item>
            <item>
             <layout class="QHBoxLayout" name="layoutSearch">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
               <spacer name="horizontalSpacer">
                <property name="orientation">
@@ -1527,24 +1530,58 @@
                  <pointsize>12</pointsize>
                 </font>
                </property>
+               <property name="frame">
+                <bool>false</bool>
+               </property>
                <property name="placeholderText">
                 <string>Rechercher</string>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="layoutNewAlbum"/>
+            <layout class="QHBoxLayout" name="layoutNewAlbum">
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>5</number>
+             </property>
+            </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="layoutNewPhoto"/>
+            <layout class="QHBoxLayout" name="layoutNewPhoto">
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>5</number>
+             </property>
+            </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="layoutAffichage"/>
+            <layout class="QHBoxLayout" name="layoutAffichage">
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>5</number>
+             </property>
+            </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="layoutSettings"/>
+            <layout class="QHBoxLayout" name="layoutSettings">
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>5</number>
+             </property>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -2106,6 +2143,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>
