@@ -33,7 +33,12 @@ SOURCES += \
     albumwindow.cpp \
     imagewindow.cpp \
     album.cpp \
-    image.cpp
+    image.cpp \
+    settingswindow.cpp \
+    modifimagewindow.cpp \
+    helpwindow.cpp \
+    listeimages.cpp \
+    headermenu.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,13 +48,21 @@ HEADERS += \
     albumwindow.h \
     imagewindow.h \
     album.h \
-    image.h
+    image.h \
+    settingswindow.h \
+    modifimagewindow.h \
+    helpwindow.h \
+    listeimages.h \
+    headermenu.h
 
 FORMS += \
         mainwindow.ui \
     accueilwindow.ui \
     albumwindow.ui \
-    imagewindow.ui
+    imagewindow.ui \
+    settingswindow.ui \
+    modifimagewindow.ui \
+    helpwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -21,6 +21,11 @@ public:
     ImageButton* getButtonHome();
     ImageButton* getButtonAlbum();
     ImageButton* getButtonImage();
+    ImageButton* getButtonHelp();
+    ImageButton* getButtonHomeLarge();
+    ImageButton* getButtonAlbumLarge();
+    ImageButton* getButtonImageLarge();
+    ImageButton* getButtonHelpLarge();
     //---------------------------------------
 
     //--Setters------------------------------
@@ -51,6 +56,10 @@ private:
     ImageButton* buttonAlbum;
     ImageButton* buttonImage;
     ImageButton* buttonHelp;
+    ImageButton* buttonHomeLarge;
+    ImageButton* buttonAlbumLarge;
+    ImageButton* buttonImageLarge;
+    ImageButton* buttonHelpLarge;
     //---------------------------------------
 
     //--Images-------------------------------

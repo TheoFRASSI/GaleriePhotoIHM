@@ -4,14 +4,33 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
     setupUi(this);
-    this->mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
-    this->accW = new AccueilWindow();
-    this->albW = new AlbumWindow();
-    stackWidget->addWidget(this->accW);
-    stackWidget->addWidget(this->albW);
+    mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
+    accueilW = new AccueilWindow();
+    albumW = new AlbumWindow();
+    imageW = new ImageWindow();
+    helpW = new HelpWindow();
+    stackWidget->addWidget(accueilW);
+    stackWidget->addWidget(albumW);
+    stackWidget->addWidget(imageW);
+    stackWidget->addWidget(helpW);
+    stackWidget->setCurrentWidget(accueilW);
+    initMap();
+
+    connect(mainmenu->getButtonHome(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonAlbum(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonImage(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonHelp(),SIGNAL(clicked()),this,SLOT(changeWid()));
+
+    connect(mainmenu->getButtonHomeLarge(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonAlbumLarge(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonImageLarge(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonHelpLarge(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    //connect(/*A INSERER*/->getButtonModifImage(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    //connect(headermenu->getButtonSettings(),SIGNAL(clicked()),this,SLOT(changeWid()));
 
 
 
+    //--SAAAAAAALE--------------------------------------------------------------------------------------------
     QString imageReleased = ":/img/button/menu";
     QString imagePressed = ":/img/button/menuHighlighted";
     ImageButton* img = new ImageButton(imagePressed, imageReleased, 50, 50, this);
@@ -28,13 +47,8 @@ MainWindow::MainWindow(QWidget *parent) :
     layoutSettings->addWidget(img6);
     layoutSearch->addSpacerItem(horizontalSpacer);
 
-   /* QWidget* widget = new AccueilWindow();
-    layoutOnglet->addWidget(widget);
-    currentW = widget;
-*/
     connect(img,SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
-    connect(mainmenu->getButtonHome(),SIGNAL(clicked()),this,SLOT(changeWid()));
-    connect(mainmenu->getButtonAlbum(),SIGNAL(clicked()),this,SLOT(changeWid()));
+
 }
 
 void MainWindow::changeWid(){
@@ -42,6 +56,13 @@ void MainWindow::changeWid(){
 }
 
 void MainWindow::initMap(){
-    this->assoTab.insert(this->mainmenu->getButtonHome(), this->accW);
-    this->assoTab.insert(this->mainmenu->getButtonAlbum(), this->albW);
+    assoTab.insert(mainmenu->getButtonHome(), accueilW);
+    assoTab.insert(mainmenu->getButtonAlbum(), albumW);
+    assoTab.insert(mainmenu->getButtonImage(), imageW);
+    assoTab.insert(mainmenu->getButtonHelp(), helpW);
+    assoTab.insert(mainmenu->getButtonHomeLarge(), accueilW);
+    assoTab.insert(mainmenu->getButtonAlbumLarge(), albumW);
+    assoTab.insert(mainmenu->getButtonImageLarge(), imageW);
+    assoTab.insert(mainmenu->getButtonHelpLarge(), helpW);
+
 }

@@ -1,5 +1,4 @@
-#ifndef IMAGEWINDOW_H
-#define IMAGEWINDOW_H
+#pragma once
 
 #include <QObject>
 #include <QWidget>
@@ -22,4 +21,3 @@ signals:
 public slots:
 };
 
-#endif // IMAGEWINDOW_H
