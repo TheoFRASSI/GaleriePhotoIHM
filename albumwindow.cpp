@@ -24,10 +24,11 @@ void AlbumWindow::changeTab()
 }
 void AlbumWindow::searchImage()
 {
-    QUrl imgPath = QFileDialog::getOpenFileUrl(this);
+    QString imgPath = QFileDialog::getOpenFileName(this);
     if (!imgPath.isEmpty()) {
-        qDebug() << "GG";
-        labelImg->setPixmap(QPixmap(imgPath.url()));
+        qDebug() << imgPath;
+        QPixmap *img = new QPixmap(imgPath);
+             labelImg->setPixmap(*img);
     }
 
         //openImage(fileName);
