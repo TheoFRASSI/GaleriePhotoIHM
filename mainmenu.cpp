@@ -82,8 +82,7 @@ ImageButton* MainMenu::getButtonImage(){
     return buttonImage;
 }
 
-ImageButton* MainMenu::getButtonHelp()
-{
+ImageButton* MainMenu::getButtonHelp(){
     return buttonHelp;
 }
 
@@ -99,8 +98,7 @@ ImageButton* MainMenu::getButtonImageLarge(){
     return buttonImageLarge;
 }
 
-ImageButton* MainMenu::getButtonHelpLarge()
-{
+ImageButton* MainMenu::getButtonHelpLarge(){
     return buttonHelpLarge;
 }
 //----------------------------------------------------------------------------------------------

@@ -1599,13 +1599,13 @@
            <widget class="QFrame" name="frameMainMenu">
             <property name="minimumSize">
              <size>
-              <width>80</width>
+              <width>120</width>
               <height>300</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
+              <width>120</width>
               <height>16777215</height>
              </size>
             </property>

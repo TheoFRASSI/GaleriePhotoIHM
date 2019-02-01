@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setupUi(this);
 
     mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
+    headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer);
 
     accueilW = new AccueilWindow();
     albumW = new AlbumWindow();
@@ -22,20 +23,22 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initMap();
 
-    connect(mainmenu->getButtonHome(),SIGNAL(clicked()),this,SLOT(changeWid()));
-    connect(mainmenu->getButtonAlbum(),SIGNAL(clicked()),this,SLOT(changeWid()));
-    connect(mainmenu->getButtonImage(),SIGNAL(clicked()),this,SLOT(changeWid()));
-    connect(mainmenu->getButtonHelp(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonHome(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(mainmenu->getButtonAlbum(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(mainmenu->getButtonImage(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(mainmenu->getButtonHelp(),SIGNAL(clicked()),this,SLOT(changeWidget()));
 
-    connect(mainmenu->getButtonHomeLarge(),SIGNAL(clicked()),this,SLOT(changeWid()));
-    connect(mainmenu->getButtonAlbumLarge(),SIGNAL(clicked()),this,SLOT(changeWid()));
-    connect(mainmenu->getButtonImageLarge(),SIGNAL(clicked()),this,SLOT(changeWid()));
-    connect(mainmenu->getButtonHelpLarge(),SIGNAL(clicked()),this,SLOT(changeWid()));
+    connect(mainmenu->getButtonHomeLarge(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(mainmenu->getButtonAlbumLarge(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(mainmenu->getButtonImageLarge(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(mainmenu->getButtonHelpLarge(),SIGNAL(clicked()),this,SLOT(changeWidget()));
 
 
-    headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer);
+    connect(headermenu->getButtonSettings(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(headermenu->getButtonSearch(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(headermenu->getButtonNewAlbum(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(headermenu->getButtonNewPhoto(),SIGNAL(clicked()),this,SLOT(changeWidget()));
 
-    connect(headermenu->getButtonSettings(),SIGNAL(clicked()),this,SLOT(changeWid()));
     connect(headermenu->getButtonMenu(),SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
 
 
@@ -45,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-void MainWindow::changeWid(){
+void MainWindow::changeWidget(){
     stackWidget->setCurrentWidget(assoTab.value(sender()));
 }
 
@@ -61,5 +64,10 @@ void MainWindow::initMap(){
     assoTab.insert(mainmenu->getButtonHelpLarge(), helpW);
 
     assoTab.insert(headermenu->getButtonSettings(), settingsW);
+    assoTab.insert(headermenu->getButtonNewAlbum(), albumW);
+    assoTab.insert(headermenu->getButtonNewPhoto(), imageW);
+    assoTab.insert(headermenu->getButtonSearch(), imageW);
+
+    qDebug() << assoTab;
 
 }
