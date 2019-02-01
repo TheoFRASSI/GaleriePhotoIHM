@@ -8,9 +8,11 @@ class AlbumWindow : public QWidget, private Ui::AlbumWindow
 public:
     explicit AlbumWindow(QWidget *parent = nullptr);
 
+    //void openImage(const QString &fileName);
 signals:
 
 public slots:
     void changeTab();
+    void searchImage();
 private slots:
 };
