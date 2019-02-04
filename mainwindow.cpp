@@ -5,11 +5,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     setupUi(this);
 
+    QDir dir;
+    QString path = dir.currentPath()+"GalleryPhotoBDD.db";
+    BddGalleryPhoto* bdd = new BddGalleryPhoto(path);
+
     mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
     headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer);
 
     accueilW = new AccueilWindow();
-    albumW = new AlbumWindow();
+    albumW = new AlbumWindow(bdd);
     imageW = new ImageWindow();
     helpW = new HelpWindow();
     settingsW = new SettingsWindow();
@@ -40,6 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(headermenu->getButtonNewPhoto(),SIGNAL(clicked()),this,SLOT(changeWidget()));
 
     connect(headermenu->getButtonMenu(),SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
+
+
 
 
     //--SAAAAAAALE--------------------------------------------------------------------------------------------

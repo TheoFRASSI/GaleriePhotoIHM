@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -38,7 +38,9 @@ SOURCES += \
     modifimagewindow.cpp \
     helpwindow.cpp \
     listeimages.cpp \
-    headermenu.cpp
+    headermenu.cpp \
+    bddmanager.cpp \
+    bddgalleryphoto.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -53,7 +55,9 @@ HEADERS += \
     modifimagewindow.h \
     helpwindow.h \
     listeimages.h \
-    headermenu.h
+    headermenu.h \
+    bddmanager.h \
+    bddgalleryphoto.h
 
 FORMS += \
         mainwindow.ui \
