@@ -12,6 +12,15 @@ AccueilWindow::AccueilWindow(QWidget *parent) : QWidget(parent)
     imgEye = imgEye.scaled(40,40);
     oeil->setPixmap(imgEye);
 
+    favoris = new ImagesShowcase();
+    layoutImageFavoris->addWidget(favoris);
+
+    mostWatched = new ImagesShowcase();
+    layoutImageWatched->addWidget(mostWatched);
+
+    dominantColor = new ImagesShowcase();
+    layoutImageColor->addWidget(dominantColor);
+
     colorPicker = new ColorPicker();
 
     buttonColorPicker = new ColorButton(colorPicker->buttonjaune->imageHighlightedName, colorPicker->buttonjaune->imageName, colorPicker->buttonjaune->imageHighlightedName, colorPicker->buttonjaune->imageName, 40, 40, this);
@@ -25,6 +34,15 @@ AccueilWindow::AccueilWindow(QWidget *parent) : QWidget(parent)
 
 AccueilWindow::~AccueilWindow(){
     delete colorPicker;
+    colorPicker = nullptr;
+    delete favoris;
+    favoris = nullptr;
+    delete mostWatched;
+    mostWatched = nullptr;
+    delete dominantColor;
+    dominantColor = nullptr;
+    delete buttonColorPicker;
+    buttonColorPicker = nullptr;
 }
 
 void AccueilWindow::openColorPicker(){

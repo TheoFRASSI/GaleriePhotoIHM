@@ -11,6 +11,7 @@ class ColorButton : public QPushButton
 
 public:
     ColorButton(const QString &colorHighlighted, const QString &color, const QString &colorSelectedHighlighted, const QString &colorSelected, int w, int h, QWidget * parent);
+    ~ColorButton();
 
     bool loadImage(const QString &file);
     bool loadImageHighlighted(const QString &file);

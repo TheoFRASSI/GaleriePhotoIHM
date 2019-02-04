@@ -17,6 +17,10 @@ ColorButton::ColorButton(const QString &colorHighlighted, const QString &color, 
     setStyleSheet("QPushButton{ border: none}");
 }
 
+ColorButton::~ColorButton(){
+
+}
+
 /**************
 ** METHODS **
 **************/

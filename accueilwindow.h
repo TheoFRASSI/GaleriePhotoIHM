@@ -5,6 +5,7 @@
 #include "ui_accueilwindow.h"
 #include "imagebutton.h"
 #include "colorpicker.h"
+#include "imagesshowcase.h"
 
 class AccueilWindow : public QWidget, private Ui::AccueilWindow
 {
@@ -34,6 +35,9 @@ private:
     ColorPicker* colorPicker;
     ColorButton* currentColor;
     ColorButton* buttonColorPicker;
+    ImagesShowcase* favoris;
+    ImagesShowcase* mostWatched;
+    ImagesShowcase* dominantColor;
     //---------------------------------------------------------
 
     //--Images-------------------------------------------------

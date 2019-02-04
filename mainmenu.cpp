@@ -28,7 +28,22 @@ MainMenu::MainMenu(QFrame* container, QVBoxLayout* layoutHome, QVBoxLayout* layo
 }
 
 MainMenu::~MainMenu(){
-
+    delete buttonHome;
+    buttonHome = nullptr;
+    delete buttonAlbum;
+    buttonAlbum = nullptr;
+    delete buttonImage;
+    buttonImage = nullptr;
+    delete buttonHelp;
+    buttonHelp = nullptr;
+    delete buttonHomeLarge;
+    buttonHomeLarge = nullptr;
+    delete buttonAlbumLarge;
+    buttonAlbumLarge = nullptr;
+    delete buttonImageLarge;
+    buttonImageLarge = nullptr;
+    delete buttonHelpLarge;
+    buttonHelpLarge = nullptr;
 }
 
 void MainMenu::openMenu(){
