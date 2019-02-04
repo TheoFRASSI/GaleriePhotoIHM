@@ -25,6 +25,7 @@ public:
     //bool insertAlbum(Album entry);
 
     bool initBdd();
+    QVector<Image *> getAllImages() const;
 private:
     QSqlDatabase bdd;
 };

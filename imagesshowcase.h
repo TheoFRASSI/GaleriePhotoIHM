@@ -2,6 +2,7 @@
 
 #include "ui_imagesshowcase.h"
 #include "imagebutton.h"
+#include "image.h"
 
 class ImagesShowcase : public QWidget, private Ui::ImagesShowcase
 {
@@ -11,7 +12,7 @@ class ImagesShowcase : public QWidget, private Ui::ImagesShowcase
 public:
 
     //--Constructeur Desctructeur------------------------------
-    explicit ImagesShowcase(QWidget *parent = nullptr);
+    explicit ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent = nullptr);
     ~ImagesShowcase();
     //---------------------------------------------------------
 

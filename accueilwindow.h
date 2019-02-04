@@ -6,6 +6,7 @@
 #include "imagebutton.h"
 #include "colorpicker.h"
 #include "imagesshowcase.h"
+#include "bddgalleryphoto.h"
 
 class AccueilWindow : public QWidget, private Ui::AccueilWindow
 {
@@ -13,7 +14,7 @@ class AccueilWindow : public QWidget, private Ui::AccueilWindow
 public:
 
     //--Constructeur Desctructeur------------------------------
-    explicit AccueilWindow(QWidget *parent = nullptr);
+    explicit AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent = nullptr);
     ~AccueilWindow();
     //---------------------------------------------------------
 
@@ -38,6 +39,8 @@ private:
     ImagesShowcase* favoris;
     ImagesShowcase* mostWatched;
     ImagesShowcase* dominantColor;
+
+    const BddGalleryPhoto * bdd;
     //---------------------------------------------------------
 
     //--Images-------------------------------------------------

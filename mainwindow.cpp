@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
     headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer);
 
-    accueilW = new AccueilWindow();
+    accueilW = new AccueilWindow(bdd);
     albumW = new AlbumWindow(bdd);
     imageW = new ImageWindow();
     helpW = new HelpWindow();

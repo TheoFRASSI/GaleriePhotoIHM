@@ -68,6 +68,21 @@ Image* BddGalleryPhoto::getImageByName(QString name) const
     return res;
 }
 
+QVector<Image*> BddGalleryPhoto::getAllImages() const
+{
+    QVector<Image*> v;
+    QSqlQuery query;
+    query.prepare("SELECT name, path FROM image");
+    if (!query.exec())
+    {
+        qDebug() << "get All images error";
+    }
+    while(query.next()){
+        v.push_back(new Image(query.value(0).toString(), query.value(1).toString()));
+    }
+    return v;
+}
+
 bool BddGalleryPhoto::initBdd() {
     QSqlQuery query;
     bool success = true;

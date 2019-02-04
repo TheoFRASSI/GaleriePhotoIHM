@@ -1,8 +1,10 @@
 #include "accueilwindow.h"
 
-AccueilWindow::AccueilWindow(QWidget *parent) : QWidget(parent)
+AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
+
+    bdd = pbdd;
 
     QPixmap imgStar(imageStar);
     imgStar = imgStar.scaled(40,40);
@@ -12,13 +14,13 @@ AccueilWindow::AccueilWindow(QWidget *parent) : QWidget(parent)
     imgEye = imgEye.scaled(40,40);
     oeil->setPixmap(imgEye);
 
-    favoris = new ImagesShowcase();
+    favoris = new ImagesShowcase(bdd->getAllImages());
     layoutImageFavoris->addWidget(favoris);
 
-    mostWatched = new ImagesShowcase();
+    mostWatched = new ImagesShowcase(bdd->getAllImages());
     layoutImageWatched->addWidget(mostWatched);
 
-    dominantColor = new ImagesShowcase();
+    dominantColor = new ImagesShowcase(bdd->getAllImages());
     layoutImageColor->addWidget(dominantColor);
 
     colorPicker = new ColorPicker();
