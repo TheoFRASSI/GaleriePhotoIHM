@@ -1,16 +1,22 @@
 #include "albumwindow.h"
-#include <QFileDialog>
-#include <QDebug>
-#include <QPixmap>
 
-AlbumWindow::AlbumWindow(QWidget *parent) : QWidget(parent)
+#include <QSqlQuery>
+
+AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
-
+    bdd = pbdd;
     connect(albPersoButton, SIGNAL(clicked()), this, SLOT(changeTab()));
     connect(albAutoButton, SIGNAL(clicked()), this, SLOT(changeTab()));
     connect(newImageButton, SIGNAL(clicked()),this, SLOT(searchImage()));
 
+    Image* image = bdd->getImageByName("Image 1");
+    QPixmap *pixmap = new QPixmap(image->getPath());
+    labelImg->setPixmap(*pixmap);
+}
+
+AlbumWindow::~AlbumWindow()
+{
 }
 
 void AlbumWindow::changeTab()
@@ -24,11 +30,15 @@ void AlbumWindow::changeTab()
 }
 void AlbumWindow::searchImage()
 {
-    QString imgPath = QFileDialog::getOpenFileName(this);
+    const QString& imgPath = QFileDialog::getOpenFileName(this);
     if (!imgPath.isEmpty()) {
         qDebug() << imgPath;
         QPixmap *img = new QPixmap(imgPath);
-             labelImg->setPixmap(*img);
+        labelImg->setPixmap(*img);
+
+        Image newImage("Image 1", imgPath);
+        bdd->insertImage(newImage);
+
     }
 
         //openImage(fileName);

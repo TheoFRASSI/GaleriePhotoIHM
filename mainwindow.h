@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QDebug>
+#include <QDir>
 
 #include "ui_mainwindow.h"
 #include "imagebutton.h"
@@ -12,6 +13,8 @@
 #include "settingswindow.h"
 #include "modifimagewindow.h"
 #include "headermenu.h"
+#include "bddgalleryphoto.h"
+#include "bddmanager.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -32,6 +35,7 @@ public:
     //---------------------------------------------------------
 
     //--Attributs----------------------------------------------
+
     //---------------------------------------------------------
 
 
@@ -44,13 +48,12 @@ private:
 
     MainMenu* mainmenu;
     HeaderMenu* headermenu;
-
     AccueilWindow* accueilW;
-    AlbumWindow* albumW;
     ImageWindow* imageW;
     HelpWindow* helpW;
     SettingsWindow* settingsW;
     ModifImageWindow* modifimageW;
+    AlbumWindow* albumW;
     //---------------------------------------------------------
 
 public slots:

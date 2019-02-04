@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,6 +39,8 @@ SOURCES += \
     helpwindow.cpp \
     listeimages.cpp \
     headermenu.cpp \
+    bddmanager.cpp \
+    bddgalleryphoto.cpp \
     colorpicker.cpp \
     colorbutton.cpp \
     imagesshowcase.cpp
@@ -57,6 +59,8 @@ HEADERS += \
     helpwindow.h \
     listeimages.h \
     headermenu.h \
+    bddmanager.h \
+    bddgalleryphoto.h \
     colorpicker.h \
     colorbutton.h \
     imagesshowcase.h
