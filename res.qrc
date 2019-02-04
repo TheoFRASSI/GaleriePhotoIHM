@@ -1,12 +1,11 @@
 <RCC>
-    <qresource prefix="/img/button" lang="fr">
+    <qresource lang="fr" prefix="/img/button">
         <file alias="album">img/button/boutonAlbum.png</file>
         <file alias="albumHighlighted">img/button/boutonAlbumHighlighted.png</file>
         <file alias="help">img/button/boutonHelp.png</file>
         <file alias="helpHighlighted">img/button/boutonHelpHighlighted.png</file>
         <file alias="image">img/button/boutonPhoto.png</file>
         <file alias="imageHighlighted">img/button/boutonPhotoHighlighted.png</file>
-        <file>img/button/gallery-icon.png</file>
         <file alias="home">img/button/boutonHome.png</file>
         <file alias="homeHighlighted">img/button/boutonHomeHighlighted.png</file>
         <file alias="albumHighlightedLarge">img/button/boutonAlbumHighlightedLarge.png</file>
@@ -29,8 +28,96 @@
         <file alias="searchHighlighted">img/button/boutonSearchHighlighted.png</file>
         <file alias="settings">img/button/boutonSettings.png</file>
         <file alias="settingsHighlighted">img/button/boutonSettingsHighlighted.png</file>
+        <file>img/button/boutonLeft.png</file>
+        <file>img/button/boutonLeftHighlighted.png</file>
+        <file>img/button/boutonRight.png</file>
+        <file>img/button/boutonRightHighlighted.png</file>
     </qresource>
-    <qresource prefix="/img/window" lang="fr">
+    <qresource lang="fr" prefix="/img/window">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>
+        <file alias="eye">img/window/eye.png</file>
+        <file alias="star">img/window/star-1292832_960_720.png</file>
+    </qresource>
+    <qresource lang="fr" prefix="/img/button/colors">
+        <file alias="bleu">img/button/Colors/couleurBleu.png</file>
+        <file alias="bleuClair1">img/button/Colors/couleurBleuClair1.png</file>
+        <file alias="bleuClair1Highlighted">img/button/Colors/couleurBleuClair1Highlighted.png</file>
+        <file alias="bleuClair1Selected">img/button/Colors/couleurBleuClair1Selected.png</file>
+        <file alias="bleuClair1SelectedHighlighted">img/button/Colors/couleurBleuClair1SelectedHighlighted.png</file>
+        <file alias="bleuClair2">img/button/Colors/couleurBleuClair2.png</file>
+        <file alias="bleuClair2Highlighted">img/button/Colors/couleurBleuClair2Highlighted.png</file>
+        <file alias="bleuClair2Selected">img/button/Colors/couleurBleuClair2Selected.png</file>
+        <file alias="bleuClair2SelectedHighlighted">img/button/Colors/couleurBleuClair2SelectedHighlighted.png</file>
+        <file alias="bleuClair3">img/button/Colors/couleurBleuClair3.png</file>
+        <file alias="bleuClair3Highlighted">img/button/Colors/couleurBleuClair3Highlighted.png</file>
+        <file alias="bleuClair3Selected">img/button/Colors/couleurBleuClair3Selected.png</file>
+        <file alias="bleuClair3SelectedHighlighted">img/button/Colors/couleurBleuClair3SelectedHighlighted.png</file>
+        <file alias="bleuGris">img/button/Colors/couleurBleuGris.png</file>
+        <file alias="bleuGrisHighlighted">img/button/Colors/couleurBleuGrisHighlighted.png</file>
+        <file alias="bleuGrisSelected">img/button/Colors/couleurBleuGrisSelected.png</file>
+        <file alias="bleuGrisSelectedHighlighted">img/button/Colors/couleurBleuGrisSelectedHighlighted.png</file>
+        <file alias="bleuHighlighted">img/button/Colors/couleurBleuHighlighted.png</file>
+        <file alias="bleuSelected">img/button/Colors/couleurBleuSelected.png</file>
+        <file alias="bleuSelectedHighlighted">img/button/Colors/couleurBleuSelectedHighlighted.png</file>
+        <file alias="gris">img/button/Colors/couleurGris.png</file>
+        <file alias="grisHighlighted">img/button/Colors/couleurGrisHighlighted.png</file>
+        <file alias="grisSelected">img/button/Colors/couleurGrisSelected.png</file>
+        <file alias="grisSelectedHighlighted">img/button/Colors/couleurGrisSelectedHighlighted.png</file>
+        <file alias="jaune">img/button/Colors/couleurJaune.png</file>
+        <file alias="jauneFonce">img/button/Colors/couleurJauneFonce.png</file>
+        <file alias="jauneFonceHighlighted">img/button/Colors/couleurJauneFonceHighlighted.png</file>
+        <file alias="jauneFonceSelected">img/button/Colors/couleurJauneFonceSelected.png</file>
+        <file alias="jauneFonceSelectedHighlighted">img/button/Colors/couleurJauneFonceSelectedHighlighted.png</file>
+        <file alias="jauneHighlighted">img/button/Colors/couleurJauneHighlighted.png</file>
+        <file alias="jauneSelected">img/button/Colors/couleurJauneSelected.png</file>
+        <file alias="jauneSelectedHighlighted">img/button/Colors/couleurJauneSelectedHighlighted.png</file>
+        <file alias="magenta">img/button/Colors/couleurMagenta.png</file>
+        <file alias="magentaHighlighted">img/button/Colors/couleurMagentaHighlighted.png</file>
+        <file alias="magentaSelected">img/button/Colors/couleurMagentaSelected.png</file>
+        <file alias="magentaSelectedHighlighted">img/button/Colors/couleurMagentaSelectedHighlighted.png</file>
+        <file alias="marron">img/button/Colors/couleurMarron.png</file>
+        <file alias="marronHighlighted">img/button/Colors/couleurMarronHighlighted.png</file>
+        <file alias="marronSelected">img/button/Colors/couleurMarronSelected.png</file>
+        <file alias="marronSelectedHighlighted">img/button/Colors/couleurMarronSelectedHighlighted.png</file>
+        <file alias="noir">img/button/Colors/couleurNoir.png</file>
+        <file alias="noirHighlighted">img/button/Colors/couleurNoirHighlighted.png</file>
+        <file alias="noirSelected">img/button/Colors/couleurNoirSelected.png</file>
+        <file alias="noirSelectedHighlighted">img/button/Colors/couleurNoirSelectedHighlighted.png</file>
+        <file alias="orange">img/button/Colors/couleurOrange.png</file>
+        <file alias="orangeHighlighted">img/button/Colors/couleurOrangeHighlighted.png</file>
+        <file alias="orangeSelected">img/button/Colors/couleurOrangeSelected.png</file>
+        <file alias="orangeSelectedHighlighted">img/button/Colors/couleurOrangeSelectedHighlighted.png</file>
+        <file alias="rose">img/button/Colors/couleurRose.png</file>
+        <file alias="roseHighlighted">img/button/Colors/couleurRoseHighlighted.png</file>
+        <file alias="roseSelected">img/button/Colors/couleurRoseSelected.png</file>
+        <file alias="roseSelectedHighlighted">img/button/Colors/couleurRoseSelectedHighlighted.png</file>
+        <file alias="rouge">img/button/Colors/couleurRouge.png</file>
+        <file alias="rougeHighlighted">img/button/Colors/couleurRougeHighlighted.png</file>
+        <file alias="rougeSelected">img/button/Colors/couleurRougeSelected.png</file>
+        <file alias="rougeSelectedHighlighted">img/button/Colors/couleurRougeSelectedHighlighted.png</file>
+        <file alias="vert">img/button/Colors/couleurVert.png</file>
+        <file alias="vertClair">img/button/Colors/couleurVertClair.png</file>
+        <file alias="vertClairHighlighted">img/button/Colors/couleurVertClairHighlighted.png</file>
+        <file alias="vertClairSelected">img/button/Colors/couleurVertClairSelected.png</file>
+        <file alias="vertClairSelectedHighlighted">img/button/Colors/couleurVertClairSelectedHighlighted.png</file>
+        <file alias="vertFonce">img/button/Colors/couleurVertFonce.png</file>
+        <file alias="vertFonceHighlighted">img/button/Colors/couleurVertFonceHighlighted.png</file>
+        <file alias="vertFonceSelected">img/button/Colors/couleurVertFonceSelected.png</file>
+        <file alias="vertFonceSelectedHighlighted">img/button/Colors/couleurVertFonceSelectedHighlighted.png</file>
+        <file alias="vertHighlighted">img/button/Colors/couleurVertHighlighted.png</file>
+        <file alias="vertJaune">img/button/Colors/couleurVertJaune.png</file>
+        <file alias="vertJauneHighlighted">img/button/Colors/couleurVertJauneHighlighted.png</file>
+        <file alias="vertJauneSelected">img/button/Colors/couleurVertJauneSelected.png</file>
+        <file alias="vertJauneSelectedHighlighted">img/button/Colors/couleurVertJauneSelectedHighlighted.png</file>
+        <file alias="vertSelected">img/button/Colors/couleurVertSelected.png</file>
+        <file alias="vertSelectedHighlighted">img/button/Colors/couleurVertSelectedHighlighted.png</file>
+        <file alias="violet">img/button/Colors/couleurViolettte.png</file>
+        <file alias="violetHighlighted">img/button/Colors/couleurViolettteHighlighted.png</file>
+        <file alias="violetSelected">img/button/Colors/couleurViolettteSelected.png</file>
+        <file alias="violetSelectedHighlighted">img/button/Colors/couleurViolettteSelectedHighlighted.png</file>
+        <file alias="orangeClair">img/button/Colors/couleurOrangeClair.png</file>
+        <file alias="orangeClairHighlighted">img/button/Colors/couleurOrangeClairHighlighted.png</file>
+        <file alias="orangeClairSelected">img/button/Colors/couleurOrangeClairSelected.png</file>
+        <file alias="orangeClairSelectedHighlighted">img/button/Colors/couleurOrangeClairSelectedHighlighted.png</file>
     </qresource>
 </RCC>

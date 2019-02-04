@@ -38,7 +38,10 @@ SOURCES += \
     modifimagewindow.cpp \
     helpwindow.cpp \
     listeimages.cpp \
-    headermenu.cpp
+    headermenu.cpp \
+    colorpicker.cpp \
+    colorbutton.cpp \
+    imagesshowcase.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -53,7 +56,10 @@ HEADERS += \
     modifimagewindow.h \
     helpwindow.h \
     listeimages.h \
-    headermenu.h
+    headermenu.h \
+    colorpicker.h \
+    colorbutton.h \
+    imagesshowcase.h
 
 FORMS += \
         mainwindow.ui \
@@ -62,7 +68,9 @@ FORMS += \
     imagewindow.ui \
     settingswindow.ui \
     modifimagewindow.ui \
-    helpwindow.ui
+    helpwindow.ui \
+    colorpicker.ui \
+    imagesshowcase.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
