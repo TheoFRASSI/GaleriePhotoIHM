@@ -24,6 +24,7 @@ public:
 
     //--Constructeur Desctructeur------------------------------
     explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
     //---------------------------------------------------------
 
     //--Fonctions----------------------------------------------

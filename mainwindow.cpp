@@ -54,6 +54,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
+MainWindow::~MainWindow(){
+    delete mainmenu;
+    delete headermenu;
+    delete accueilW;
+    delete albumW;
+    delete imageW;
+    delete helpW;
+    delete settingsW;
+    delete modifimageW;
+}
+
 void MainWindow::changeWidget(){
     stackWidget->setCurrentWidget(assoTab.value(sender()));
 }
@@ -73,7 +84,4 @@ void MainWindow::initMap(){
     assoTab.insert(headermenu->getButtonNewAlbum(), albumW);
     assoTab.insert(headermenu->getButtonNewPhoto(), imageW);
     assoTab.insert(headermenu->getButtonSearch(), imageW);
-
-    qDebug() << assoTab;
-
 }
