@@ -32,6 +32,12 @@
         <file alias="leftHighlighted">img/button/boutonLeftHighlighted.png</file>
         <file alias="right">img/button/boutonRight.png</file>
         <file alias="rightHighlighted">img/button/boutonRightHighlighted.png</file>
+        <file alias="facebook">img/button/boutonFacebook.png</file>
+        <file alias="facebookHighlighted">img/button/boutonFacebookHighlighted.png</file>
+        <file alias="mail">img/button/boutonMail.png</file>
+        <file alias="mailHighlighted">img/button/boutonMailHighlighted.png</file>
+        <file alias="twitter">img/button/boutonTwitter.png</file>
+        <file alias="twitterHighlighted">img/button/boutonTwitterHighlighted.png</file>
     </qresource>
     <qresource lang="fr" prefix="/img/window">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>
