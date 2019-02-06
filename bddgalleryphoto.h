@@ -8,6 +8,7 @@
 #include <QtDebug>
 #include "album.h"
 #include "image.h"
+#include "smartdelete.h"
 
 
 

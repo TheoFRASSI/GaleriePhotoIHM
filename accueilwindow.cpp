@@ -14,7 +14,13 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
     imgEye = imgEye.scaled(40,40);
     oeil->setPixmap(imgEye);
 
-    initShowCase();
+    favoris = new ImagesShowcase(bdd->getAllImages());
+    mostWatched = new ImagesShowcase(bdd->getAllImages());
+    dominantColor = new ImagesShowcase(bdd->getAllImages());
+
+    layoutImageFavoris->addWidget(favoris);
+    layoutImageColor->addWidget(dominantColor);
+    layoutImageWatched->addWidget(mostWatched);
 
     colorPicker = new ColorPicker();
 
@@ -37,16 +43,11 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
 }
 
 AccueilWindow::~AccueilWindow(){
-    delete colorPicker;
-    colorPicker = nullptr;
-    delete favoris;
-    favoris = nullptr;
-    delete mostWatched;
-    mostWatched = nullptr;
-    delete dominantColor;
-    dominantColor = nullptr;
-    delete buttonColorPicker;
-    buttonColorPicker = nullptr;
+    smartDeleteMrNovelli(colorPicker);
+    smartDeleteMrNovelli(favoris);
+    smartDeleteMrNovelli(mostWatched);
+    smartDeleteMrNovelli(dominantColor);
+    smartDeleteMrNovelli(buttonColorPicker);
 }
 
 void AccueilWindow::openColorPicker(){
@@ -63,14 +64,10 @@ void AccueilWindow::newColor(){
 }
 
 void AccueilWindow::initShowCase(){
-    favoris = new ImagesShowcase(bdd->getAllImages());
-    layoutImageFavoris->addWidget(favoris);
 
-    mostWatched = new ImagesShowcase(bdd->getAllImages());
-    layoutImageWatched->addWidget(mostWatched);
-
-    dominantColor = new ImagesShowcase(bdd->getAllImages());
-    layoutImageColor->addWidget(dominantColor);
+    favoris->newBDDRequest(bdd->getAllImages());
+    mostWatched->newBDDRequest(bdd->getAllImages());
+    dominantColor->newBDDRequest(bdd->getAllImages());
 }
 
 ImagesShowcase *AccueilWindow::getFavoris() const

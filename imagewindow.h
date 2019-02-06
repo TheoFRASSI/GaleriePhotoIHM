@@ -2,10 +2,9 @@
 
 #include <QObject>
 #include <QWidget>
+
 #include "ui_imagewindow.h"
-
-#include <map>
-
+#include "smartdelete.h"
 
 class ImageWindow : public QWidget, private Ui::ImageWindow
 {
@@ -14,7 +13,6 @@ public:
     explicit ImageWindow(QWidget *parent = nullptr);
 
 private:
-    //std::map<, > listButtons;
 
 signals:
 

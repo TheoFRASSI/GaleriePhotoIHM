@@ -33,18 +33,12 @@ HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* 
 }
 
 HeaderMenu::~HeaderMenu(){
-    delete buttonMenu;
-    buttonMenu = nullptr;
-    delete buttonSearch;
-    buttonSearch = nullptr;
-    delete buttonNewAlbum;
-    buttonNewAlbum = nullptr;
-    delete buttonNewPhoto;
-    buttonNewPhoto = nullptr;
-    delete buttonDisplay;
-    buttonDisplay = nullptr;
-    delete buttonSettings;
-    buttonSettings = nullptr;
+    smartDeleteMrNovelli(buttonMenu);
+    smartDeleteMrNovelli(buttonSearch);
+    smartDeleteMrNovelli(buttonNewAlbum);
+    smartDeleteMrNovelli(buttonNewPhoto);
+    smartDeleteMrNovelli(buttonDisplay);
+    smartDeleteMrNovelli(buttonSettings);
 }
 
 ImageButton* HeaderMenu::getButtonMenu(){

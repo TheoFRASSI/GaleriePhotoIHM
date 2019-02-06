@@ -1,7 +1,5 @@
 #include "albumwindow.h"
 
-#include <QSqlQuery>
-
 AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
@@ -17,6 +15,7 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
 
 AlbumWindow::~AlbumWindow()
 {
+    smartDeleteMrNovelli(bdd);
 }
 
 void AlbumWindow::changeTab()

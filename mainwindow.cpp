@@ -45,24 +45,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(headermenu->getButtonMenu(),SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
 
-
-
-
-    //--SAAAAAAALE--------------------------------------------------------------------------------------------
-
-    //connect(/*A INSERER*/->getButtonModifImage(),SIGNAL(clicked()),this,SLOT(changeWid()));
-
 }
 
 MainWindow::~MainWindow(){
-    delete mainmenu;
-    delete headermenu;
-    delete accueilW;
-    delete albumW;
-    delete imageW;
-    delete helpW;
-    delete settingsW;
-    delete modifimageW;
+    smartDeleteMrNovelli(mainmenu);
+    smartDeleteMrNovelli(headermenu);
+    smartDeleteMrNovelli(accueilW);
+    smartDeleteMrNovelli(albumW);
+    smartDeleteMrNovelli(imageW);
+    smartDeleteMrNovelli(helpW);
+    smartDeleteMrNovelli(settingsW);
+    smartDeleteMrNovelli(modifimageW);
 }
 
 void MainWindow::changeWidget(){
@@ -73,6 +66,7 @@ void MainWindow::changeWidget(){
         headermenu->getLabelTitre()->setText("Images");
     } else if (assoTab.value(sender()) == accueilW) {
         headermenu->getLabelTitre()->setText("Accueil");
+        accueilW->initShowCase();
     } else if (assoTab.value(sender()) == helpW) {
         headermenu->getLabelTitre()->setText("Aide");
     } else if (assoTab.value(sender()) == settingsW) {

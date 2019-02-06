@@ -2,6 +2,7 @@
 
 #include <QVector>
 #include "image.h"
+#include "smartdelete.h"
 
 class Album
 {

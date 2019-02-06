@@ -5,6 +5,8 @@
 #include <QEvent>
 #include <QDebug>
 
+#include "smartdelete.h"
+
 class ColorButton : public QPushButton
 {
     Q_OBJECT

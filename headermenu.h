@@ -7,6 +7,8 @@
 #include <imagebutton.h>
 #include <QLabel>
 
+#include "smartdelete.h"
+
 class HeaderMenu : public QFrame
 {
     Q_OBJECT

@@ -4,7 +4,10 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QPixmap>
+#include <QSqlQuery>
+
 #include "bddgalleryphoto.h"
+#include "smartdelete.h"
 
 class AlbumWindow : public QWidget, private Ui::AlbumWindow
 {

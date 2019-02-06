@@ -3,6 +3,7 @@
 #include <QWidget>
 
 #include "image.h"
+#include "smartdelete.h"
 
 class ListeImages : public QWidget
 {

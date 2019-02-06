@@ -1,5 +1,5 @@
 <RCC>
-    <qresource lang="fr" prefix="/img/button">
+    <qresource prefix="/img/button" lang="fr">
         <file alias="album">img/button/boutonAlbum.png</file>
         <file alias="albumHighlighted">img/button/boutonAlbumHighlighted.png</file>
         <file alias="help">img/button/boutonHelp.png</file>
@@ -39,12 +39,14 @@
         <file alias="twitter">img/button/boutonTwitter.png</file>
         <file alias="twitterHighlighted">img/button/boutonTwitterHighlighted.png</file>
     </qresource>
-    <qresource lang="fr" prefix="/img/window">
+    <qresource prefix="/img/window" lang="fr">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>
         <file alias="eye">img/window/eye.png</file>
         <file alias="star">img/window/star-1292832_960_720.png</file>
+        <file alias="aucuneImage">img/window/aucuneImage.png</file>
+        <file alias="imageVide">img/window/imageVide.png</file>
     </qresource>
-    <qresource lang="fr" prefix="/img/button/colors">
+    <qresource prefix="/img/button/colors" lang="fr">
         <file alias="bleu">img/button/Colors/couleurBleu.png</file>
         <file alias="bleuClair1">img/button/Colors/couleurBleuClair1.png</file>
         <file alias="bleuClair1Highlighted">img/button/Colors/couleurBleuClair1Highlighted.png</file>

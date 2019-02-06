@@ -7,6 +7,7 @@
 #include "colorpicker.h"
 #include "imagesshowcase.h"
 #include "bddgalleryphoto.h"
+#include "smartdelete.h"
 
 class AccueilWindow : public QWidget, private Ui::AccueilWindow
 {

@@ -52,46 +52,26 @@ ColorPicker::ColorPicker(QWidget *parent) :
 }
 
 ColorPicker::~ColorPicker(){
-    delete buttonbleu;
-    buttonbleu = nullptr;
-    delete buttonbleuClair1;
-    buttonbleuClair1 = nullptr;
-    delete buttonbleuClair2;
-    buttonbleuClair2 = nullptr;
-    delete buttonbleuClair3;
-    buttonbleuClair3 = nullptr;
-    delete buttonbleuGris;
-    buttonbleuGris = nullptr;
-    delete buttongris;
-    buttongris = nullptr;
-    delete buttonjaune;
-    buttonjaune = nullptr;
-    delete buttonjauneFonce;
-    buttonjauneFonce = nullptr;
-    delete buttonmagenta;
-    buttonmagenta = nullptr;
-    delete buttonmarron;
-    buttonmarron = nullptr;
-    delete buttonnoir;
-    buttonnoir = nullptr;
-    delete buttonorange;
-    buttonorange = nullptr;
-    delete buttonorangeClair;
-    buttonorangeClair = nullptr;
-    delete buttonrose;
-    buttonrose = nullptr;
-    delete buttonrouge;
-    buttonrouge = nullptr;
-    delete buttonvert;
-    buttonvert = nullptr;
-    delete buttonvertClair;
-    buttonvertClair = nullptr;
-    delete buttonvertFonce;
-    buttonvertFonce = nullptr;
-    delete buttonvertJaune;
-    buttonvertJaune = nullptr;
-    delete buttonviolet;
-    buttonviolet = nullptr;
+    smartDeleteMrNovelli(buttonbleu);
+    smartDeleteMrNovelli(buttonbleuClair1);
+    smartDeleteMrNovelli(buttonbleuClair2);
+    smartDeleteMrNovelli(buttonbleuClair3);
+    smartDeleteMrNovelli(buttonbleuGris);
+    smartDeleteMrNovelli(buttongris);
+    smartDeleteMrNovelli(buttonjaune);
+    smartDeleteMrNovelli(buttonjauneFonce);
+    smartDeleteMrNovelli(buttonmagenta);
+    smartDeleteMrNovelli(buttonmarron);
+    smartDeleteMrNovelli(buttonnoir);
+    smartDeleteMrNovelli(buttonorange);
+    smartDeleteMrNovelli(buttonorangeClair);
+    smartDeleteMrNovelli(buttonrose);
+    smartDeleteMrNovelli(buttonrouge);
+    smartDeleteMrNovelli(buttonvert);
+    smartDeleteMrNovelli(buttonvertClair);
+    smartDeleteMrNovelli(buttonvertFonce);
+    smartDeleteMrNovelli(buttonvertJaune);
+    smartDeleteMrNovelli(buttonviolet);
 }
 
 void ColorPicker::initGridColor(){

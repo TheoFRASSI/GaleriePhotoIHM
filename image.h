@@ -4,6 +4,8 @@
 #include <QDate>
 #include <QString>
 
+#include "smartdelete.h"
+
 class Image
 {
 public:

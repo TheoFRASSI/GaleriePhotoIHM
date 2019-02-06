@@ -101,6 +101,22 @@ void ImageButton::setChecked(bool b)
         setImageReleased();
 }
 
+void ImageButton::setDisable(bool b){
+    QAbstractButton::setEnabled(false);
+    if (b)
+        setIcon(QIcon(imageDisable));
+    else
+        setIcon(QIcon(imageEnable));
+}
+
+void ImageButton::loadImageDisable(const QString &file){
+    imageDisable.load(file);
+}
+
+void ImageButton::loadImageEnable(const QString &file){
+    imageEnable.load(file);
+}
+
 void ImageButton::setImagePressed()
 {
     if (imagePressed.isNull())
