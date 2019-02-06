@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QLabel>
+
 #include "ui_imagesshowcase.h"
 #include "imagebutton.h"
 #include "image.h"
@@ -17,6 +19,7 @@ public:
     //---------------------------------------------------------
 
     //--Fonctions----------------------------------------------
+    void fillShowCase();
     //---------------------------------------------------------
 
     //--Getters Setters----------------------------------------
@@ -25,14 +28,20 @@ public:
     //--Attributs----------------------------------------------
     //---------------------------------------------------------
 
-
 private:
     //--Fonctions----------------------------------------------
+
     //---------------------------------------------------------
 
     //--Attributs----------------------------------------------
+    const int LABEL_SIZE = 250;
+
     ImageButton* leftButton;
     ImageButton* rightButton;
+    int cursor = 0;
+    QVector<QLabel*> labelsImage;
+    int nbLabel = 5;
+    QVector<Image*> imageTab;
     //---------------------------------------------------------
 
     //--Images-------------------------------------------------
@@ -43,4 +52,6 @@ private:
     //---------------------------------------------------------
 
 public slots:
+    void changeImageRight();
+    void changeImageLeft();
 };

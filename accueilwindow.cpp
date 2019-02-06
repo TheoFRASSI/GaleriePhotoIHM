@@ -14,14 +14,7 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
     imgEye = imgEye.scaled(40,40);
     oeil->setPixmap(imgEye);
 
-    favoris = new ImagesShowcase(bdd->getAllImages());
-    layoutImageFavoris->addWidget(favoris);
-
-    mostWatched = new ImagesShowcase(bdd->getAllImages());
-    layoutImageWatched->addWidget(mostWatched);
-
-    dominantColor = new ImagesShowcase(bdd->getAllImages());
-    layoutImageColor->addWidget(dominantColor);
+    initShowCase();
 
     colorPicker = new ColorPicker();
 
@@ -67,4 +60,45 @@ void AccueilWindow::newColor(){
     buttonColorPicker->loadImageSelected(currentColor->imageName);
     buttonColorPicker->loadImageSelectedHighlighted(currentColor->imageHighlightedName);
     colorPicker->close();
+}
+
+void AccueilWindow::initShowCase(){
+    favoris = new ImagesShowcase(bdd->getAllImages());
+    layoutImageFavoris->addWidget(favoris);
+
+    mostWatched = new ImagesShowcase(bdd->getAllImages());
+    layoutImageWatched->addWidget(mostWatched);
+
+    dominantColor = new ImagesShowcase(bdd->getAllImages());
+    layoutImageColor->addWidget(dominantColor);
+}
+
+ImagesShowcase *AccueilWindow::getFavoris() const
+{
+    return favoris;
+}
+
+void AccueilWindow::setFavoris(ImagesShowcase *value)
+{
+    favoris = value;
+}
+
+ImagesShowcase *AccueilWindow::getMostWatched() const
+{
+    return mostWatched;
+}
+
+void AccueilWindow::setMostWatched(ImagesShowcase *value)
+{
+    mostWatched = value;
+}
+
+ImagesShowcase *AccueilWindow::getDominantColor() const
+{
+    return dominantColor;
+}
+
+void AccueilWindow::setDominantColor(ImagesShowcase *value)
+{
+    dominantColor = value;
 }

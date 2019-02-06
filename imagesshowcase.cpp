@@ -1,18 +1,27 @@
 #include "imagesshowcase.h"
 
-int random(int min, int max) //range : [min, max)
-{
-   static bool first = true;
-   if (first)
-   {
-      srand( time(NULL) ); //seeding for the first time only!
-      first = false;
-   }
-   return min + rand() % (( max + 1 ) - min);
+//int random(int min, int max) //range : [min, max)
+//{
+//   static bool first = true;
+//   if (first)
+//   {
+//      srand( time(NULL) ); //seeding for the first time only!
+//      first = false;
+//   }
+//   return min + rand() % (( max + 1 ) - min);
+//}
+
+void ImagesShowcase::fillShowCase(){
+    for(int i = cursor; i < nbLabel; i++){
+        if(i <= imageTab.size() - 1){
+            labelsImage[i]->setPixmap(QPixmap(imageTab[i]->getPath()));
+        }
+    }
+
 }
 
-ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent) :
-    QWidget(parent)
+ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
+               :QWidget(parent), imageTab(imagesTab)
 {
     setupUi(this);
 
@@ -22,15 +31,20 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent) :
     layoutLeft->addWidget(leftButton);
     layoutRight->addWidget(rightButton);
 
-    if(!imagesTab.isEmpty()){
-        img1->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
-        img2->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
-        img3->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
-        img4->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
-        img5->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
-        img6->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
+    for(int i = 0; i < nbLabel; i++){
+        QLabel* label = new QLabel();
+        label->setMaximumSize(LABEL_SIZE,LABEL_SIZE);
+        label->setMinimumSize(LABEL_SIZE,LABEL_SIZE);
+        label->setScaledContents(true);
+        gridImages->addWidget(label, 0, i);
+        labelsImage.push_back(label);
     }
 
+    if(imagesTab.isEmpty()){
+        //Image Speciale
+    } else {
+        fillShowCase();
+    }
 }
 
 ImagesShowcase::~ImagesShowcase(){
@@ -38,4 +52,21 @@ ImagesShowcase::~ImagesShowcase(){
     leftButton = nullptr;
     delete rightButton;
     rightButton = nullptr;
+}
+
+void ImagesShowcase::changeImageRight()
+{
+    if(cursor + nbLabel < imageTab.size() - 1){
+        cursor += nbLabel;
+        fillShowCase();
+        if(cursor + nbLabel > imageTab.size() - 1){
+
+        }
+    }
+
+}
+
+void ImagesShowcase::changeImageLeft()
+{
+
 }
