@@ -7,6 +7,7 @@
 #include "colorpicker.h"
 #include "imagesshowcase.h"
 #include "bddgalleryphoto.h"
+#include "smartdelete.h"
 
 class AccueilWindow : public QWidget, private Ui::AccueilWindow
 {
@@ -19,14 +20,22 @@ public:
     //---------------------------------------------------------
 
     //--Fonctions----------------------------------------------
+    void initShowCase();
     //---------------------------------------------------------
 
     //--Getters Setters----------------------------------------
+    ImagesShowcase *getFavoris() const;
+    void setFavoris(ImagesShowcase *value);
+
+    ImagesShowcase *getMostWatched() const;
+    void setMostWatched(ImagesShowcase *value);
+
+    ImagesShowcase *getDominantColor() const;
+    void setDominantColor(ImagesShowcase *value);
     //---------------------------------------------------------
 
     //--Attributs----------------------------------------------
     //---------------------------------------------------------
-
 
 private:
     //--Fonctions----------------------------------------------

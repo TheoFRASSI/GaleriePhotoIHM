@@ -6,6 +6,8 @@
 #include <QEvent>
 #include <imagebutton.h>
 
+#include "smartdelete.h"
+
 class MainMenu : public QFrame
 {
     Q_OBJECT

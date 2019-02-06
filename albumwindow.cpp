@@ -1,7 +1,5 @@
 #include "albumwindow.h"
 
-#include <QSqlQuery>
-
 AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
@@ -17,6 +15,7 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
 
 AlbumWindow::~AlbumWindow()
 {
+    smartDeleteMrNovelli(bdd);
 }
 
 void AlbumWindow::changeTab()
@@ -36,7 +35,7 @@ void AlbumWindow::searchImage()
         QPixmap *img = new QPixmap(imgPath);
         labelImg->setPixmap(*img);
 
-        Image newImage("Image 1", imgPath);
+        Image newImage("photo wesh", imgPath);
         bdd->insertImage(newImage);
 
     }

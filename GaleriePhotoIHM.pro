@@ -63,7 +63,8 @@ HEADERS += \
     bddgalleryphoto.h \
     colorpicker.h \
     colorbutton.h \
-    imagesshowcase.h
+    imagesshowcase.h \
+    smartdelete.h
 
 FORMS += \
         mainwindow.ui \

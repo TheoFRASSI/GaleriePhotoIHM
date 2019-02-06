@@ -15,6 +15,7 @@
 #include "headermenu.h"
 #include "bddgalleryphoto.h"
 #include "bddmanager.h"
+#include "smartdelete.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {

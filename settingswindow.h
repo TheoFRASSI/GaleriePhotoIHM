@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ui_settingswindow.h"
+#include "smartdelete.h"
 
 #include <QMap>
 #include <QVector>

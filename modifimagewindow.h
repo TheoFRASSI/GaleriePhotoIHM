@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ui_modifimagewindow.h"
+#include "smartdelete.h"
 
 class ModifImageWindow : public QWidget, private Ui::ModifImageWindow
 {

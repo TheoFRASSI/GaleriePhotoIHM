@@ -5,6 +5,7 @@
 
 #include "colorbutton.h"
 #include "ui_colorpicker.h"
+#include "smartdelete.h"
 
 class ColorPicker : public QDialog, private Ui::ColorPicker
 {

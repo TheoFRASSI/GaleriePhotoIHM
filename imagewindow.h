@@ -2,12 +2,17 @@
 
 #include <QObject>
 #include <QWidget>
+<<<<<<< HEAD
 #include "ui_imagewindow.h"
 #include "bddgalleryphoto.h"
 #include "imagesshowcase.h"
 
 #include <map>
+=======
+>>>>>>> refs/remotes/origin/master
 
+#include "ui_imagewindow.h"
+#include "smartdelete.h"
 
 class ImageWindow : public QWidget, private Ui::ImageWindow
 {
@@ -17,7 +22,6 @@ public:
     ~ImageWindow();
 
 private:
-    //std::map<, > listButtons;
 
     ImagesShowcase* photos;
 

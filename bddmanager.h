@@ -8,6 +8,8 @@
 #include <QSqlDriver>
 #include <QSqlRecord>
 
+#include "smartdelete.h"
+
 class BddManager
 {
 public:

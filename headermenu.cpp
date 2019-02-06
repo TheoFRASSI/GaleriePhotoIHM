@@ -1,7 +1,15 @@
 #include "headermenu.h"
 
-HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings,  QSpacerItem* horizontalSpacer)
-           :headerMenuFrame(headerMenuFrame), menu(menu), layoutSearch(layoutSearch), layoutNewAlbum(layoutNewAlbum), layoutNewPhoto(layoutNewPhoto), layoutDisplay(layoutDisplay), layoutSettings(layoutSettings), horizontalSpacer(horizontalSpacer)
+HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings,  QSpacerItem* horizontalSpacer, QLabel* labelTitre)
+           :headerMenuFrame(headerMenuFrame),
+            menu(menu),
+            layoutSearch(layoutSearch),
+            layoutNewAlbum(layoutNewAlbum),
+            layoutNewPhoto(layoutNewPhoto),
+            layoutDisplay(layoutDisplay),
+            layoutSettings(layoutSettings),
+            horizontalSpacer(horizontalSpacer),
+            labelTitre(labelTitre)
 {
     buttonMenu = new ImageButton(imageButtonMenuPressed, imageButtonMenuReleased, 50, 50, this);
     menu->addWidget(buttonMenu);
@@ -25,18 +33,12 @@ HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* 
 }
 
 HeaderMenu::~HeaderMenu(){
-    delete buttonMenu;
-    buttonMenu = nullptr;
-    delete buttonSearch;
-    buttonSearch = nullptr;
-    delete buttonNewAlbum;
-    buttonNewAlbum = nullptr;
-    delete buttonNewPhoto;
-    buttonNewPhoto = nullptr;
-    delete buttonDisplay;
-    buttonDisplay = nullptr;
-    delete buttonSettings;
-    buttonSettings = nullptr;
+    smartDeleteMrNovelli(buttonMenu);
+    smartDeleteMrNovelli(buttonSearch);
+    smartDeleteMrNovelli(buttonNewAlbum);
+    smartDeleteMrNovelli(buttonNewPhoto);
+    smartDeleteMrNovelli(buttonDisplay);
+    smartDeleteMrNovelli(buttonSettings);
 }
 
 ImageButton* HeaderMenu::getButtonMenu(){
@@ -61,4 +63,9 @@ ImageButton* HeaderMenu::getButtonDisplay(){
 
 ImageButton* HeaderMenu::getButtonSettings(){
     return buttonSettings;
+}
+
+QLabel *HeaderMenu::getLabelTitre()
+{
+    return labelTitre;
 }
