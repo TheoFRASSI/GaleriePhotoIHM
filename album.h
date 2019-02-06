@@ -9,7 +9,10 @@ public:
     Album();
 
 private:
+    QString name;
     Image cover;
-    QVector<Image> images;
+//    QVector<Image> images;
     unsigned int nbImages;
+    QDate date;
+    bool isFavorite;
 };
