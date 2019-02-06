@@ -42,7 +42,7 @@ void SettingsWindow::suppressedPath()
         //qDebug() << *paths->last();
         //qDebug() << paths->indexOf(selectedPath);
         //paths->removeOne(pathListWidget->currentItem()->text());
-        pathListWidget->removeItemWidget(pathListWidget->itemAt());
+        //pathListWidget->removeItemWidget(pathListWidget->itemAt());
         paths.removeOne(selectedPath);
         selectedPath = nullptr;
     }

@@ -2,15 +2,9 @@
 
 #include <QObject>
 #include <QWidget>
-<<<<<<< HEAD
-#include "ui_imagewindow.h"
+#include <QLabel>
+
 #include "bddgalleryphoto.h"
-#include "imagesshowcase.h"
-
-#include <map>
-=======
->>>>>>> refs/remotes/origin/master
-
 #include "ui_imagewindow.h"
 #include "smartdelete.h"
 
@@ -20,14 +14,18 @@ class ImageWindow : public QWidget, private Ui::ImageWindow
 public:
     explicit ImageWindow(QVector<Image*> imagesTab, QWidget *parent = nullptr);
     ~ImageWindow();
+    void newBDDRequest(QVector<Image *> imagesTab);
 
 private:
 
-    ImagesShowcase* photos;
+    const int NB_IMAGES = 6;
+    const int SIZE_IMAGE = 250;
 
-    //const BddGalleryPhoto * bdd;
+    QPixmap imageVide;
+    QPixmap aucuneImage;
 
-    QVector<QLabel*> vectorListPhoto;
+    QString pathImageVide = ":/img/window/imageVide";
+    QString pathAucuneImage = ":/img/window/aucuneImage";
 
 signals:
 

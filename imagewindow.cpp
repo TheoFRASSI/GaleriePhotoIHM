@@ -4,46 +4,40 @@ ImageWindow::ImageWindow(QVector<Image*> imagesTab, QWidget *parent) : QWidget(p
 {
     setupUi(this);
 
-    // ----------
-    /*bdd = pbdd;
-    photos = new ImagesShowcase(bdd->getAllImages());
-    img01HorizLayout->addWidget(photos);*/
-    // ----------
-    /*if(!imagesTab.isEmpty()){
-        img01Label->setPixmap(QPixmap(imagesTab[0]->getPath()));
-    }*/
+    imageVide = QPixmap(pathImageVide);
+    aucuneImage = QPixmap(pathAucuneImage);
 
-    if(!imagesTab.isEmpty()){
-        //listPhoto->addWidget(new QLabel());
-        for(int i = 0; i < imagesTab.size(); i++){
-            /*vectorListPhoto->push_back(new QLabel());
-            vectorListPhoto->last()->setPixmap(QPixmap(imagesTab[i]->getPath()));
-            listPhoto->addWidget(vectorListPhoto->last());*/
-            qDebug() << imagesTab.size();
-            qDebug() << imagesTab[i]->getPath();
-
-            QLabel * label = new QLabel();
-            label->setMaximumSize(250, 250);
-            label->setMinimumSize(250, 250);
-            label->setScaledContents(true);
-            label->setPixmap(QPixmap(imagesTab[i]->getPath()));
-            listPhoto->addWidget(label, 0, i);
-            vectorListPhoto.push_back(label);
-        }
-    }
+    newBDDRequest(imagesTab);
 }
 
 ImageWindow::~ImageWindow(){
-    delete photos;
-    photos = nullptr;
 
-    // --------
-    for (QVector<QLabel*>::iterator i = vectorListPhoto.begin(); i != vectorListPhoto.end(); i++){
-        delete (*i);
-        (*i) = nullptr;
+}
+
+void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
+{
+    //listPhoto = new QGridLayout();
+    int k = 0;
+    if(!imagesTab.isEmpty()){
+        for(int i = 0; i < static_cast<int>(imagesTab.size() / NB_IMAGES) + 1 ; i++){
+            for (int j = 0; j < NB_IMAGES; j++) {
+                k = j + i * NB_IMAGES;
+                if(k < imagesTab.size()){
+                    QLabel * label = new QLabel();
+                    label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
+                    label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
+                    label->setScaledContents(true);
+                    label->setPixmap(QPixmap(imagesTab[k]->getPath()));
+                    listPhoto->addWidget(label, i, j);
+                }
+            }
+        }
+    } else {
+        QLabel * label = new QLabel();
+        label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
+        label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
+        label->setScaledContents(true);
+        label->setPixmap(QPixmap(aucuneImage));
+        listPhoto->addWidget(label, 0, 0);
     }
-    vectorListPhoto.clear();
-    //delete vectorListPhoto;
-    //vectorListPhoto = nullptr;
-    // -------
 }
