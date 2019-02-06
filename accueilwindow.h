@@ -39,6 +39,9 @@ private:
     ImagesShowcase* favoris;
     ImagesShowcase* mostWatched;
     ImagesShowcase* dominantColor;
+    ImageButton* buttonMail;
+    ImageButton* buttonFacebook;
+    ImageButton* buttonTwitter;
 
     const BddGalleryPhoto * bdd;
     //---------------------------------------------------------
@@ -46,6 +49,12 @@ private:
     //--Images-------------------------------------------------
     QString imageStar = ":/img/window/star";
     QString imageEye = ":/img/window/eye";
+    QString mail = ":/img/button/mail";
+    QString mailHighlighted = ":/img/button/mailHighlighted";
+    QString facebook = ":/img/button/facebook";
+    QString facebookHighlighted = ":/img/button/facebookHighlighted";
+    QString twitter = ":/img/button/twitter";
+    QString twitterHighlighted = ":/img/button/twitterHighlighted";
     //---------------------------------------------------------
 
 public slots:

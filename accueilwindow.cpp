@@ -29,6 +29,15 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
     colorPicker->buttonjaune->setSelected(true);
     layoutColor->addWidget(buttonColorPicker);
 
+    buttonMail = new ImageButton(mailHighlighted, mail, 40, 40, this);
+    layoutMail->addWidget(buttonMail);
+
+    buttonFacebook = new ImageButton(facebookHighlighted, facebook, 40, 40, this);
+    layoutFacebook->addWidget(buttonFacebook);
+
+    buttonTwitter = new ImageButton(twitterHighlighted, twitter, 40, 40, this);
+    layoutTwitter->addWidget(buttonTwitter);
+
     connect(buttonColorPicker, SIGNAL(clicked()), this, SLOT(openColorPicker()));
     connect(colorPicker, SIGNAL(aboutToChoose()), this, SLOT(newColor()));
 
