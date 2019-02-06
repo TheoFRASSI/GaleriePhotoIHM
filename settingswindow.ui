@@ -26,6 +26,39 @@
     <string>CommandLinkButton</string>
    </property>
   </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>170</width>
+     <height>134</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="settingPathVertLayout">
+    <item>
+     <layout class="QHBoxLayout" name="buttonsPathHorizLayout">
+      <item>
+       <widget class="QPushButton" name="supprPathPushButton">
+        <property name="text">
+         <string>Supprimer</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="addPathPushButton">
+        <property name="text">
+         <string>Ajouter</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QListWidget" name="pathListWidget"/>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>
