@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     BddGalleryPhoto* bdd = new BddGalleryPhoto(path);
 
     mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
-    headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer);
+    headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer, labelTitre);
 
     accueilW = new AccueilWindow(bdd);
     albumW = new AlbumWindow(bdd);
@@ -67,6 +67,18 @@ MainWindow::~MainWindow(){
 
 void MainWindow::changeWidget(){
     stackWidget->setCurrentWidget(assoTab.value(sender()));
+    if(assoTab.value(sender()) == albumW) {
+        headermenu->getLabelTitre()->setText("Album");
+    } else if(assoTab.value(sender()) == imageW) {
+        headermenu->getLabelTitre()->setText("Images");
+    } else if (assoTab.value(sender()) == accueilW) {
+        headermenu->getLabelTitre()->setText("Accueil");
+    } else if (assoTab.value(sender()) == helpW) {
+        headermenu->getLabelTitre()->setText("Aide");
+    } else if (assoTab.value(sender()) == settingsW) {
+        headermenu->getLabelTitre()->setText("Réglages");
+    }
+
 }
 
 void MainWindow::initMap(){
