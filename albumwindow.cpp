@@ -35,7 +35,7 @@ void AlbumWindow::searchImage()
         QPixmap *img = new QPixmap(imgPath);
         labelImg->setPixmap(*img);
 
-        Image newImage("Image 1", imgPath);
+        Image newImage("photo wesh", imgPath);
         bdd->insertImage(newImage);
 
     }

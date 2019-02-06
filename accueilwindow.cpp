@@ -14,8 +14,8 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
     imgEye = imgEye.scaled(40,40);
     oeil->setPixmap(imgEye);
 
-    favoris = new ImagesShowcase(bdd->getAllImages());
-    mostWatched = new ImagesShowcase(bdd->getAllImages());
+    favoris = new ImagesShowcase(bdd->getAllImages("path", "wesh"));
+    mostWatched = new ImagesShowcase(bdd->getAllImages("path"));
     dominantColor = new ImagesShowcase(bdd->getAllImages());
 
     layoutImageFavoris->addWidget(favoris);
@@ -64,9 +64,8 @@ void AccueilWindow::newColor(){
 }
 
 void AccueilWindow::initShowCase(){
-
-    favoris->newBDDRequest(bdd->getAllImages());
-    mostWatched->newBDDRequest(bdd->getAllImages());
+    favoris->newBDDRequest(bdd->getAllImages("path", "wesh"));
+    mostWatched->newBDDRequest(bdd->getAllImages("path"));
     dominantColor->newBDDRequest(bdd->getAllImages());
 }
 
