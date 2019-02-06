@@ -63,10 +63,10 @@ void AccueilWindow::newColor(){
 }
 
 void AccueilWindow::initShowCase(){
-    favoris = new ImagesShowcase(bdd->getAllImages());
+    favoris = new ImagesShowcase(bdd->getAllImages("path", "wesh"));
     layoutImageFavoris->addWidget(favoris);
 
-    mostWatched = new ImagesShowcase(bdd->getAllImages());
+    mostWatched = new ImagesShowcase(bdd->getAllImages("path"));
     layoutImageWatched->addWidget(mostWatched);
 
     dominantColor = new ImagesShowcase(bdd->getAllImages());

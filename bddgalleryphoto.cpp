@@ -68,11 +68,18 @@ Image* BddGalleryPhoto::getImageByName(QString name) const
     return res;
 }
 
-QVector<Image*> BddGalleryPhoto::getAllImages() const
+QVector<Image*> BddGalleryPhoto::getAllImages(const QString& orderBy, const QString& searchName) const
 {
     QVector<Image*> v;
     QSqlQuery query;
-    query.prepare("SELECT name, path FROM image");
+
+
+    if(searchName != nullptr) {
+        query.prepare("SELECT name, path FROM image WHERE name LIKE '%" +searchName +"%' ORDER BY " + orderBy);
+    } else {
+        query.prepare("SELECT name, path FROM image ORDER BY " + orderBy);
+    }
+
     if (!query.exec())
     {
         qDebug() << "get All images error";

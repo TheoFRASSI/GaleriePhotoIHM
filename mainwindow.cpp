@@ -68,9 +68,9 @@ MainWindow::~MainWindow(){
 void MainWindow::changeWidget(){
     stackWidget->setCurrentWidget(assoTab.value(sender()));
     if(assoTab.value(sender()) == albumW) {
-        headermenu->getLabelTitre()->setText("Album");
+        headermenu->getLabelTitre()->setText("Albums");
     } else if(assoTab.value(sender()) == imageW) {
-        headermenu->getLabelTitre()->setText("Images");
+        headermenu->getLabelTitre()->setText("Photos");
     } else if (assoTab.value(sender()) == accueilW) {
         headermenu->getLabelTitre()->setText("Accueil");
     } else if (assoTab.value(sender()) == helpW) {
