@@ -21,8 +21,7 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent) :
 
     layoutLeft->addWidget(leftButton);
     layoutRight->addWidget(rightButton);
-
-    if(!imagesTab.isEmpty()){
+    if(!imagesTab.isEmpty()) {
         img1->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
         img2->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
         img3->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
@@ -30,7 +29,6 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent) :
         img5->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
         img6->setPixmap(QPixmap(imagesTab[random(0,imagesTab.size()-1)]->getPath()));
     }
-
 }
 
 ImagesShowcase::~ImagesShowcase(){

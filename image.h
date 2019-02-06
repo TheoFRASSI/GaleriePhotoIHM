@@ -21,7 +21,7 @@ private:
     QColor color;
     bool isFavorite;
     QString feeling;
-    EnumRotate rotation;
+    //EnumRotate rotation;
     bool isResized;
     int height;
     int width;

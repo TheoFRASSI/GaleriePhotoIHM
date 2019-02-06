@@ -456,7 +456,7 @@
    <string>Galerie Photo</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="res.qrc">
+   <iconset>
     <normaloff>:/img/window/gallery-icon</normaloff>:/img/window/gallery-icon</iconset>
   </property>
   <property name="autoFillBackground">
@@ -992,7 +992,7 @@
               <number>20</number>
              </property>
              <item>
-              <widget class="QLabel" name="label_2">
+              <widget class="QLabel" name="labelTitre">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -2646,8 +2646,6 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

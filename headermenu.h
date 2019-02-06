@@ -5,6 +5,7 @@
 #include <QFrame>
 #include <QEvent>
 #include <imagebutton.h>
+#include <QLabel>
 
 class HeaderMenu : public QFrame
 {
@@ -13,7 +14,7 @@ class HeaderMenu : public QFrame
 public:
 
     //--Constructeur Destructeur-------------
-    HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings, QSpacerItem* horizontalSpacer);
+    HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings, QSpacerItem* horizontalSpacer, QLabel* labelTitre);
     ~HeaderMenu();
     //---------------------------------------
 
@@ -24,6 +25,7 @@ public:
     ImageButton* getButtonNewPhoto();
     ImageButton* getButtonDisplay();
     ImageButton* getButtonSettings();
+    QLabel* getLabelTitre();
     //---------------------------------------
 
     //--Setters------------------------------
@@ -37,6 +39,7 @@ private:
     //--Attributs----------------------------
     QFrame* headerMenuFrame;
     QSpacerItem* horizontalSpacer;
+    QLabel* labelTitre;
     //---------------------------------------
 
     //--Layouts boutons----------------------
