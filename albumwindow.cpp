@@ -15,6 +15,7 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
 
 AlbumWindow::~AlbumWindow()
 {
+    //bdd->destroyBdd();
     smartDeleteMrNovelli(bdd);
 }
 
@@ -29,14 +30,19 @@ void AlbumWindow::changeTab()
 }
 void AlbumWindow::searchImage()
 {
-    const QString& imgPath = QFileDialog::getOpenFileName(this);
-    if (!imgPath.isEmpty()) {
-        qDebug() << imgPath;
-        QPixmap *img = new QPixmap(imgPath);
-        labelImg->setPixmap(*img);
+    const QStringList paths = QFileDialog::getOpenFileNames(this);
+    if (!paths.isEmpty()) {
+        for(int i = 0; i < paths.size() ; i++) {
+            qDebug() << paths[i];
+            QPixmap *img = new QPixmap(paths[i]);
+            labelImg->setPixmap(*img);
 
-        Image newImage("photo wesh", imgPath);
-        bdd->insertImage(newImage);
+            const QStringList names = paths[i].split("/");
+            qDebug() << names[names.size()-2]; // nom du dossier de l'image
+            Image newImage(names.last(), paths[i]);
+            bdd->insertImage(newImage);
+        }
+
 
     }
 

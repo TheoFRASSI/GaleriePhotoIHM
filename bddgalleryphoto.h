@@ -28,7 +28,7 @@ public:
 
     //bool insertAlbum(Album entry);
 
-
+    bool destroyBdd() const;
 
 private:
     QSqlDatabase bdd;

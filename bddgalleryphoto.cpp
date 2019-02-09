@@ -17,7 +17,6 @@ BddGalleryPhoto::BddGalleryPhoto(QString path)
 
 BddGalleryPhoto::~BddGalleryPhoto()
 {
-
 }
 
 QSqlDatabase BddGalleryPhoto::getBdd() const
@@ -109,3 +108,21 @@ bool BddGalleryPhoto::initBdd() {
     }
     return success;
 }
+
+bool BddGalleryPhoto::destroyBdd() const {
+    bool success = true;
+    QSqlQuery query;
+    if (!query.exec("DROP TABLE image"))
+    {
+        qDebug() << "Delete image error";
+        success = false;
+    }
+    if (!query.exec("DROP TABLE album"))
+    {
+        qDebug() << "Delete album error";
+        success = false;
+    }
+    return success;
+}
+
+
