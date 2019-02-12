@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QDir dir;
     QString path = dir.currentPath()+"GalleryPhotoBDD.db";
-    BddGalleryPhoto* bdd = new BddGalleryPhoto(path);
+    bdd = new BddGalleryPhoto(path);
 
     mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
     headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer, labelTitre);
@@ -64,6 +64,7 @@ void MainWindow::changeWidget(){
         headermenu->getLabelTitre()->setText("Albums");
     } else if(assoTab.value(sender()) == imageW) {
         headermenu->getLabelTitre()->setText("Photos");
+        imageW->newBDDRequest(bdd->getAllImages());
     } else if (assoTab.value(sender()) == accueilW) {
         headermenu->getLabelTitre()->setText("Accueil");
         accueilW->initShowCase();

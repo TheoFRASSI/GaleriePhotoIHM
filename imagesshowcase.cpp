@@ -31,13 +31,15 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
         QLabel* label = new QLabel();
         label->setMaximumSize(LABEL_SIZE,LABEL_SIZE);
         label->setMinimumSize(LABEL_SIZE,LABEL_SIZE);
-        label->setScaledContents(true);
         gridImages->addWidget(label, 0, i);
         labelsImage.push_back(label);
     }
 
     imageVide = QPixmap(pathImageVide);
+    imageVide = imageVide.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
+
     aucuneImage = QPixmap(pathAucuneImage);
+    aucuneImage = aucuneImage.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
 
     if(imagesTab.isEmpty()){
         labelsImage[static_cast<int>(nbLabel/2)]->setPixmap(aucuneImage);
@@ -45,7 +47,14 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
         rightButton->setDisabled(true);
     } else {
         for(int i = 0; i < imagesTab.size(); i++){
-            pixmapTab.push_back(QPixmap(imagesTab[i]->getPath()));
+            QPixmap pix = QPixmap();
+            bool validate = pix.load(imagesTab[i]->getPath());
+            if(validate){
+                pix = pix.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
+                pixmapTab.push_back(pix);
+            } else {
+                qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[i]->getPath() << "| Dans la fonction" << __FUNCTION__;
+            }
         }
         fillShowCase();
         leftButton->setDisabled(true);
@@ -99,7 +108,14 @@ void ImagesShowcase::newBDDRequest(QVector<Image*> imagesTab){
     } else {
         QVector<QPixmap> pixmapTemp;
         for(int i = 0; i < imagesTab.size(); i++){
-            pixmapTemp.push_back(QPixmap(imagesTab[i]->getPath()));
+            QPixmap pix = QPixmap();
+            bool validate = pix.load(imagesTab[i]->getPath());
+            if(validate){
+                pix = pix.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
+                pixmapTemp.push_back(pix);
+            } else {
+                qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[i]->getPath() << "| Dans la fonction" << __FUNCTION__;
+            }
         }
         pixmapTab = pixmapTemp;
         fillShowCase();

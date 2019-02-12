@@ -55,6 +55,7 @@ private:
     SettingsWindow* settingsW;
     ModifImageWindow* modifimageW;
     AlbumWindow* albumW;
+    BddGalleryPhoto* bdd;
     //---------------------------------------------------------
 
 public slots:
