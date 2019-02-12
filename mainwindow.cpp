@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     bdd = new BddGalleryPhoto(path);
 
     mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
-    headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer, labelTitre);
+    headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer, labelTitre, lineEdit);
 
     accueilW = new AccueilWindow(bdd);
     albumW = new AlbumWindow(bdd);
@@ -45,6 +45,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(headermenu->getButtonMenu(),SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
 
+    connect(headermenu->getButtonSearch(), SIGNAL(clicked()), this, SLOT(changeWidget()));
+    connect(lineEdit, SIGNAL(returnPressed()), headermenu->getButtonSearch(), SIGNAL(clicked()));
+
 }
 
 MainWindow::~MainWindow(){
@@ -64,7 +67,7 @@ void MainWindow::changeWidget(){
         headermenu->getLabelTitre()->setText("Albums");
     } else if(assoTab.value(sender()) == imageW) {
         headermenu->getLabelTitre()->setText("Photos");
-        imageW->newBDDRequest(bdd->getAllImages());
+        imageW->newBDDRequest(bdd->getAllImages("name", lineEdit->text()));
     } else if (assoTab.value(sender()) == accueilW) {
         headermenu->getLabelTitre()->setText("Accueil");
         accueilW->initShowCase();

@@ -3,12 +3,13 @@
 #include <QObject>
 #include <QWidget>
 #include <QLabel>
+#include <QFileDialog>
 
 #include "bddgalleryphoto.h"
 #include "ui_imagewindow.h"
 #include "smartdelete.h"
+#include "imagebutton.h"
 
-#include <QFileDialog>
 
 class ImageWindow : public QWidget, private Ui::ImageWindow
 {
@@ -46,11 +47,14 @@ private:
 
     QPixmap imageVide;
     QPixmap aucuneImage;
+    ImageButton* boutonAdd;
 
     QGridLayout* grid;
 
     QString pathImageVide = ":/img/window/imageVide";
     QString pathAucuneImage = ":/img/window/aucuneImage";
+    QString pathBoutonAdd = ":/img/button/boutonAdd";
+    QString pathBoutonAddH = ":/img/button/boutonAddH";
 
     // Removes all layout items which span the given row and column.
       static void remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {

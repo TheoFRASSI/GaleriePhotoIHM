@@ -1,6 +1,6 @@
 #include "headermenu.h"
 
-HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings,  QSpacerItem* horizontalSpacer, QLabel* labelTitre)
+HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings,  QSpacerItem* horizontalSpacer, QLabel* labelTitre, QLineEdit* lineEdit)
            :headerMenuFrame(headerMenuFrame),
             menu(menu),
             layoutSearch(layoutSearch),
@@ -9,7 +9,8 @@ HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* 
             layoutDisplay(layoutDisplay),
             layoutSettings(layoutSettings),
             horizontalSpacer(horizontalSpacer),
-            labelTitre(labelTitre)
+            labelTitre(labelTitre),
+            lineEdit(lineEdit)
 {
     buttonMenu = new ImageButton(imageButtonMenuPressed, imageButtonMenuReleased, 50, 50, this);
     menu->addWidget(buttonMenu);
@@ -65,7 +66,10 @@ ImageButton* HeaderMenu::getButtonSettings(){
     return buttonSettings;
 }
 
-QLabel *HeaderMenu::getLabelTitre()
-{
+QLabel* HeaderMenu::getLabelTitre(){
     return labelTitre;
+}
+
+QLineEdit* HeaderMenu::getLineEdit(){
+    return lineEdit;
 }

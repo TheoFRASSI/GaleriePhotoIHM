@@ -501,14 +501,27 @@
          <number>0</number>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="newImageButton">
-          <property name="text">
-           <string>Ajouter une/des image(s)</string>
+         <layout class="QHBoxLayout" name="boutonLayout">
+          <property name="spacing">
+           <number>0</number>
           </property>
-         </widget>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QScrollArea" name="scrollArea">
@@ -536,7 +549,7 @@
              <x>0</x>
              <y>0</y>
              <width>294</width>
-             <height>271</height>
+             <height>274</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">

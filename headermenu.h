@@ -6,6 +6,7 @@
 #include <QEvent>
 #include <imagebutton.h>
 #include <QLabel>
+#include <QLineEdit>
 
 #include "smartdelete.h"
 
@@ -16,7 +17,7 @@ class HeaderMenu : public QFrame
 public:
 
     //--Constructeur Destructeur-------------
-    HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings, QSpacerItem* horizontalSpacer, QLabel* labelTitre);
+    HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings, QSpacerItem* horizontalSpacer, QLabel* labelTitre, QLineEdit* lineEdit);
     ~HeaderMenu();
     //---------------------------------------
 
@@ -28,6 +29,7 @@ public:
     ImageButton* getButtonDisplay();
     ImageButton* getButtonSettings();
     QLabel* getLabelTitre();
+    QLineEdit* getLineEdit();
     //---------------------------------------
 
     //--Setters------------------------------
@@ -42,6 +44,7 @@ private:
     QFrame* headerMenuFrame;
     QSpacerItem* horizontalSpacer;
     QLabel* labelTitre;
+    QLineEdit* lineEdit;
     //---------------------------------------
 
     //--Layouts boutons----------------------

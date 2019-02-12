@@ -9,11 +9,15 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab,
 
     aucuneImage = QPixmap(pathAucuneImage);
 
+    boutonAdd = new ImageButton(pathBoutonAddH, pathBoutonAdd, 200, 100, this);
+
+    boutonLayout->addWidget(boutonAdd);
+
     grid = listPhoto;
 
     newBDDRequest(imagesTab);
 
-    connect(newImageButton, SIGNAL(clicked()),this, SLOT(searchImage()));
+    connect(boutonAdd, SIGNAL(clicked()),this, SLOT(searchImage()));
 }
 
 ImageWindow::~ImageWindow(){
@@ -71,7 +75,7 @@ void ImageWindow::searchImage()
 
 
     }
-
+    newBDDRequest(bdd->getAllImages());
         //openImage(fileName);
 }
 
