@@ -1,8 +1,9 @@
 #include "imagewindow.h"
 
-ImageWindow::ImageWindow(QVector<Image*> imagesTab, QWidget *parent) : QWidget(parent)
+ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
+    bdd = pbdd;
 
     imageVide = QPixmap(pathImageVide);
 
@@ -11,6 +12,8 @@ ImageWindow::ImageWindow(QVector<Image*> imagesTab, QWidget *parent) : QWidget(p
     grid = listPhoto;
 
     newBDDRequest(imagesTab);
+
+    connect(newImageButton, SIGNAL(clicked()),this, SLOT(searchImage()));
 }
 
 ImageWindow::~ImageWindow(){
@@ -52,3 +55,36 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
         grid->addWidget(label, 0, 0);
     }
 }
+
+void ImageWindow::searchImage()
+{
+    const QStringList paths = QFileDialog::getOpenFileNames(this);
+    if (!paths.isEmpty()) {
+        for(int i = 0; i < paths.size() ; i++) {
+            qDebug() << paths[i];
+
+            const QStringList names = paths[i].split("/");
+            qDebug() << names[names.size()-2]; // nom du dossier de l'image
+            Image newImage(names.last(), paths[i]);
+            bdd->insertImage(newImage);
+        }
+
+
+    }
+
+        //openImage(fileName);
+}
+
+/*void ImageWindow::openImage(const QString &fileName)
+{
+
+    QFile file(fileName);
+
+    QTextStream in(&file);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    textEdit->setPlainText(in.readAll());
+    QApplication::restoreOverrideCursor();
+
+    setCurrentFile(fileName);
+    statusBar()->showMessage(tr("File loaded"), 2000);
+}*/

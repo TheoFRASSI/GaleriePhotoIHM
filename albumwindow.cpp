@@ -8,9 +8,6 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
     connect(albAutoButton, SIGNAL(clicked()), this, SLOT(changeTab()));
     connect(newImageButton, SIGNAL(clicked()),this, SLOT(searchImage()));
 
-    Image* image = bdd->getImageByName("Image 1");
-    QPixmap *pixmap = new QPixmap(image->getPath());
-    labelImg->setPixmap(*pixmap);
 }
 
 AlbumWindow::~AlbumWindow()
@@ -42,24 +39,7 @@ void AlbumWindow::searchImage()
             Image newImage(names.last(), paths[i]);
             bdd->insertImage(newImage);
         }
-
-
     }
-
         //openImage(fileName);
 }
-
-/*void AlbumWindow::openImage(const QString &fileName)
-{
-
-    QFile file(fileName);
-
-    QTextStream in(&file);
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    textEdit->setPlainText(in.readAll());
-    QApplication::restoreOverrideCursor();
-
-    setCurrentFile(fileName);
-    statusBar()->showMessage(tr("File loaded"), 2000);
-}*/
 

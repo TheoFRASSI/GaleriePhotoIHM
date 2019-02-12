@@ -504,6 +504,13 @@
          <layout class="QVBoxLayout" name="verticalLayout"/>
         </item>
         <item>
+         <widget class="QPushButton" name="newImageButton">
+          <property name="text">
+           <string>Ajouter une/des image(s)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QScrollArea" name="scrollArea">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -529,7 +536,7 @@
              <x>0</x>
              <y>0</y>
              <width>294</width>
-             <height>294</height>
+             <height>271</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">

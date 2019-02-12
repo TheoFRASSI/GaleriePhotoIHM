@@ -61,10 +61,14 @@ Image* BddGalleryPhoto::getImageByName(QString name) const
     {
         qDebug() << "get Image by name error";
     }
-    query.next();
-    qDebug() << "Get Image : " << query.value(0).toString() << "  " << query.value(1).toString() << endl;
-    Image* res = new Image(query.value(0).toString(), query.value(1).toString());
-    return res;
+    if(query.size() != 0) {
+        query.next();
+        qDebug() << "Get Image : " << query.value(0).toString() << "  " << query.value(1).toString() << endl;
+        Image* res = new Image(query.value(0).toString(), query.value(1).toString());
+        return res;
+    }
+    return nullptr;
+
 }
 
 QVector<Image*> BddGalleryPhoto::getAllImages(const QString& orderBy, const QString& searchName) const
