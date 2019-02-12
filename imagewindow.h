@@ -48,6 +48,7 @@ private:
     QPixmap imageVide;
     QPixmap aucuneImage;
     ImageButton* boutonAdd;
+    QPixmap imageCorrupt;
 
     QGridLayout* grid;
 
@@ -55,6 +56,7 @@ private:
     QString pathAucuneImage = ":/img/window/aucuneImage";
     QString pathBoutonAdd = ":/img/button/boutonAdd";
     QString pathBoutonAddH = ":/img/button/boutonAddH";
+    QString pathImageCorrupt = ":/img/window/imageCorrupt";
 
     // Removes all layout items which span the given row and column.
       static void remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {

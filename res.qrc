@@ -47,6 +47,7 @@
         <file alias="star">img/window/star-1292832_960_720.png</file>
         <file alias="aucuneImage">img/window/aucuneImage.png</file>
         <file alias="imageVide">img/window/imageVide.png</file>
+        <file alias="imageCorrupt">img/window/imageCorromp.png</file>
     </qresource>
     <qresource lang="fr" prefix="/img/button/colors">
         <file alias="bleu">img/button/Colors/couleurBleu.png</file>

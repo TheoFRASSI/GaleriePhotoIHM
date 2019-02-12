@@ -49,6 +49,7 @@ private:
     QPixmap imageVide;
     QVector<QPixmap> pixmapTab;
     QPixmap aucuneImage;
+    QPixmap imageCorrupt;
     //---------------------------------------------------------
 
     //--Images-------------------------------------------------
@@ -58,6 +59,7 @@ private:
     QString imageRightButtonHighlighted = ":/img/button/rightHighlighted";
     QString pathImageVide = ":/img/window/imageVide";
     QString pathAucuneImage = ":/img/window/aucuneImage";
+    QString pathImageCorrupt = ":/img/window/imageCorrupt";
     //---------------------------------------------------------
 
 public slots:

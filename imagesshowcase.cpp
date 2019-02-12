@@ -3,7 +3,7 @@
 void ImagesShowcase::fillShowCase(){
     int j = cursor;
     for(int i = 0; i < nbLabel; i++){
-        if(j <= imageTab.size() - 1){
+        if(j < imageTab.size() - 1){
             labelsImage[i]->setPixmap(pixmapTab[j]);
         } else {
             labelsImage[i]->setPixmap(imageVide);
@@ -41,6 +41,9 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
     aucuneImage = QPixmap(pathAucuneImage);
     aucuneImage = aucuneImage.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
 
+    imageCorrupt = QPixmap(pathImageCorrupt);
+    imageCorrupt = imageCorrupt.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
+
     if(imagesTab.isEmpty()){
         labelsImage[static_cast<int>(nbLabel/2)]->setPixmap(aucuneImage);
         leftButton->setDisabled(true);
@@ -54,6 +57,7 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
                 pixmapTab.push_back(pix);
             } else {
                 qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[i]->getPath() << "| Dans la fonction" << __FUNCTION__;
+                pixmapTab.push_back(QPixmap(imageCorrupt));
             }
         }
         fillShowCase();
@@ -76,6 +80,7 @@ ImagesShowcase::~ImagesShowcase(){
 
 void ImagesShowcase::changeImageRight()
 {
+
     if(cursor + nbLabel <= imageTab.size() - 1){
         cursor += nbLabel;
         fillShowCase();
@@ -84,6 +89,7 @@ void ImagesShowcase::changeImageRight()
             rightButton->setDisabled(true);
         }
     }
+    qDebug() << "Cursor :" << cursor << "Nb Images :" << imageTab.size();
 }
 
 void ImagesShowcase::changeImageLeft()
@@ -96,6 +102,7 @@ void ImagesShowcase::changeImageLeft()
             leftButton->setDisabled(true);
         }
     }
+    qDebug() << "Cursor :" << cursor << "Nb Images :" << imageTab.size();
 }
 
 void ImagesShowcase::newBDDRequest(QVector<Image*> imagesTab){
@@ -115,6 +122,7 @@ void ImagesShowcase::newBDDRequest(QVector<Image*> imagesTab){
                 pixmapTemp.push_back(pix);
             } else {
                 qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[i]->getPath() << "| Dans la fonction" << __FUNCTION__;
+                pixmapTemp.push_back(QPixmap(imageCorrupt));
             }
         }
         pixmapTab = pixmapTemp;

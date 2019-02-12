@@ -9,6 +9,8 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab,
 
     aucuneImage = QPixmap(pathAucuneImage);
 
+    imageCorrupt = QPixmap(pathImageCorrupt);
+
     boutonAdd = new ImageButton(pathBoutonAddH, pathBoutonAdd, 200, 100, this);
 
     boutonLayout->addWidget(boutonAdd);
@@ -45,6 +47,12 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
                         label->setPixmap(pix);
                         grid->addWidget(label, i, j);
                     } else {
+                        QLabel * label = new QLabel();
+                        label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
+                        label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
+                        label->setScaledContents(true);
+                        label->setPixmap(QPixmap(imageCorrupt));
+                        grid->addWidget(label, i, j);
                         qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[k]->getPath() << "| Dans la fonction" << __FUNCTION__;
                     }
                 }
