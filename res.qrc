@@ -40,6 +40,18 @@
         <file alias="twitterHighlighted">img/button/boutonTwitterHighlighted.png</file>
         <file alias="boutonAdd">img/button/boutonAddImage.png</file>
         <file alias="boutonAddH">img/button/boutonAddImageHighlighted.png</file>
+        <file alias="boutonSwitchD">img/button/boutonSwitchAlbumAuto.png</file>
+        <file alias="boutonSwitchDH">img/button/boutonSwitchAlbumAutoHighlighted.png</file>
+        <file alias="boutonSwitchG">img/button/boutonSwitchAlbumPerso.png</file>
+        <file alias="boutonSwitchGH">img/button/boutonSwitchAlbumPersoHighlighted.png</file>
+        <file alias="alpha">img/button/boutonAlpha.png</file>
+        <file alias="alphaH">img/button/boutonAlphaH.png</file>
+        <file alias="date">img/button/boutonDate.png</file>
+        <file alias="dateH">img/button/boutonDateH.png</file>
+        <file alias="fav">img/button/boutonFav.png</file>
+        <file alias="favH">img/button/boutonFavH.png</file>
+        <file alias="feel">img/button/boutonFeel.png</file>
+        <file alias="feelH">img/button/boutonFeelH.png</file>
     </qresource>
     <qresource lang="fr" prefix="/img/window">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>

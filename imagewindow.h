@@ -9,6 +9,7 @@
 #include "ui_imagewindow.h"
 #include "smartdelete.h"
 #include "imagebutton.h"
+#include "colorpicker.h"
 
 
 class ImageWindow : public QWidget, private Ui::ImageWindow
@@ -45,10 +46,17 @@ private:
 
     const BddGalleryPhoto* bdd;
 
+    ColorPicker* colorPicker;
+    ColorButton* currentColor;
+    ColorButton* buttonColorPicker;
     QPixmap imageVide;
     QPixmap aucuneImage;
     ImageButton* boutonAdd;
     QPixmap imageCorrupt;
+    ImageButton* boutonFav;
+    ImageButton* boutonFeel;
+    ImageButton* boutonDate;
+    ImageButton* boutonAlpha;
 
     QGridLayout* grid;
 
@@ -57,6 +65,15 @@ private:
     QString pathBoutonAdd = ":/img/button/boutonAdd";
     QString pathBoutonAddH = ":/img/button/boutonAddH";
     QString pathImageCorrupt = ":/img/window/imageCorrupt";
+
+    QString pathFav = ":/img/button/fav";
+    QString pathFavH = ":/img/button/favH";
+    QString pathFeel = ":/img/button/feel";
+    QString pathFeelH = ":/img/button/feelH";
+    QString pathDate = ":/img/button/date";
+    QString pathDateH = ":/img/button/dateH";
+    QString pathAlpha = ":/img/button/alpha";
+    QString pathAlphaH = ":/img/button/alphaH";
 
       static void remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {
         for (int i = layout->count() - 1; i >= 0; i--) {
@@ -89,5 +106,7 @@ signals:
 
 public slots:
     void searchImage();
+    void openColorPicker();
+    void newColor();
 };
 
