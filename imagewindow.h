@@ -58,6 +58,10 @@ private:
     ImageButton* boutonDate;
     ImageButton* boutonAlpha;
 
+    QMap<ColorButton*, QString> colors;
+
+    void initColors();
+
     QGridLayout* grid;
 
     QString pathImageVide = ":/img/window/imageVide";

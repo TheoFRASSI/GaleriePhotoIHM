@@ -86,6 +86,7 @@ void FormCreateAlbum::validateChoices()
         }
         Album newAlbum(selectedName, selectedCover.getPath(), selectedImages);
         bdd->insertAlbum(newAlbum);
+        emit albumAdded();
         emit accept();
     }
 }

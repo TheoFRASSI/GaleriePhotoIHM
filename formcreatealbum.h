@@ -30,6 +30,8 @@ private:
     QVector<Image> selectedImages;
     Image selectedCover;
 
+signals:
+    void albumAdded();
 public slots:
     void selectImages();
     void selectCover();

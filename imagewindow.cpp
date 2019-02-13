@@ -26,6 +26,7 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab,
 
     colorPicker = new ColorPicker();
 
+    initColors();
     buttonColorPicker = new ColorButton(colorPicker->buttonvert->imageHighlightedName, colorPicker->buttonvert->imageName, colorPicker->buttonvert->imageHighlightedName, colorPicker->buttonvert->imageName, 80, 80, this);
     colorPicker->buttonjaune->setSelected(true);
     layoutBoutonColor->addWidget(buttonColorPicker);
@@ -50,6 +51,7 @@ void ImageWindow::newColor(){
     buttonColorPicker->loadImageSelected(currentColor->imageName);
     buttonColorPicker->loadImageSelectedHighlighted(currentColor->imageHighlightedName);
     colorPicker->close();
+    newBDDRequest(bdd->getAllImagesByColor(colors.value(currentColor)));
 }
 
 ImageWindow::~ImageWindow(){
@@ -98,16 +100,41 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
     }
 }
 
+void ImageWindow::initColors()
+{
+    colors.insert(colorPicker->buttonbleu, "BLEU");
+    colors.insert(colorPicker->buttonbleuClair1, "BLEU_CLAIR_1");
+    colors.insert(colorPicker->buttonbleuClair2, "BLEU_CLAIR_2");
+    colors.insert(colorPicker->buttonbleuClair3, "BLEU_CLAIR_3");
+    colors.insert(colorPicker->buttonbleuGris, "BLEU_GRIS");
+    colors.insert(colorPicker->buttongris, "GRIS");
+    colors.insert(colorPicker->buttonjaune, "JAUNE");
+    colors.insert(colorPicker->buttonjauneFonce, "JAUNE_FONCE");
+    colors.insert(colorPicker->buttonmagenta, "MAGENTA");
+    colors.insert(colorPicker->buttonmarron, "MARRON");
+    colors.insert(colorPicker->buttonnoir, "NOIR");
+    colors.insert(colorPicker->buttonorange, "ORANGE");
+    colors.insert(colorPicker->buttonorangeClair, "ORANGE_CLAIR");
+    colors.insert(colorPicker->buttonrose, "ROSE");
+    colors.insert(colorPicker->buttonrouge, "ROUGE");
+    colors.insert(colorPicker->buttonvert, "VERT");
+    colors.insert(colorPicker->buttonvertClair, "VERT_CLAIR");
+    colors.insert(colorPicker->buttonvertFonce, "VERT_FONCE");
+    colors.insert(colorPicker->buttonvertJaune, "VERT_JAUNE");
+    colors.insert(colorPicker->buttonviolet, "VIOLET");
+}
+
 void ImageWindow::searchImage()
 {
     QVector<QString> colors = {"BLEU", "BLEU_CLAIR_1", "BLEU_CLAIR_2", "BLEU_CLAIR_3", "BLEU_GRIS",
                               "GRIS", "JAUNE", "JAUNE_FONCE", "MAGENTA", "MARRON", "NOIR", "ORANGE", "ORANGE_CLAIR",
                               "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
     qsrand(static_cast<uint>(time(nullptr)));
-    QString colorImg = colors[qrand() % colors.size()];
+
     const QStringList paths = QFileDialog::getOpenFileNames(this);
     if (!paths.isEmpty()) {
         for(int i = 0; i < paths.size() ; i++) {
+            QString colorImg = colors[qrand() % colors.size()];
             const QStringList names = paths[i].split("/");
             Image newImage(names.last(), paths[i], QStringList(), QDate::currentDate(), colorImg, "Cool");
             bdd->insertImage(newImage);

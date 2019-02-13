@@ -35,6 +35,7 @@ public:
     bool insertAlbum(Album entry) const;
     bool imageExists(const QString &name) const;
     bool albumExists(const QString &name) const;
+    QVector<Image *> getAllImagesByColor(const QString &searchColor) const;
 private:
     QSqlDatabase bdd;
 };

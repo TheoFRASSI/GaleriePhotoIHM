@@ -61,6 +61,7 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
     connect(lineEdit, SIGNAL(returnPressed()), boutonSearch, SIGNAL(clicked()));
 
     formCreateAlbum = new FormCreateAlbum(bdd);
+    connect(formCreateAlbum, SIGNAL(albumAdded()), this, SLOT(searchRequest()));
 
     newBDDRequest(bdd->getAllAlbums());
 }
