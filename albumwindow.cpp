@@ -41,10 +41,10 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
     bdd = pbdd;
 
     boutonAdd = new ImageButton(pathBoutonAddH, pathBoutonAdd, 200, 100, this);
-    boutonSwitchD = new ImageButton(pathBoutonSwitchDroitH, pathBoutonSwitchDroit, 1000, 110, this);
+    boutonSwitchD = new ImageButton(pathBoutonSwitchDroitH, pathBoutonSwitchDroit, 700, 80, this);
     boutonSwitchD->loadImageEnable(pathBoutonSwitchDroit);
     boutonSwitchD->loadImageDisable(pathBoutonSwitchDroitH);
-    boutonSwitchG = new ImageButton(pathBoutonSwitchGaucheH, pathBoutonSwitchGauche, 1000, 110, this);
+    boutonSwitchG = new ImageButton(pathBoutonSwitchGaucheH, pathBoutonSwitchGauche, 700, 80, this);
     boutonSwitchG->loadImageEnable(pathBoutonSwitchGauche);
     boutonSwitchG->loadImageDisable(pathBoutonSwitchGaucheH);
     boutonSearch = new ImageButton(pathBoutonSearchH, pathBoutonSearch, 60, 100, this);
