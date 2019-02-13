@@ -30,6 +30,8 @@ public:
 
     bool destroyBdd() const;
 
+    QVector<Album *> getAllAlbums(const QString &orderBy ="name", const QString &searchName = nullptr) const;
+    bool insertAlbum(Album entry) const;
 private:
     QSqlDatabase bdd;
 };

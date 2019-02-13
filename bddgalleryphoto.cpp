@@ -10,7 +10,7 @@ BddGalleryPhoto::BddGalleryPhoto(QString path)
     if (!bdd.open()) {
         qDebug() << "Error: connection with database fail";
     } else {
-        qDebug() << "Database: connection ok";
+        //qDebug() << "Database: connection ok";
         initBdd();
     }
 }
@@ -38,15 +38,39 @@ bool BddGalleryPhoto::insertImage(Image entry) const
 {
     QSqlQuery query;
     bool success = true;
-    query.prepare("INSERT INTO image(name, path) VALUES(:name, :path)");
+    query.prepare("INSERT INTO image(name, path, albums, addDate, color, feeling) VALUES(:name, :path, :albums, :addDate, :color, :feeling)");
     query.bindValue(":name", entry.getName());
     query.bindValue(":path", entry.getPath());
+    query.bindValue(":albums", entry.getAlbums());
+    query.bindValue(":addDate", entry.getAddDate());
+    query.bindValue(":color", entry.getColor());
+    query.bindValue(":feeling", entry.getFeeling());
     if (!query.exec())
     {
         qDebug() << "Insert image error";
         success = false;
     } else {
-        qDebug() << "Insert Image : " << entry.getName() << "  " << entry.getPath() << endl;
+        qDebug() << "Insert Image : " << entry.getName() << "  " << entry.getPath()
+                 << "  " <<entry.getAlbums() << "  " << entry.getAddDate()
+                 << "  " << entry.getColor() << "  " << entry.getFeeling() << endl;
+    }
+    return success;
+}
+
+bool BddGalleryPhoto::insertAlbum(Album entry) const
+{
+    QSqlQuery query;
+    bool success = true;
+    query.prepare("INSERT INTO album(name, cover) VALUES(:name, :cover)");
+    query.bindValue(":name", entry.getName());
+    qDebug() << entry.getName() << " " << entry.getCover();
+    query.bindValue(":cover", entry.getCover());
+    if (!query.exec())
+    {
+        qDebug() << "Insert album error";
+        success = false;
+    } else {
+        qDebug() << "Insert album : " << entry.getName() << "  " << entry.getCover() << endl;
     }
     return success;
 }
@@ -55,7 +79,7 @@ Image* BddGalleryPhoto::getImageByName(QString name) const
 {
 
     QSqlQuery query;
-    query.prepare("SELECT name, path FROM image WHERE name = :name");
+    query.prepare("SELECT name, path, albums, addDate, color, feeling FROM image WHERE name = :name");
     query.bindValue(":name", name);
     if (!query.exec())
     {
@@ -64,7 +88,12 @@ Image* BddGalleryPhoto::getImageByName(QString name) const
     if(query.size() != 0) {
         query.next();
         qDebug() << "Get Image : " << query.value(0).toString() << "  " << query.value(1).toString() << endl;
-        Image* res = new Image(query.value(0).toString(), query.value(1).toString());
+        Image* res = new Image(query.value(0).toString(), // name
+                               query.value(1).toString(), // path
+                               query.value(2).toStringList(), // albums
+                               query.value(3).toDate(), // addDate
+                               query.value(4).toString(), // color
+                               query.value(5).toString()); // feeling
         return res;
     }
     return nullptr;
@@ -78,9 +107,9 @@ QVector<Image*> BddGalleryPhoto::getAllImages(const QString& orderBy, const QStr
 
 
     if(searchName != nullptr) {
-        query.prepare("SELECT name, path FROM image WHERE name LIKE '%" +searchName +"%' ORDER BY " + orderBy);
+        query.prepare("SELECT name, path, albums, addDate, color, feeling FROM image WHERE name LIKE '%" +searchName +"%' ORDER BY " + orderBy);
     } else {
-        query.prepare("SELECT name, path FROM image ORDER BY " + orderBy);
+        query.prepare("SELECT name, path, albums, addDate, color, feeling FROM image ORDER BY " + orderBy);
     }
 
     if (!query.exec())
@@ -88,7 +117,34 @@ QVector<Image*> BddGalleryPhoto::getAllImages(const QString& orderBy, const QStr
         qDebug() << "get All images error";
     }
     while(query.next()){
-        v.push_back(new Image(query.value(0).toString(), query.value(1).toString()));
+        v.push_back(new Image(query.value(0).toString(), // name
+                              query.value(1).toString(), // path
+                              query.value(2).toStringList(), // albums
+                              query.value(3).toDate(), // addDate
+                              query.value(4).toString(), // color
+                              query.value(5).toString())); // feeling
+    }
+    return v;
+}
+
+QVector<Album*> BddGalleryPhoto::getAllAlbums(const QString& orderBy, const QString& searchName) const
+{
+    QVector<Album*> v;
+    QSqlQuery query;
+
+
+    if(searchName != nullptr) {
+        query.prepare("SELECT name, cover FROM album WHERE name LIKE '%" +searchName +"%' ORDER BY " + orderBy);
+    } else {
+        query.prepare("SELECT name, cover FROM album ORDER BY " + orderBy);
+    }
+
+    if (!query.exec())
+    {
+        qDebug() << "get All albums error";
+    }
+    while(query.next()){
+        v.push_back(new Album(query.value(0).toString(), query.value(1).toString()));
     }
     return v;
 }
@@ -97,14 +153,14 @@ bool BddGalleryPhoto::initBdd() {
     QSqlQuery query;
     bool success = true;
 
-    query.prepare("CREATE TABLE image(id INTEGER PRIMARY KEY, name TEXT, path TEXT);");
+    query.prepare("CREATE TABLE image(id INTEGER PRIMARY KEY, name TEXT, path TEXT, albums TEXT, addDate DATE, color TEXT, feeling TEXT);");
     if (!query.exec())
     {
         qDebug() << "Couldn't create the table 'image': one might already exist.";
         success = false;
     }
 
-    query.prepare("CREATE TABLE album(id INTEGER PRIMARY KEY, name TEXT, image INTEGER);");
+    query.prepare("CREATE TABLE album(id INTEGER PRIMARY KEY, name TEXT, cover TEXT);");
     if (!query.exec())
     {
         qDebug() << "Couldn't create the table 'album': one might already exist.";

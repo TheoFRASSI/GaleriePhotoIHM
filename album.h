@@ -8,12 +8,18 @@ class Album
 {
 public:
     Album();
+    Album(QString name);
+    Album(QString name, QString cover);
 
+    QString getCover() const;
+
+    void setCover(QString cover);
+    QString getName() const;
 private:
     QString name;
-    Image cover;
+    QString cover;
 //    QVector<Image> images;
-    unsigned int nbImages;
+    unsigned int nbImages = 1;
     QDate date;
     bool isFavorite;
 };

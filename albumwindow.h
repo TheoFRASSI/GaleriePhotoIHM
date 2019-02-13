@@ -15,6 +15,7 @@ class AlbumWindow : public QWidget, private Ui::AlbumWindow
 public:
     explicit AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent = nullptr);
     ~AlbumWindow();
+    void newBDDRequest(QVector<Album *> albTab);
 private:
     const BddGalleryPhoto* bdd;
 
@@ -23,6 +24,6 @@ signals:
 
 public slots:
     void changeTab();
-    void searchImage();
+    void addAlbum();
 private slots:
 };

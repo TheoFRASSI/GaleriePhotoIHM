@@ -73,11 +73,8 @@ void ImageWindow::searchImage()
     const QStringList paths = QFileDialog::getOpenFileNames(this);
     if (!paths.isEmpty()) {
         for(int i = 0; i < paths.size() ; i++) {
-            qDebug() << paths[i];
-
             const QStringList names = paths[i].split("/");
-            qDebug() << names[names.size()-2]; // nom du dossier de l'image
-            Image newImage(names.last(), paths[i]);
+            Image newImage(names.last(), paths[i], QStringList(), QDate::currentDate(), QColor(255,0,0), "drôle");
             bdd->insertImage(newImage);
         }
 
