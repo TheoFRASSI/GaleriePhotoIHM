@@ -1546,7 +1546,7 @@
                 <bool>false</bool>
                </property>
                <property name="placeholderText">
-                <string>Rechercher</string>
+                <string>Rechercher des Images</string>
                </property>
                <property name="clearButtonEnabled">
                 <bool>false</bool>

@@ -12,14 +12,42 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab,
     imageCorrupt = QPixmap(pathImageCorrupt);
 
     boutonAdd = new ImageButton(pathBoutonAddH, pathBoutonAdd, 200, 100, this);
-
     boutonLayout->addWidget(boutonAdd);
+
+    boutonFav = new ImageButton(pathFavH, pathFav, 100, 100, this);
+    boutonFeel = new ImageButton(pathFeelH, pathFeel, 100, 100, this);
+    boutonDate = new ImageButton(pathDateH, pathDate, 100, 100, this);
+    boutonAlpha = new ImageButton(pathAlphaH, pathAlpha, 100, 100, this);
+
+    layoutBoutonFav->addWidget(boutonFav);
+    layoutBoutonFeel->addWidget(boutonFeel);
+    layoutBoutonDate->addWidget(boutonDate);
+    layoutBoutonAlpha->addWidget(boutonAlpha);
+
+    colorPicker = new ColorPicker();
+
+    buttonColorPicker = new ColorButton(colorPicker->buttonvert->imageHighlightedName, colorPicker->buttonvert->imageName, colorPicker->buttonvert->imageHighlightedName, colorPicker->buttonvert->imageName, 80, 80, this);
+    colorPicker->buttonjaune->setSelected(true);
+    layoutBoutonColor->addWidget(buttonColorPicker);
 
     grid = listPhoto;
 
     newBDDRequest(imagesTab);
 
     connect(boutonAdd, SIGNAL(clicked()),this, SLOT(searchImage()));
+}
+
+void ImageWindow::openColorPicker(){
+    colorPicker->show();
+}
+
+void ImageWindow::newColor(){
+    currentColor = colorPicker->currentColor;
+    buttonColorPicker->loadImage(currentColor->imageName);
+    buttonColorPicker->loadImageHighlighted(currentColor->imageHighlightedName);
+    buttonColorPicker->loadImageSelected(currentColor->imageName);
+    buttonColorPicker->loadImageSelectedHighlighted(currentColor->imageHighlightedName);
+    colorPicker->close();
 }
 
 ImageWindow::~ImageWindow(){

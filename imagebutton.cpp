@@ -102,7 +102,7 @@ void ImageButton::setChecked(bool b)
 }
 
 void ImageButton::setDisable(bool b){
-    QAbstractButton::setEnabled(false);
+    QAbstractButton::setEnabled(!b);
     if (b)
         setIcon(QIcon(imageDisable));
     else

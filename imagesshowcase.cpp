@@ -3,7 +3,7 @@
 void ImagesShowcase::fillShowCase(){
     int j = cursor;
     for(int i = 0; i < nbLabel; i++){
-        if(j < imageTab.size() - 1){
+        if(j < imageTab.size()){
             labelsImage[i]->setPixmap(pixmapTab[j]);
         } else {
             labelsImage[i]->setPixmap(imageVide);

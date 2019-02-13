@@ -39,14 +39,30 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
 {
     setupUi(this);
     bdd = pbdd;
-    connect(albPersoButton, SIGNAL(clicked()), this, SLOT(changeTab()));
-    connect(albAutoButton, SIGNAL(clicked()), this, SLOT(changeTab()));
-    connect(newAlbButton, SIGNAL(clicked()), this, SLOT(addAlbum()));
+
+    boutonAdd = new ImageButton(pathBoutonAddH, pathBoutonAdd, 200, 100, this);
+    boutonSwitchD = new ImageButton(pathBoutonSwitchDroitH, pathBoutonSwitchDroit, 1000, 110, this);
+    boutonSwitchD->loadImageEnable(pathBoutonSwitchDroit);
+    boutonSwitchD->loadImageDisable(pathBoutonSwitchDroitH);
+    boutonSwitchG = new ImageButton(pathBoutonSwitchGaucheH, pathBoutonSwitchGauche, 1000, 110, this);
+    boutonSwitchG->loadImageEnable(pathBoutonSwitchGauche);
+    boutonSwitchG->loadImageDisable(pathBoutonSwitchGaucheH);
+    boutonSearch = new ImageButton(pathBoutonSearchH, pathBoutonSearch, 60, 100, this);
+
+    layoutBoutonAdd->addWidget(boutonAdd);
+    layoutBoutonDroit->addWidget(boutonSwitchD);
+    layoutBoutonGauche->addWidget(boutonSwitchG);
+    layoutBoutonSearch->addWidget(boutonSearch);
+
+    connect(boutonSwitchG, SIGNAL(clicked()), this, SLOT(changeTab()));
+    connect(boutonSwitchD, SIGNAL(clicked()), this, SLOT(changeTab()));
+    connect(boutonAdd, SIGNAL(clicked()), this, SLOT(addAlbum()));
+    connect(boutonSearch, SIGNAL(clicked()), this, SLOT(searchRequest()));
+    connect(lineEdit, SIGNAL(returnPressed()), boutonSearch, SIGNAL(clicked()));
 
     addAlbum(); // pour pas que la requete pète TEMPORAIRE    
 
     newBDDRequest(bdd->getAllAlbums());
-
 }
 
 AlbumWindow::~AlbumWindow()
@@ -57,15 +73,19 @@ AlbumWindow::~AlbumWindow()
 
 void AlbumWindow::changeTab()
 {
-    if(sender() == albAutoButton) {
+    if(sender() == boutonSwitchD) {
+        boutonSwitchD->setDisable(true);
+        boutonSwitchG->setDisable(false);
         stackedWidget->setCurrentIndex(1);
-    } else if (sender() == albPersoButton) {
+    } else if (sender() == boutonSwitchG) {
+        boutonSwitchD->setDisable(false);
+        boutonSwitchG->setDisable(true);
         stackedWidget->setCurrentIndex(0);
     }
 }
 
 void AlbumWindow::addAlbum() {
-    Image* img = bdd->getImageByName("599779.jpg");
+    Image* img = bdd->getImageByName("10cm.jpg");
     QString cover = img->getPath();
     QString name = "Alb";
     Album alb(name, cover);
@@ -73,6 +93,9 @@ void AlbumWindow::addAlbum() {
     newBDDRequest(bdd->getAllAlbums());
 }
 
+void AlbumWindow::searchRequest(){
+    newBDDRequest(bdd->getAllAlbums("name", lineEdit->text()));
+}
 
 void AlbumWindow::newBDDRequest(QVector<Album *> albTab)
 {
@@ -98,7 +121,7 @@ void AlbumWindow::newBDDRequest(QVector<Album *> albTab)
                         label->setPixmap(pix);
                         listAlbum->addWidget(label, i, j);
                     } else {
-                        qDebug() << "Erreur : Lors du chargement de l'image >" << albTab[k]->getCover() << "| Dans la fonction" << __FUNCTION__;
+                        qDebug() << "Erreur : Lors du chargement de l'image de l'album >" << albTab[k]->getCover() << "| Dans la fonction" << __FUNCTION__;
                     }
                 }
             }
