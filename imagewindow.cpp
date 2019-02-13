@@ -35,7 +35,8 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab,
     newBDDRequest(imagesTab);
 
     connect(boutonAdd, SIGNAL(clicked()),this, SLOT(searchImage()));
-
+    connect(buttonColorPicker, SIGNAL(clicked()), this, SLOT(openColorPicker()));
+    connect(colorPicker, SIGNAL(aboutToChoose()), this, SLOT(newColor()));
 }
 
 void ImageWindow::openColorPicker(){
