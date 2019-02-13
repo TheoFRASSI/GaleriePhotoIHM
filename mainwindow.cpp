@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     albumW = new AlbumWindow(bdd);
     imageW = new ImageWindow(bdd, bdd->getAllImages());
     helpW = new HelpWindow();
-    settingsW = new SettingsWindow();
+    settingsW = new SettingsWindow(bdd);
 
     stackWidget->addWidget(accueilW);
     stackWidget->addWidget(albumW);

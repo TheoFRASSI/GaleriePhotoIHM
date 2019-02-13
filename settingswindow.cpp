@@ -1,9 +1,11 @@
 #include "settingswindow.h"
 
-SettingsWindow::SettingsWindow(QWidget *parent)
+SettingsWindow::SettingsWindow(const BddGalleryPhoto* pbdd, QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
+
+    bdd = pbdd;
 
     connect(addPathPushButton, SIGNAL(clicked()), this, SLOT(addPath()));
     connect(supprPathPushButton, SIGNAL(clicked()), this, SLOT(suppressedPath()));
@@ -30,6 +32,8 @@ void SettingsWindow::addPath()
         paths.push_back(&directory_path);
         pathListWidget->addItem(*paths.last());
     }
+
+    addImagesFromPath(paths.last());
 }
 
 void SettingsWindow::suppressedPath()
@@ -41,11 +45,55 @@ void SettingsWindow::suppressedPath()
         qDebug() << *selectedPath;
         //qDebug() << *paths->last();
         //qDebug() << paths->indexOf(selectedPath);
-        //paths->removeOne(pathListWidget->currentItem()->text());
-        //pathListWidget->removeItemWidget(pathListWidget->itemAt());
+
+        QList<QListWidgetItem*> items = pathListWidget->selectedItems();
+        foreach(QListWidgetItem * item, items) {
+            delete pathListWidget->takeItem(pathListWidget->row(item));
+        }
+
         paths.removeOne(selectedPath);
         selectedPath = nullptr;
     }
+}
+
+void SettingsWindow::addImagesFromPath(QString * path)
+{
+    qDebug() << __FUNCTION__ << *path;
+    QFileDialog dialogue;
+    dialogue.setDirectory(*path);
+    //dialogue.setViewMode(QFileDialog::Detail);
+    //dialogue.exec();
+    qDebug() << dialogue.directory();
+
+    QDir dir(*path);
+    if(!dir.exists()) {
+        qWarning("Cannot find the directory");
+    } else {
+
+        /*QStringList nameFilter;
+        nameFilter << "*.jpg";
+        dir.setNameFilters(nameFilter);*/
+
+        dir.setFilter(QDir::Files);
+        //dir.setSorting(QDir::Size | QDir::Reversed);
+        QFileInfoList list = dir.entryInfoList();
+        for (int i = 0; i < list.size(); i++) {
+            QFileInfo fileInfo = list.at(i);
+            /*qDebug() << qPrintable(QString("%1 %2")
+                                   .arg(fileInfo.size(), 10)
+                                   .arg(fileInfo.fileName()));*/
+            addImageToBdd(qPrintable(QString("%1/%2")
+                                     .arg(*path)
+                                     .arg(fileInfo.fileName())),
+                          qPrintable(QString("%1").arg(fileInfo.fileName())));
+        }
+    }
+}
+
+void SettingsWindow::addImageToBdd(QString pathImage, QString nameImage)
+{
+    Image newImage(nameImage, pathImage);
+    bdd->insertImage(newImage);
 }
 
 QString SettingsWindow::searchDirectoryPath()
