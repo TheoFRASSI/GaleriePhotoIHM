@@ -12,7 +12,7 @@ Image::Image(QString p_name, QString p_path)
     path = p_path;
 }
 
-Image::Image(QString p_name, QString p_path, QStringList p_albums, QDate p_addDate, QColor p_color, QString p_feeling)
+Image::Image(QString p_name, QString p_path, QStringList p_albums, QDate p_addDate, QString p_color, QString p_feeling)
 {
     name = p_name;
     path = p_path;
@@ -30,7 +30,7 @@ QStringList Image::getAlbums() const { return albums; }
 
 QDate Image::getAddDate() const { return addDate; }
 
-QColor Image::getColor() const { return color; }
+QString Image::getColor() const { return color; }
 
 QString Image::getFeeling() const { return feeling; }
 

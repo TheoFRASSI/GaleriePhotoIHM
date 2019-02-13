@@ -20,6 +20,7 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab,
     newBDDRequest(imagesTab);
 
     connect(boutonAdd, SIGNAL(clicked()),this, SLOT(searchImage()));
+
 }
 
 ImageWindow::~ImageWindow(){
@@ -70,11 +71,16 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
 
 void ImageWindow::searchImage()
 {
+    QVector<QString> colors = {"BLEU", "BLEU_CLAIR_1", "BLEU_CLAIR_2", "BLEU_CLAIR_3", "BLEU_GRIS",
+                              "GRIS", "JAUNE", "JAUNE_FONCE", "MAGENTA", "MARRON", "NOIR", "ORANGE", "ORANGE_CLAIR",
+                              "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
+    qsrand(static_cast<uint>(time(nullptr)));
+    QString colorImg = colors[qrand() % colors.size()];
     const QStringList paths = QFileDialog::getOpenFileNames(this);
     if (!paths.isEmpty()) {
         for(int i = 0; i < paths.size() ; i++) {
             const QStringList names = paths[i].split("/");
-            Image newImage(names.last(), paths[i], QStringList(), QDate::currentDate(), QColor(255,0,0), "drôle");
+            Image newImage(names.last(), paths[i], QStringList(), QDate::currentDate(), colorImg, "Cool");
             bdd->insertImage(newImage);
         }
 

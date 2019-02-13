@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 
 #include "bddgalleryphoto.h"
+#include "formcreatealbum.h"
 #include "smartdelete.h"
 
 class AlbumWindow : public QWidget, private Ui::AlbumWindow
@@ -19,7 +20,7 @@ public:
 private:
     const BddGalleryPhoto* bdd;
 
-    //void openImage(const QString &fileName);
+    FormCreateAlbum * formCreateAlbum;
 signals:
 
 public slots:

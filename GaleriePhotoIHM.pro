@@ -39,11 +39,11 @@ SOURCES += \
     helpwindow.cpp \
     listeimages.cpp \
     headermenu.cpp \
-    bddmanager.cpp \
     bddgalleryphoto.cpp \
     colorpicker.cpp \
     colorbutton.cpp \
-    imagesshowcase.cpp
+    imagesshowcase.cpp \
+    formcreatealbum.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -59,12 +59,12 @@ HEADERS += \
     helpwindow.h \
     listeimages.h \
     headermenu.h \
-    bddmanager.h \
     bddgalleryphoto.h \
     colorpicker.h \
     colorbutton.h \
     imagesshowcase.h \
-    smartdelete.h
+    smartdelete.h \
+    formcreatealbum.h
 
 FORMS += \
         mainwindow.ui \
@@ -75,7 +75,8 @@ FORMS += \
     modifimagewindow.ui \
     helpwindow.ui \
     colorpicker.ui \
-    imagesshowcase.ui
+    imagesshowcase.ui \
+    formcreatealbum.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

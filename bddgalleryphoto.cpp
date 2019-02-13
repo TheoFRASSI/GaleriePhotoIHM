@@ -36,41 +36,52 @@ void BddGalleryPhoto::close()
 
 bool BddGalleryPhoto::insertImage(Image entry) const
 {
-    QSqlQuery query;
     bool success = true;
-    query.prepare("INSERT INTO image(name, path, albums, addDate, color, feeling) VALUES(:name, :path, :albums, :addDate, :color, :feeling)");
-    query.bindValue(":name", entry.getName());
-    query.bindValue(":path", entry.getPath());
-    query.bindValue(":albums", entry.getAlbums());
-    query.bindValue(":addDate", entry.getAddDate());
-    query.bindValue(":color", entry.getColor());
-    query.bindValue(":feeling", entry.getFeeling());
-    if (!query.exec())
-    {
-        qDebug() << "Insert image error";
-        success = false;
+    if(!imageExists(entry.getName())) {
+        QSqlQuery query;
+        success = true;
+        query.prepare("INSERT INTO image(name, path, albums, addDate, color, feeling) VALUES(:name, :path, :albums, :addDate, :color, :feeling)");
+        query.bindValue(":name", entry.getName());
+        query.bindValue(":path", entry.getPath());
+        query.bindValue(":albums", entry.getAlbums());
+        query.bindValue(":addDate", entry.getAddDate());
+        query.bindValue(":color", entry.getColor());
+        query.bindValue(":feeling", entry.getFeeling());
+        if (!query.exec())
+        {
+            qDebug() << "Insert image error";
+            success = false;
+        } else {
+            qDebug() << "Insert Image : " << entry.getName() << "  " << entry.getPath()
+                     << "  " <<entry.getAlbums() << "  " << entry.getAddDate()
+                     << "  " << entry.getColor() << "  " << entry.getFeeling() << endl;
+        }
     } else {
-        qDebug() << "Insert Image : " << entry.getName() << "  " << entry.getPath()
-                 << "  " <<entry.getAlbums() << "  " << entry.getAddDate()
-                 << "  " << entry.getColor() << "  " << entry.getFeeling() << endl;
+        qDebug() << "L'image existe déjà : " << entry.getName() << endl;
     }
     return success;
 }
 
 bool BddGalleryPhoto::insertAlbum(Album entry) const
 {
-    QSqlQuery query;
-    bool success = true;
-    query.prepare("INSERT INTO album(name, cover) VALUES(:name, :cover)");
-    query.bindValue(":name", entry.getName());
-    qDebug() << entry.getName() << " " << entry.getCover();
-    query.bindValue(":cover", entry.getCover());
-    if (!query.exec())
-    {
-        qDebug() << "Insert album error";
-        success = false;
+    bool success = false;
+    if(!albumExists(entry.getName())) {
+        success = true;
+        QSqlQuery query;
+
+        query.prepare("INSERT INTO album(name, cover) VALUES(:name, :cover)");
+        query.bindValue(":name", entry.getName());
+        qDebug() << entry.getName() << " " << entry.getCover();
+        query.bindValue(":cover", entry.getCover());
+        if (!query.exec())
+        {
+            qDebug() << "Insert album error";
+            success = false;
+        } else {
+            qDebug() << "Insert album : " << entry.getName() << "  " << entry.getCover() << endl;
+        }
     } else {
-        qDebug() << "Insert album : " << entry.getName() << "  " << entry.getCover() << endl;
+        qDebug() << "L'album existe déjà : " << entry.getName() << "  " << entry.getCover() << endl;
     }
     return success;
 }
@@ -183,6 +194,52 @@ bool BddGalleryPhoto::destroyBdd() const {
         success = false;
     }
     return success;
+}
+
+bool BddGalleryPhoto::imageExists(const QString& name) const
+{
+    bool exists = false;
+
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT name FROM image WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+
+    if (checkQuery.exec())
+    {
+        if (checkQuery.next())
+        {
+            exists = true;
+        }
+    }
+    else
+    {
+        qDebug() << "image exists failed: " << checkQuery.lastError();
+    }
+
+    return exists;
+}
+
+bool BddGalleryPhoto::albumExists(const QString& name) const
+{
+    bool exists = false;
+
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT name FROM album WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+
+    if (checkQuery.exec())
+    {
+        if (checkQuery.next())
+        {
+            exists = true;
+        }
+    }
+    else
+    {
+        qDebug() << "album exists failed: " << checkQuery.lastError();
+    }
+
+    return exists;
 }
 
 

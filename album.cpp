@@ -11,6 +11,13 @@ Album::Album(QString p_name, QString p_cover)
     cover = p_cover;
 }
 
+Album::Album(QString p_name, QString p_cover, QVector<Image> p_images)
+{
+    name = p_name;
+    cover = p_cover;
+    images = p_images;
+}
+
 QString Album::getName() const
 {
     return name;

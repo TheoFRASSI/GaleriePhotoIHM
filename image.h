@@ -11,13 +11,13 @@ class Image
 public:
     Image();
     Image(QString name, QString path);
-    Image(QString name, QString path, QStringList albums, QDate addDate, QColor color, QString feeling);
+    Image(QString name, QString path, QStringList albums, QDate addDate, QString color, QString feeling);
 
     QString getName() const;
     QString getPath() const;
     QStringList getAlbums() const;
     QDate getAddDate() const;
-    QColor getColor() const;
+    QString getColor() const;
     QString getFeeling() const;
 
     void addAlbum(const QString alb);
@@ -32,7 +32,7 @@ private:
     QStringList albums;
     QString path;
     QDate addDate;
-    QColor color;    
+    QString color;
     QString feeling;
     //EnumRotate rotation;    
 

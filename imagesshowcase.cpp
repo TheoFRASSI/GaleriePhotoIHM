@@ -3,7 +3,7 @@
 void ImagesShowcase::fillShowCase(){
     int j = cursor;
     for(int i = 0; i < nbLabel; i++){
-        if(j < imageTab.size() - 1){
+        if(j < imageTab.size()){
             labelsImage[i]->setPixmap(pixmapTab[j]);
         } else {
             labelsImage[i]->setPixmap(imageVide);
@@ -89,7 +89,6 @@ void ImagesShowcase::changeImageRight()
             rightButton->setDisabled(true);
         }
     }
-    qDebug() << "Cursor :" << cursor << "Nb Images :" << imageTab.size();
 }
 
 void ImagesShowcase::changeImageLeft()
@@ -102,7 +101,6 @@ void ImagesShowcase::changeImageLeft()
             leftButton->setDisabled(true);
         }
     }
-    qDebug() << "Cursor :" << cursor << "Nb Images :" << imageTab.size();
 }
 
 void ImagesShowcase::newBDDRequest(QVector<Image*> imagesTab){

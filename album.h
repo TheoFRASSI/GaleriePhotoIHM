@@ -10,6 +10,7 @@ public:
     Album();
     Album(QString name);
     Album(QString name, QString cover);
+    Album(QString name, QString cover, QVector<Image> images);
 
     QString getCover() const;
 
@@ -18,7 +19,7 @@ public:
 private:
     QString name;
     QString cover;
-//    QVector<Image> images;
+    QVector<Image> images;
     unsigned int nbImages = 1;
     QDate date;
     bool isFavorite;

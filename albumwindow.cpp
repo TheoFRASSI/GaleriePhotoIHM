@@ -43,7 +43,7 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
     connect(albAutoButton, SIGNAL(clicked()), this, SLOT(changeTab()));
     connect(newAlbButton, SIGNAL(clicked()), this, SLOT(addAlbum()));
 
-    addAlbum(); // pour pas que la requete pète TEMPORAIRE    
+    formCreateAlbum = new FormCreateAlbum(bdd);
 
     newBDDRequest(bdd->getAllAlbums());
 
@@ -65,12 +65,14 @@ void AlbumWindow::changeTab()
 }
 
 void AlbumWindow::addAlbum() {
-    Image* img = bdd->getImageByName("599779.jpg");
+    formCreateAlbum->show();
+    /*Image* img = bdd->getImageByName("715065-best-hd-backgrounds-zero-suit-samus-1920x1080.jpg");
     QString cover = img->getPath();
     QString name = "Alb";
     Album alb(name, cover);
     bdd->insertAlbum(alb);
     newBDDRequest(bdd->getAllAlbums());
+    */
 }
 
 

@@ -4,6 +4,7 @@
 #include <QSqlDatabase>
 #include <QString>
 #include <QDir>
+#include <QSqlError>
 
 #include <QtDebug>
 #include "album.h"
@@ -32,6 +33,8 @@ public:
 
     QVector<Album *> getAllAlbums(const QString &orderBy ="name", const QString &searchName = nullptr) const;
     bool insertAlbum(Album entry) const;
+    bool imageExists(const QString &name) const;
+    bool albumExists(const QString &name) const;
 private:
     QSqlDatabase bdd;
 };
