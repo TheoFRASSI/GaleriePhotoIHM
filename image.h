@@ -27,6 +27,8 @@ public:
     void setIsResized(const bool isResized);
     void setResizedDim(const int height, const int width);
 
+    void setPath(const QString &value);
+
 private:
     QString name;
     QStringList albums;

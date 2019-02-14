@@ -52,6 +52,14 @@
         <file alias="favH">img/button/boutonFavH.png</file>
         <file alias="feel">img/button/boutonFeel.png</file>
         <file alias="feelH">img/button/boutonFeelH.png</file>
+        <file alias="boutonAddCover">img/button/addCover.png</file>
+        <file alias="boutonAddCoverH">img/button/addCoverH.png</file>
+        <file alias="boutonQuitter">img/button/boutonQuitter.png</file>
+        <file alias="boutonQuitterH">img/button/boutonQuitterH.png</file>
+        <file alias="boutonOk">img/button/ok.png</file>
+        <file alias="boutonOkH">img/button/okH.png</file>
+        <file alias="boutonAddImages">img/button/boutonAddImages.png</file>
+        <file alias="boutonAddImagesH">img/button/boutonAddImagesH.png</file>
     </qresource>
     <qresource lang="fr" prefix="/img/window">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>
@@ -60,6 +68,8 @@
         <file alias="aucuneImage">img/window/aucuneImage.png</file>
         <file alias="imageVide">img/window/imageVide.png</file>
         <file alias="imageCorrupt">img/window/imageCorromp.png</file>
+        <file alias="image">img/window/image.png</file>
+        <file alias="imageObli">img/window/imageObli.png</file>
     </qresource>
     <qresource lang="fr" prefix="/img/button/colors">
         <file alias="bleu">img/button/Colors/couleurBleu.png</file>
