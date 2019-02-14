@@ -19,6 +19,7 @@ public:
 
     QString searchDirectoryPath();
 
+    void deleteImagesFromPath(QString *path);
 private:
     const BddGalleryPhoto* bdd;
 

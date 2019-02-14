@@ -62,6 +62,27 @@ bool BddGalleryPhoto::insertImage(Image entry) const
     return success;
 }
 
+bool BddGalleryPhoto::deleteImageByName(QString name) const
+{
+    bool success = true;
+    if(imageExists(name)) {
+        QSqlQuery query;
+        success = true;
+        query.prepare("DELETE FROM image WHERE name = :name");
+        query.bindValue(":name", name);
+        if (!query.exec())
+        {
+            qDebug() << "delete image error";
+            success = false;
+        } else {
+            qDebug() << "delete image : " << name << endl;
+        }
+    } else {
+        qDebug() << "L'image n'existe pas : " << name << endl;
+    }
+    return success;
+}
+
 bool BddGalleryPhoto::insertAlbum(Album entry) const
 {
     bool success = false;

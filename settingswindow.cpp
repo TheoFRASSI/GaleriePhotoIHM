@@ -42,7 +42,6 @@ void SettingsWindow::suppressedPath()
         qDebug() << pathListWidget->currentItem()->text();
         selectedPath = new QString(pathListWidget->currentItem()->text());
         qDebug() << selectedPath;
-        qDebug() << *selectedPath;
         //qDebug() << *paths->last();
         //qDebug() << paths->indexOf(selectedPath);
 
@@ -50,7 +49,7 @@ void SettingsWindow::suppressedPath()
         foreach(QListWidgetItem * item, items) {
             delete pathListWidget->takeItem(pathListWidget->row(item));
         }
-
+        deleteImagesFromPath(selectedPath);
         paths.removeOne(selectedPath);
         selectedPath = nullptr;
     }
@@ -76,7 +75,8 @@ void SettingsWindow::addImagesFromPath(QString * path)
 
         dir.setFilter(QDir::Files);
         //dir.setSorting(QDir::Size | QDir::Reversed);
-        QFileInfoList list = dir.entryInfoList();
+        QFileInfoList list = dir.entryInfoList();        
+        qsrand(static_cast<uint>(time(nullptr)));
         for (int i = 0; i < list.size(); i++) {
             QFileInfo fileInfo = list.at(i);
             /*qDebug() << qPrintable(QString("%1 %2")
@@ -90,9 +90,35 @@ void SettingsWindow::addImagesFromPath(QString * path)
     }
 }
 
+void SettingsWindow::deleteImagesFromPath(QString * path)
+{
+    QDir dir(*path);
+    if(!dir.exists()) {
+        qWarning("Cannot find the directory");
+    } else {
+
+        /*QStringList nameFilter;
+        nameFilter << "*.jpg";
+        dir.setNameFilters(nameFilter);*/
+
+        dir.setFilter(QDir::Files);
+        //dir.setSorting(QDir::Size | QDir::Reversed);
+        QFileInfoList list = dir.entryInfoList();
+        for (int i = 0; i < list.size(); i++) {
+            QFileInfo fileInfo = list.at(i);
+            bdd->deleteImageByName(qPrintable(QString("%1").arg(fileInfo.fileName())));
+        }
+    }
+}
+
 void SettingsWindow::addImageToBdd(QString pathImage, QString nameImage)
 {
-    Image newImage(nameImage, pathImage);
+    QVector<QString> colors = {"BLEU", "BLEU_CLAIR_1", "BLEU_CLAIR_2", "BLEU_CLAIR_3", "BLEU_GRIS",
+                              "GRIS", "JAUNE", "JAUNE_FONCE", "MAGENTA", "MARRON", "NOIR", "ORANGE", "ORANGE_CLAIR",
+                              "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
+
+    QString colorImg = colors[qrand() % colors.size()];
+    Image newImage(nameImage, pathImage, QStringList(), QDate::currentDate(), colorImg, "Cool");
     bdd->insertImage(newImage);
 }
 

@@ -36,6 +36,7 @@ public:
     bool imageExists(const QString &name) const;
     bool albumExists(const QString &name) const;
     QVector<Image *> getAllImagesByColor(const QString &searchColor) const;
+    bool deleteImageByName(QString name) const;
 private:
     QSqlDatabase bdd;
 };
