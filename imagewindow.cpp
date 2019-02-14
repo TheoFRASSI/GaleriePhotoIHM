@@ -136,7 +136,7 @@ void ImageWindow::searchImage()
         for(int i = 0; i < paths.size() ; i++) {
             QString colorImg = colors[qrand() % colors.size()];
             const QStringList names = paths[i].split("/");
-            Image newImage(names.last(), paths[i], QStringList(), QDate::currentDate(), colorImg, "Cool");
+            Image newImage(names.last(), paths[i], QDate::currentDate(), colorImg, "Cool", 0);
             bdd->insertImage(newImage);
         }
 

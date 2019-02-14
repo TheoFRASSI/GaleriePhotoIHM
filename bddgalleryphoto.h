@@ -27,8 +27,6 @@ public:
     Image* getImageByName(QString name) const;
     QVector<Image *> getAllImages(const QString &orderBy = "name", const QString &searchName = nullptr) const;
 
-    //bool insertAlbum(Album entry);
-
     bool destroyBdd() const;
 
     QVector<Album *> getAllAlbums(const QString &orderBy ="name", const QString &searchName = nullptr) const;
@@ -37,6 +35,10 @@ public:
     bool albumExists(const QString &name) const;
     QVector<Image *> getAllImagesByColor(const QString &searchColor) const;
     bool deleteImageByName(QString name) const;
+    bool assocImageWithAlbum(const QVector<Image> images, const QString &nameAlb) const;
+    Image *getImageByAlbum(QString nameAlb) const;
+    QVector<Image *> getAllImagesByFav() const;
+    void updateIsFavorite(bool fav, QString nameImg);
 private:
     QSqlDatabase bdd;
 };

@@ -18,6 +18,7 @@ public:
     explicit AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent = nullptr);
     ~AlbumWindow();
     void newBDDRequest(QVector<Album *> albTab);
+    void generateAlbumAuto();
 private:
     const BddGalleryPhoto* bdd;
     FormCreateAlbum * formCreateAlbum;

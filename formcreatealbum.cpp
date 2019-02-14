@@ -23,15 +23,16 @@ void FormCreateAlbum::selectImages()
                               "GRIS", "JAUNE", "JAUNE_FONCE", "MAGENTA", "MARRON", "NOIR", "ORANGE", "ORANGE_CLAIR",
                               "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
     qsrand(static_cast<uint>(time(nullptr)));
-    QString colorImg = colors[qrand() % colors.size()];
+
 
     QVector<Image> selectedImages;
     const QStringList paths = QFileDialog::getOpenFileNames(this);
 
     if (!paths.isEmpty()) {
         for(int i = 0; i < paths.size() ; i++) {
+            QString colorImg = colors[qrand() % colors.size()];
             const QStringList fullPath = paths[i].split("/");
-            Image newImage(fullPath.last(), paths[i], QStringList(), QDate::currentDate(), colorImg, "Cool");
+            Image newImage(fullPath.last(), paths[i], QDate::currentDate(), colorImg, "Cool", 0);
             selectedImages.push_back(newImage);
 
             this->selectedImages = selectedImages;
@@ -51,7 +52,7 @@ void FormCreateAlbum::selectCover()
 
     if (!path.isEmpty()) {
         const QStringList fullPath = path.split("/");
-        Image selectedCover(fullPath.last(), path, QStringList(), QDate::currentDate(), colorImg, "Cool");
+        Image selectedCover(fullPath.last(), path, QDate::currentDate(), colorImg, "Cool", 0);
 
         this->selectedCover = selectedCover;
     }
@@ -84,8 +85,9 @@ void FormCreateAlbum::validateChoices()
                 bdd->insertImage(selectedImages[i]);
             }
         }
-        Album newAlbum(selectedName, selectedCover.getPath(), selectedImages);
+        Album newAlbum(selectedName, selectedCover.getPath());
         bdd->insertAlbum(newAlbum);
+        bdd->assocImageWithAlbum(selectedImages, newAlbum.getName());
         emit albumAdded();
         emit accept();
     }

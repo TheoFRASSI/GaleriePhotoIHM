@@ -11,35 +11,34 @@ class Image
 public:
     Image();
     Image(QString name, QString path);
-    Image(QString name, QString path, QStringList albums, QDate addDate, QString color, QString feeling);
+    Image(QString name, QString path, QDate addDate, QString color, QString feeling, bool isFavorite);
 
     QString getName() const;
     QString getPath() const;
-    QStringList getAlbums() const;
     QDate getAddDate() const;
     QString getColor() const;
     QString getFeeling() const;
+    bool getIsFavorite() const;
 
-    void addAlbum(const QString alb);
-    void setFeeling(const QString feeling);
-    void incrementNbVues();
+    void setFeeling(const QString feeling);    
     void setIsFavorite(bool isFavorite);
+
+    /*void incrementNbVues();
     void setIsResized(const bool isResized);
-    void setResizedDim(const int height, const int width);
+    void setResizedDim(const int height, const int width);*/
 
 private:
     QString name;
-    QStringList albums;
     QString path;
     QDate addDate;
     QString color;
     QString feeling;
-    //EnumRotate rotation;    
-
-    int nbVues = 0;
     bool isFavorite;
+
+    /*EnumRotate rotation;
+    int nbVues = 0;
     bool isResized = false;
     int height;
-    int width;
+    int width;*/
 
 };

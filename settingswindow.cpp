@@ -118,7 +118,7 @@ void SettingsWindow::addImageToBdd(QString pathImage, QString nameImage)
                               "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
 
     QString colorImg = colors[qrand() % colors.size()];
-    Image newImage(nameImage, pathImage, QStringList(), QDate::currentDate(), colorImg, "Cool");
+    Image newImage(nameImage, pathImage, QDate::currentDate(), colorImg, "Cool", 0);
     bdd->insertImage(newImage);
 }
 
