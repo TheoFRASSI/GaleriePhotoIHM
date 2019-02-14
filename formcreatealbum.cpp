@@ -62,7 +62,7 @@ void FormCreateAlbum::clean(){
         imageVide = imageVide.scaled(300,300,Qt::KeepAspectRatio);
         labelCover->setPixmap(imageVide);
         const QStringList fullPath = pathImageVide.split("/");
-        selectedCover = Image(fullPath.last(), pathImageVide, QStringList(), QDate::currentDate(), "BLUE", "Cool");
+        selectedCover = Image(fullPath.last(), pathImageVide, QDate::currentDate(), "BLEU", "Cool", 0);
     } else {
         qDebug() << "Erreur : Lors du chargement de l'image >" << pathImageVide << "| Dans la fonction" << __FUNCTION__;
     }
