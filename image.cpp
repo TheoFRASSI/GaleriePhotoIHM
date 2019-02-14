@@ -60,4 +60,9 @@ void Image::setResizedDim(const int p_height, const int p_width)
     width = p_width;
 }*/
 
+void Image::setPath(const QString &value)
+{
+    path = value;
+}
+
 

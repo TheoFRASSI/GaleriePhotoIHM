@@ -2,19 +2,73 @@
 #include "ui_formcreatealbum.h"
 
 FormCreateAlbum::FormCreateAlbum(const BddGalleryPhoto * p_bdd, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::FormCreateAlbum)
+    QDialog(parent)
 {
-    ui->setupUi(this);
+    setupUi(this);
     bdd = p_bdd;
-    connect(ui->selectCoverButton, SIGNAL(clicked()), this, SLOT(selectCover()));
-    connect(ui->selectImagesButton, SIGNAL(clicked()), this, SLOT(selectImages()));
-    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(validateChoices()));
+    setWindowFlags(Qt::WindowTitleHint);
+    setWindowTitle("Création d'album");
+
+    boutonOk = new ImageButton(pathBoutonOkH, pathBoutonOk, 200, 70, this);
+    layoutBoutonOk->addWidget(boutonOk);
+
+    boutonQuitter = new ImageButton(pathBoutonQuitterH, pathBoutonQuitter, 50, 50, this);
+    layoutBoutonQuitter->addWidget(boutonQuitter);
+
+    boutonAddCover = new ImageButton(pathBoutonAddCoverH, pathBoutonAddCover, 300, 100, this);
+    layoutBoutonAddCover->addWidget(boutonAddCover);
+
+    boutonAddImages = new ImageButton(pathBoutonAddImagesH, pathBoutonAddImages, 100, 100, this);
+    layoutBoutonAddImages->addWidget(boutonAddImages);
+
+    clean();
+
+    connect(boutonAddCover, SIGNAL(clicked()), this, SLOT(selectCover()));
+    connect(boutonAddImages, SIGNAL(clicked()), this, SLOT(selectImages()));
+    connect(boutonOk, SIGNAL(clicked()), this, SLOT(validateChoices()));
+    connect(boutonQuitter, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 FormCreateAlbum::~FormCreateAlbum()
 {
-    delete ui;
+}
+
+void FormCreateAlbum::clean(){
+    labelCover->setMaximumSize(300, 300);
+    labelCover->setMinimumSize(300, 300);
+
+    lineEdit->setText("");
+
+    this->selectedImages.clear();
+
+    labelNbImages->setText("0");
+
+    bool validate = imageObli.load(pathImageObli);
+    if(validate){
+        imageObli = imageObli.scaled(300,300,Qt::KeepAspectRatio);
+    } else {
+        qDebug() << "Erreur : Lors du chargement de l'image >" << pathImageObli << "| Dans la fonction" << __FUNCTION__;
+    }
+
+    validate = imageCorrupt.load(pathImageCorrupt);
+    if(validate){
+        imageCorrupt = imageCorrupt.scaled(300,300,Qt::KeepAspectRatio);
+    } else {
+        qDebug() << "Erreur : Lors du chargement de l'image >" << pathImageCorrupt << "| Dans la fonction" << __FUNCTION__;
+    }
+
+    validate = imageVide.load(pathImageVide);
+    if(validate){
+        imageVide = imageVide.scaled(300,300,Qt::KeepAspectRatio);
+        labelCover->setPixmap(imageVide);
+        const QStringList fullPath = pathImageVide.split("/");
+        selectedCover = Image(fullPath.last(), pathImageVide, QStringList(), QDate::currentDate(), "BLUE", "Cool");
+    } else {
+        qDebug() << "Erreur : Lors du chargement de l'image >" << pathImageVide << "| Dans la fonction" << __FUNCTION__;
+    }
+
+    lineEdit->setStyleSheet("border: 2px solid black;");
+    labelNbImages->setStyleSheet("color: #FFFFFF;");
 }
 
 void FormCreateAlbum::selectImages()
@@ -38,6 +92,8 @@ void FormCreateAlbum::selectImages()
             this->selectedImages = selectedImages;
         }
     }
+    qDebug() << this->selectedImages.size();
+    labelNbImages->setText(QString::number(this->selectedImages.size()));
 }
 
 void FormCreateAlbum::selectCover()
@@ -54,26 +110,49 @@ void FormCreateAlbum::selectCover()
         const QStringList fullPath = path.split("/");
         Image selectedCover(fullPath.last(), path, QDate::currentDate(), colorImg, "Cool", 0);
 
-        this->selectedCover = selectedCover;
+        bool validate = cover.load(selectedCover.getPath());
+        if(validate){
+            cover = cover.scaled(300,300,Qt::KeepAspectRatio);
+            labelCover->setPixmap(cover);
+            this->selectedCover = selectedCover;
+        } else {
+            qDebug() << "Erreur : Lors du chargement de l'image >" << selectedCover.getPath() << "| Dans la fonction" << __FUNCTION__;
+            labelCover->setPixmap(imageCorrupt);
+            selectedCover.setPath(pathImageCorrupt);
+        }
+
+
     }
 }
 
 void FormCreateAlbum::validateChoices()
 {
     bool filled = true;
-    selectedName = ui->textAlbumName->text();
+    selectedName = lineEdit->text();
     if(selectedName == "") {
         qDebug() << "Nom de l'album ne peut pas être vide";
-        ui->textAlbumName->setPlaceholderText("OBLIGATOIRE");
+        lineEdit->setStyleSheet("border: 2px solid red;");
+        lineEdit->setPlaceholderText("CHAMP OBLIGATOIRE");
         filled = false;
+    } else {
+        lineEdit->setStyleSheet("border: 2px solid black;");
+        lineEdit->setPlaceholderText("Nom de l'album");
     }
-    if(selectedCover.getName() == "") { // ça ça marche pas!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    qDebug() << selectedCover.getPath();
+    if((selectedCover.getPath() == pathImageObli) || (selectedCover.getPath() == pathImageVide) || (selectedCover.getPath() == pathImageCorrupt)) {
         qDebug() << "Il faut choisir une cover pour l'album";
+        selectedCover.setPath(pathImageObli);
+        labelCover->setPixmap(imageObli);
         filled = false;
     }
+
     if(selectedImages.size() == 0) {
         qDebug() << "Il faut choisir au moins une image à ajouter dans l'album";
+        labelNbImages->setStyleSheet("color: #FF0000;");
         filled = false;
+    } else {
+        labelNbImages->setStyleSheet("color: #FFFFFF;");
     }
     if(filled) {
         if(!bdd->imageExists(selectedCover.getName())) {

@@ -87,6 +87,7 @@ void AlbumWindow::changeTab()
 }
 
 void AlbumWindow::addAlbum() {
+    formCreateAlbum->clean();
     formCreateAlbum->show();
 }
 
