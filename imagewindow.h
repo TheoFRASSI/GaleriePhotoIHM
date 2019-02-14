@@ -112,5 +112,8 @@ public slots:
     void searchImage();
     void openColorPicker();
     void newColor();
+    void alphaRequest();
+    void dateRequest();
+    void favRequest();
 };
 

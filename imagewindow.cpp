@@ -38,6 +38,21 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab,
     connect(boutonAdd, SIGNAL(clicked()),this, SLOT(searchImage()));
     connect(buttonColorPicker, SIGNAL(clicked()), this, SLOT(openColorPicker()));
     connect(colorPicker, SIGNAL(aboutToChoose()), this, SLOT(newColor()));
+    connect(boutonFav, SIGNAL(clicked()), this, SLOT(favRequest()));
+    connect(boutonDate, SIGNAL(clicked()), this, SLOT(dateRequest()));
+    connect(boutonAlpha, SIGNAL(clicked()), this, SLOT(alphaRequest()));
+}
+
+void ImageWindow::alphaRequest(){
+    newBDDRequest(bdd->getAllImages());
+}
+
+void ImageWindow::dateRequest(){
+    newBDDRequest(bdd->getAllImagesByDate());
+}
+
+void ImageWindow::favRequest(){
+    newBDDRequest(bdd->getAllImagesByFav());
 }
 
 void ImageWindow::openColorPicker(){

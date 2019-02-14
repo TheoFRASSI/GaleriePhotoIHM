@@ -49,6 +49,10 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
     boutonSwitchG->loadImageDisable(pathBoutonSwitchGaucheH);
     boutonSearch = new ImageButton(pathBoutonSearchH, pathBoutonSearch, 60, 100, this);
 
+    etiquette = QPixmap(pathEtiquette);
+
+    initMap();
+
     layoutBoutonAdd->addWidget(boutonAdd);
     layoutBoutonDroit->addWidget(boutonSwitchD);
     layoutBoutonGauche->addWidget(boutonSwitchG);
@@ -65,6 +69,9 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
 
     newBDDRequest(bdd->getAllAlbums());
     generateAlbumAuto();
+
+    boutonSwitchG->setDisable(true);
+    stackedWidget->setCurrentIndex(0);
 }
 
 AlbumWindow::~AlbumWindow()
@@ -110,21 +117,30 @@ void AlbumWindow::newBDDRequest(QVector<Album *> albTab)
             for (int j = 0; j < NB_IMAGES; j++) {
                 k = j + i * NB_IMAGES;
                 if(k < albTab.size()){
-                    QLabel * label = new QLabel();
-                    QLabel * labelName = new QLabel();
+                    QLabel* label = new QLabel();
+                    QLabel* labelName = new QLabel();
+                    QLabel* labelEtiquette = new QLabel();
                     label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
                     label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
+                    labelEtiquette->setMaximumSize(SIZE_IMAGE - SIZE_IMAGE/4, SIZE_IMAGE);
+                    labelEtiquette->setMinimumSize(SIZE_IMAGE - SIZE_IMAGE/4, SIZE_IMAGE);
+                    etiquette = etiquette.scaled(SIZE_IMAGE - SIZE_IMAGE/4, SIZE_IMAGE,Qt::KeepAspectRatio);
 
                     QPixmap pix = QPixmap();
                     bool validate = pix.load(albTab[k]->getCover());
                     if(validate){
-                        pix = pix.scaled(SIZE_IMAGE,SIZE_IMAGE,Qt::KeepAspectRatio);
+                        pix = pix.scaled(SIZE_IMAGE - 20, SIZE_IMAGE - 20, Qt::KeepAspectRatio);
                         labelName->setText(albTab[k]->getName());
-                        labelName->setPalette(QPalette(QColor(0,0,0)));
-                        labelName->setAutoFillBackground(true);
-                        labelName->setMaximumSize(150,30);
+                        labelName->setStyleSheet("font-weight: bold; color: #000000; font-size: 10pt;");
+                        labelName->setMaximumSize(SIZE_IMAGE - SIZE_IMAGE/3,SIZE_IMAGE);
+                        labelName->setMinimumSize(SIZE_IMAGE - SIZE_IMAGE/3,SIZE_IMAGE);
+                        labelName->setWordWrap(true);
+                        labelName->setMargin(20);
+                        labelEtiquette->setPixmap(etiquette);
                         label->setPixmap(pix);
+                        label->setMargin(10);
                         listAlbum->addWidget(label, i, j);
+                        listAlbum->addWidget(labelEtiquette,i ,j);
                         listAlbum->addWidget(labelName, i, j);
                     } else {
                         qDebug() << "Erreur : Lors du chargement de l'image de l'album >" << albTab[k]->getCover() << "| Dans la fonction" << __FUNCTION__;
@@ -155,20 +171,20 @@ void AlbumWindow::generateAlbumAuto() {
     QVector<QString> colors = {"BLEU", "BLEU_CLAIR_1", "BLEU_CLAIR_2", "BLEU_CLAIR_3", "BLEU_GRIS",
                               "GRIS", "JAUNE", "JAUNE_FONCE", "MAGENTA", "MARRON", "NOIR", "ORANGE", "ORANGE_CLAIR",
                               "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
+
+    QVector<Image*> imagesFav = bdd->getAllImagesByFav();
+    //if(imagesFav.size() > 0) {
+      Album * albFav = new Album("Album des favoris", mapAlbums.value("FAVORIS"));
+      albTab.push_back(albFav);
+    //}
+
     for(int i = 0; i < colors.size(); i++) {
         QString colorImg = colors[i];
         imagesColor = bdd->getAllImagesByColor(colorImg);
         if(imagesColor.size() > 0) {
-            Album * albColor = new Album("Album " + colorImg, imagesColor[0]->getPath());
+            Album * albColor = new Album("Album " + mapColors.value(colorImg), mapAlbums.value(colorImg));
             albTab.push_back(albColor);
         }
-    }
-
-
-    QVector<Image*> imagesFav = bdd->getAllImagesByFav();
-    if(imagesFav.size() > 0) {
-      Album * albFav = new Album("Album des favoris", imagesFav[0]->getPath());
-      albTab.push_back(albFav);
     }
 
     int k = 0;
@@ -177,24 +193,38 @@ void AlbumWindow::generateAlbumAuto() {
             for (int j = 0; j < NB_IMAGES; j++) {
                 k = j + i * NB_IMAGES;
                 if(k < albTab.size()){
-                    QLabel * label = new QLabel();
-                    QLabel * labelName = new QLabel();
+                    QLabel* label = new QLabel();
+                    QLabel* labelName = new QLabel();
+                    QLabel* labelEtiquette = new QLabel();
                     label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
                     label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
+                    labelEtiquette->setMaximumSize(SIZE_IMAGE , SIZE_IMAGE);
+                    labelEtiquette->setMinimumSize(SIZE_IMAGE , SIZE_IMAGE);
+                    etiquette = etiquette.scaled(SIZE_IMAGE - SIZE_IMAGE/4, SIZE_IMAGE,Qt::KeepAspectRatio);
+
                     QPixmap pix = QPixmap();
                     bool validate = pix.load(albTab[k]->getCover());
                     if(validate){
-                        pix = pix.scaled(SIZE_IMAGE,SIZE_IMAGE,Qt::KeepAspectRatio);
+                        pix = pix.scaled(SIZE_IMAGE,SIZE_IMAGE);
                         labelName->setText(albTab[k]->getName());
-                        labelName->setPalette(QPalette(QColor(0,0,0)));
-                        labelName->setAutoFillBackground(true);
-                        labelName->setMaximumSize(150,30);
+                        labelName->setStyleSheet("font-weight: bold; color: #000000; font-size: 10pt;");
+                        labelName->setMaximumSize(SIZE_IMAGE - SIZE_IMAGE/3,SIZE_IMAGE);
+                        labelName->setMinimumSize(SIZE_IMAGE - SIZE_IMAGE/3,SIZE_IMAGE);
+                        labelName->setWordWrap(true);
+                        labelName->setMargin(30);
+                        labelEtiquette->setPixmap(etiquette);
+                        labelEtiquette->setMargin(10);
                         label->setPixmap(pix);
                         listAlbumAuto->addWidget(label, i, j);
+                        listAlbumAuto->addWidget(labelEtiquette,i ,j);
                         listAlbumAuto->addWidget(labelName, i, j);
                     } else {
                         qDebug() << "Erreur : Lors du chargement de l'image de l'album >" << albTab[k]->getCover() << "| Dans la fonction" << __FUNCTION__;
                     }
+
+
+
+
                 }
             }
         }
@@ -208,3 +238,47 @@ void AlbumWindow::generateAlbumAuto() {
     }
 }
 
+void AlbumWindow::initMap(){
+    mapColors.insert("BLEU", "Bleu");
+    mapColors.insert("BLEU_CLAIR_1", "Bleu Roi");
+    mapColors.insert("BLEU_CLAIR_2", "Bleu France");
+    mapColors.insert("BLEU_CLAIR_3", "Bleu Azur");
+    mapColors.insert("BLEU_GRIS", "Bleu-Gris");
+    mapColors.insert("GRIS", "Gris");
+    mapColors.insert("JAUNE", "Jaune");
+    mapColors.insert("JAUNE_FONCE", "Jaune Banane");
+    mapColors.insert("MAGENTA", "Magenta");
+    mapColors.insert("MARRON", "Marron");
+    mapColors.insert("NOIR", "Noir");
+    mapColors.insert("ORANGE", "Orange");
+    mapColors.insert("ORANGE_CLAIR", "Orange Clair");
+    mapColors.insert("ROSE", "Rose");
+    mapColors.insert("ROUGE", "Rouge");
+    mapColors.insert("VERT", "Vert");
+    mapColors.insert("VERT_CLAIR", "Vert Clair");
+    mapColors.insert("VERT_FONCE", "Vert Foncé");
+    mapColors.insert("VERT_JAUNE", "Jaune Moutarde");
+    mapColors.insert("VIOLET", "Violet");
+
+    mapAlbums.insert("BLEU", ":/img/window/albumBleu");
+    mapAlbums.insert("BLEU_CLAIR_1", ":/img/window/albumBleuClair1");
+    mapAlbums.insert("BLEU_CLAIR_2", ":/img/window/albumBleuClair2");
+    mapAlbums.insert("BLEU_CLAIR_3", ":/img/window/albumBleuClair3");
+    mapAlbums.insert("BLEU_GRIS", ":/img/window/albumBleuGris");
+    mapAlbums.insert("GRIS", ":/img/window/albumGris");
+    mapAlbums.insert("JAUNE", ":/img/window/albumJaune");
+    mapAlbums.insert("JAUNE_FONCE", ":/img/window/albumJauneFonce");
+    mapAlbums.insert("MAGENTA", ":/img/window/albumMagenta");
+    mapAlbums.insert("MARRON", ":/img/window/albumMarron");
+    mapAlbums.insert("NOIR", ":/img/window/albumNoir");
+    mapAlbums.insert("ORANGE", ":/img/window/albumOrange");
+    mapAlbums.insert("ORANGE_CLAIR", ":/img/window/albumOrangeClair");
+    mapAlbums.insert("ROSE", ":/img/window/albumRose");
+    mapAlbums.insert("ROUGE", ":/img/window/albumRouge");
+    mapAlbums.insert("VERT", ":/img/window/albumVert");
+    mapAlbums.insert("VERT_CLAIR", ":/img/window/albumVertClair");
+    mapAlbums.insert("VERT_FONCE", ":/img/window/albumVertFonce");
+    mapAlbums.insert("VERT_JAUNE", ":/img/window/albumVertJaune");
+    mapAlbums.insert("VIOLET", ":/img/window/albumViolet");
+    mapAlbums.insert("FAVORIS", ":/img/window/albumFavoris");
+}

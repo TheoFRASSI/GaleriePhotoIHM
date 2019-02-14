@@ -27,9 +27,6 @@ public:
     ImagesShowcase *getFavoris() const;
     void setFavoris(ImagesShowcase *value);
 
-    ImagesShowcase *getMostWatched() const;
-    void setMostWatched(ImagesShowcase *value);
-
     ImagesShowcase *getDominantColor() const;
     void setDominantColor(ImagesShowcase *value);
     //---------------------------------------------------------
@@ -39,6 +36,7 @@ public:
 
 private:
     //--Fonctions----------------------------------------------
+    void initColors();
     //---------------------------------------------------------
 
     //--Attributs----------------------------------------------
@@ -46,18 +44,17 @@ private:
     ColorButton* currentColor;
     ColorButton* buttonColorPicker;
     ImagesShowcase* favoris;
-    ImagesShowcase* mostWatched;
     ImagesShowcase* dominantColor;
     ImageButton* buttonMail;
     ImageButton* buttonFacebook;
     ImageButton* buttonTwitter;
+    QMap<ColorButton*, QString> colors;
 
     const BddGalleryPhoto * bdd;
     //---------------------------------------------------------
 
     //--Images-------------------------------------------------
     QString imageStar = ":/img/window/star";
-    QString imageEye = ":/img/window/eye";
     QString mail = ":/img/button/mail";
     QString mailHighlighted = ":/img/button/mailHighlighted";
     QString facebook = ":/img/button/facebook";

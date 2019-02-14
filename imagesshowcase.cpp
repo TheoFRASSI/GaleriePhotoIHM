@@ -107,7 +107,13 @@ void ImagesShowcase::newBDDRequest(QVector<Image*> imagesTab){
     imageTab = imagesTab;
     cursor = 0;
     if(imagesTab.isEmpty()){
-        labelsImage[static_cast<int>(nbLabel/2)]->setPixmap(aucuneImage);
+        for(int i = 0; i< nbLabel; i++){
+            if(i == static_cast<int>(nbLabel/2)){
+                labelsImage[static_cast<int>(nbLabel/2)]->setPixmap(aucuneImage);
+            } else {
+                labelsImage[i]->setPixmap(QPixmap());
+            }
+        }
         leftButton->setDisabled(true);
         rightButton->setDisabled(true);
     } else {

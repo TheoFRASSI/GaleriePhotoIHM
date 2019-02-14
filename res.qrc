@@ -70,6 +70,28 @@
         <file alias="imageCorrupt">img/window/imageCorromp.png</file>
         <file alias="image">img/window/image.png</file>
         <file alias="imageObli">img/window/imageObli.png</file>
+        <file alias="etiquette">img/window/etiquette.png</file>
+        <file alias="albumBleu">img/window/albumBleu.png</file>
+        <file alias="albumBleuClair1">img/window/albumBleuClair1.png</file>
+        <file alias="albumBleuClair2">img/window/albumBleuClair2.png</file>
+        <file alias="albumBleuClair3">img/window/albumBleuClair3.png</file>
+        <file alias="albumBleuGris">img/window/albumBleuGris.png</file>
+        <file alias="albumGris">img/window/albumGris.png</file>
+        <file alias="albumJaune">img/window/albumJaune.png</file>
+        <file alias="albumJauneFonce">img/window/albumJauneFonce.png</file>
+        <file alias="albumMagenta">img/window/albumMagenta.png</file>
+        <file alias="albumMarron">img/window/albumMarron.png</file>
+        <file alias="albumNoir">img/window/albumNoir.png</file>
+        <file alias="albumOrange">img/window/albumOrange.png</file>
+        <file alias="albumOrangeClair">img/window/albumOrangeClair.png</file>
+        <file alias="albumRose">img/window/albumRose.png</file>
+        <file alias="albumRouge">img/window/albumRouge.png</file>
+        <file alias="albumVert">img/window/albumVert.png</file>
+        <file alias="albumVertClair">img/window/albumVertClair.png</file>
+        <file alias="albumVertFonce">img/window/albumVertFonce.png</file>
+        <file alias="albumVertJaune">img/window/albumVertJaune.png</file>
+        <file alias="albumViolet">img/window/albumViolet.png</file>
+        <file alias="albumFavoris">img/window/albumFavoris.png</file>
     </qresource>
     <qresource lang="fr" prefix="/img/button/colors">
         <file alias="bleu">img/button/Colors/couleurBleu.png</file>

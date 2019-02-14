@@ -38,6 +38,7 @@ public:
     bool assocImageWithAlbum(const QVector<Image> images, const QString &nameAlb) const;
     Image *getImageByAlbum(QString nameAlb) const;
     QVector<Image *> getAllImagesByFav() const;
+    QVector<Image *> getAllImagesByDate() const;
     void updateIsFavorite(bool fav, QString nameImg);
 private:
     QSqlDatabase bdd;

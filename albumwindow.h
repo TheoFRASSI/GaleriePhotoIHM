@@ -19,6 +19,7 @@ public:
     ~AlbumWindow();
     void newBDDRequest(QVector<Album *> albTab);
     void generateAlbumAuto();
+    void initMap();
 private:
     const BddGalleryPhoto* bdd;
     FormCreateAlbum * formCreateAlbum;
@@ -27,6 +28,11 @@ private:
     ImageButton* boutonSwitchG;
     ImageButton* boutonSwitchD;
     ImageButton* boutonAdd;
+
+    QMap<QString, QString> mapColors;
+    QMap<QString, QString> mapAlbums;
+
+    QPixmap etiquette;
 
     QString pathBoutonSearch = ":/img/button/search";
     QString pathBoutonSwitchDroit = ":/img/button/boutonSwitchD";
@@ -37,6 +43,9 @@ private:
     QString pathBoutonSwitchDroitH = ":/img/button/boutonSwitchDH";
     QString pathBoutonSwitchGaucheH = ":/img/button/boutonSwitchGH";
     QString pathBoutonAddH = ":/img/button/boutonAddH";
+
+    QString pathEtiquette = ":/img/window/etiquette";
+
 
 signals:
 

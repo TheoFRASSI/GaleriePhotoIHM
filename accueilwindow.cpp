@@ -10,23 +10,22 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
     imgStar = imgStar.scaled(40,40);
     etoile->setPixmap(imgStar);
 
-    QPixmap imgEye(imageEye);
-    imgEye = imgEye.scaled(40,40);
-    oeil->setPixmap(imgEye);
-
-    favoris = new ImagesShowcase(bdd->getAllImages("path", "wesh"));
-    mostWatched = new ImagesShowcase(bdd->getAllImages("path"));
-    dominantColor = new ImagesShowcase(bdd->getAllImages());
+    favoris = new ImagesShowcase(bdd->getAllImagesByFav());
 
     layoutImageFavoris->addWidget(favoris);
-    layoutImageColor->addWidget(dominantColor);
-    layoutImageWatched->addWidget(mostWatched);
+
 
     colorPicker = new ColorPicker();
+
+
 
     buttonColorPicker = new ColorButton(colorPicker->buttonjaune->imageHighlightedName, colorPicker->buttonjaune->imageName, colorPicker->buttonjaune->imageHighlightedName, colorPicker->buttonjaune->imageName, 40, 40, this);
     colorPicker->buttonjaune->setSelected(true);
     layoutColor->addWidget(buttonColorPicker);
+
+    initColors();
+    dominantColor = new ImagesShowcase(bdd->getAllImagesByColor(colors.value(buttonColorPicker)));
+    layoutImageColor->addWidget(dominantColor);
 
     buttonMail = new ImageButton(mailHighlighted, mail, 40, 40, this);
     layoutMail->addWidget(buttonMail);
@@ -45,7 +44,6 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
 AccueilWindow::~AccueilWindow(){
     smartDeleteMrNovelli(colorPicker);
     smartDeleteMrNovelli(favoris);
-    smartDeleteMrNovelli(mostWatched);
     smartDeleteMrNovelli(dominantColor);
     smartDeleteMrNovelli(buttonColorPicker);
 }
@@ -61,12 +59,36 @@ void AccueilWindow::newColor(){
     buttonColorPicker->loadImageSelected(currentColor->imageName);
     buttonColorPicker->loadImageSelectedHighlighted(currentColor->imageHighlightedName);
     colorPicker->close();
+    dominantColor->newBDDRequest(bdd->getAllImagesByColor(colors.value(colorPicker->currentColor)));
 }
 
 void AccueilWindow::initShowCase(){
-    favoris->newBDDRequest(bdd->getAllImages("path", "wesh"));
-    mostWatched->newBDDRequest(bdd->getAllImages("path"));
-    dominantColor->newBDDRequest(bdd->getAllImages());
+    favoris->newBDDRequest(bdd->getAllImagesByFav());
+    dominantColor->newBDDRequest(bdd->getAllImagesByColor(colors.value(colorPicker->currentColor)));
+}
+
+void AccueilWindow::initColors()
+{
+    colors.insert(colorPicker->buttonbleu, "BLEU");
+    colors.insert(colorPicker->buttonbleuClair1, "BLEU_CLAIR_1");
+    colors.insert(colorPicker->buttonbleuClair2, "BLEU_CLAIR_2");
+    colors.insert(colorPicker->buttonbleuClair3, "BLEU_CLAIR_3");
+    colors.insert(colorPicker->buttonbleuGris, "BLEU_GRIS");
+    colors.insert(colorPicker->buttongris, "GRIS");
+    colors.insert(colorPicker->buttonjaune, "JAUNE");
+    colors.insert(colorPicker->buttonjauneFonce, "JAUNE_FONCE");
+    colors.insert(colorPicker->buttonmagenta, "MAGENTA");
+    colors.insert(colorPicker->buttonmarron, "MARRON");
+    colors.insert(colorPicker->buttonnoir, "NOIR");
+    colors.insert(colorPicker->buttonorange, "ORANGE");
+    colors.insert(colorPicker->buttonorangeClair, "ORANGE_CLAIR");
+    colors.insert(colorPicker->buttonrose, "ROSE");
+    colors.insert(colorPicker->buttonrouge, "ROUGE");
+    colors.insert(colorPicker->buttonvert, "VERT");
+    colors.insert(colorPicker->buttonvertClair, "VERT_CLAIR");
+    colors.insert(colorPicker->buttonvertFonce, "VERT_FONCE");
+    colors.insert(colorPicker->buttonvertJaune, "VERT_JAUNE");
+    colors.insert(colorPicker->buttonviolet, "VIOLET");
 }
 
 ImagesShowcase *AccueilWindow::getFavoris() const
@@ -77,16 +99,6 @@ ImagesShowcase *AccueilWindow::getFavoris() const
 void AccueilWindow::setFavoris(ImagesShowcase *value)
 {
     favoris = value;
-}
-
-ImagesShowcase *AccueilWindow::getMostWatched() const
-{
-    return mostWatched;
-}
-
-void AccueilWindow::setMostWatched(ImagesShowcase *value)
-{
-    mostWatched = value;
 }
 
 ImagesShowcase *AccueilWindow::getDominantColor() const

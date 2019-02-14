@@ -194,6 +194,30 @@ QVector<Image*> BddGalleryPhoto::getAllImagesByColor(const QString& searchColor)
     return v;
 }
 
+QVector<Image*> BddGalleryPhoto::getAllImagesByDate() const
+{
+    QVector<Image*> v;
+    QSqlQuery query;
+
+
+    query.prepare("SELECT name, path, addDate, color, feeling, isFavorite FROM image ORDER BY addDate");
+
+
+    if (!query.exec())
+    {
+        qDebug() << "get All images by Date error";
+    }
+    while(query.next()){
+        v.push_back(new Image(query.value(0).toString(), // name
+                              query.value(1).toString(), // path
+                              query.value(3).toDate(), // addDate
+                              query.value(4).toString(), // color
+                              query.value(5).toString(),
+                              query.value(6).toBool())); // feeling
+    }
+    return v;
+}
+
 QVector<Image*> BddGalleryPhoto::getAllImagesByFav() const
 {
     QVector<Image*> v;
