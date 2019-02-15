@@ -128,6 +128,7 @@ private:
 
 signals:
     void imageClicked(QString name);
+    void goToAlbWindow();
 
 public slots:
     void searchImage();

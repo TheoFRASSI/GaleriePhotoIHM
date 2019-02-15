@@ -141,6 +141,8 @@ void ImageWindow::closeAlbum(){
     labelNomAlbum->show();
     frameAfficheAlbum->hide();
     alphaRequest();
+    //emit goToAlbWindow();
+
 }
 
 void ImageWindow::alphaRequest(){

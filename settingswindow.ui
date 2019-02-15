@@ -84,29 +84,6 @@ color: rgb(255, 255, 255);</string>
      <item>
       <layout class="QHBoxLayout" name="buttonsPathHorizLayout"/>
      </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>HISTORIQUE</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPlainTextEdit" name="plainTextEdit">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>1000</width>
-         <height>700</height>
-        </size>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
   </layout>

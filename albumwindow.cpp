@@ -161,7 +161,7 @@ void AlbumWindow::newBDDRequest(QVector<Album *> albTab)
         label->setPixmap(QPixmap());
         listAlbum->addWidget(label, 0, 0);
     }
-
+    generateAlbumAuto();
 }
 
 void AlbumWindow::generateAlbumAuto() {

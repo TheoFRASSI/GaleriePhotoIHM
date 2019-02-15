@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(imageW, SIGNAL(imageClicked(QString)), modifimageW, SLOT(afficheImage(QString)));
     connect(imageW, SIGNAL(imageClicked(QString)), this, SLOT(openModifImageW()));
 
+    connect(modifimageW, SIGNAL(goToImageWindow()), mainmenu->getButtonImage(), SIGNAL(clicked()));
+
 }
 
 MainWindow::~MainWindow(){

@@ -21,4 +21,13 @@ private :
 
 public slots:
     void afficheImage(QString name);
+
+
+    void fermerFenetre();
+    void updateImageName();
+    void deleteImage();
+    void swapIsFavorite();
+
+signals:
+    void goToImageWindow();
 };

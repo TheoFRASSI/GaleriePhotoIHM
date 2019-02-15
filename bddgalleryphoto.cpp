@@ -265,6 +265,36 @@ bool BddGalleryPhoto::updateAlbumName(QString oldName, QString newName) const{
 
 }
 
+bool BddGalleryPhoto::updateImageName(QString oldName, QString newName) const{
+    bool success = true;
+    QSqlQuery query;
+
+    if(oldName != nullptr) {
+        if(imageExists(newName) == false) {
+            query.prepare("UPDATE image SET name = :newName WHERE name = :oldName");
+            query.bindValue(":oldName", oldName);
+            query.bindValue(":newName", newName);
+
+            if (!query.exec())
+            {
+                qDebug() << "Erreur : le renommage de l'image" << oldName << "dans la table <image> avec le nouveau nom :" << newName << "a échoué, dans" << __FUNCTION__;
+                success = false;
+            } else {
+                qDebug() << "image" << oldName << "renommé avec succes en" << newName;
+                return success;
+            }
+        }else {
+            qDebug() << "Erreur : L'image" << newName << "existe deja dans la table <image>, dans" << __FUNCTION__;
+            success = false;
+        }
+    } else {
+        qDebug() << "Erreur : Le parametre <oldName> est NULL, dans" << __FUNCTION__;
+        success = false;
+    }
+    return success;
+
+}
+
 QVector<Image*> BddGalleryPhoto::getAllImagesByColor(const QString& searchColor) const
 {
     QVector<Image*> v;
@@ -588,7 +618,7 @@ bool BddGalleryPhoto::assocImageWithAlbum(const QVector<Image> images, const QSt
     return true;
 }
 
-void BddGalleryPhoto::updateIsFavorite(bool fav, QString nameImg) {
+void BddGalleryPhoto::updateIsFavorite(bool fav, QString nameImg) const {
     QSqlQuery upQuery;
     upQuery.prepare("UPDATE image SET isFavorite = :fav WHERE name = :nameImg");
     upQuery.bindValue(":nameImg", nameImg);

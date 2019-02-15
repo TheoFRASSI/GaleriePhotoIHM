@@ -57,7 +57,8 @@ public:
 
     //--UPDATE------------------------------------------------
     bool updateAlbumName(QString oldName, QString newName) const;
-    void updateIsFavorite(bool fav, QString nameImg);
+    bool updateImageName(QString oldName, QString newName) const;
+    void updateIsFavorite(bool fav, QString nameImg) const;
     //--------------------------------------------------------
 
 private:
