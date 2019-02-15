@@ -31,6 +31,12 @@ FormCreateAlbum::FormCreateAlbum(const BddGalleryPhoto * p_bdd, QWidget *parent)
 
 FormCreateAlbum::~FormCreateAlbum()
 {
+    smartDeleteMrNovelli(bdd);
+    smartDeleteMrNovelli(boutonOk);
+    smartDeleteMrNovelli(boutonQuitter);
+    smartDeleteMrNovelli(boutonAddCover);
+    smartDeleteMrNovelli(boutonAddImages);
+
 }
 
 void FormCreateAlbum::clean(){

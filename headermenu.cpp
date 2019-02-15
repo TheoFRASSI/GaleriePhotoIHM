@@ -1,6 +1,6 @@
 #include "headermenu.h"
 
-HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings,  QSpacerItem* horizontalSpacer, QLabel* labelTitre, QLineEdit* lineEdit)
+HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings,  QSpacerItem* horizontalSpacer, QLabel* labelTitre, QLineEdit* lineEdit, QProgressBar * progBar)
            :headerMenuFrame(headerMenuFrame),
             menu(menu),
             layoutSearch(layoutSearch),
@@ -10,7 +10,8 @@ HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* 
             layoutSettings(layoutSettings),
             horizontalSpacer(horizontalSpacer),
             labelTitre(labelTitre),
-            lineEdit(lineEdit)
+            lineEdit(lineEdit),
+            progressBar(progBar)
 {
     buttonMenu = new ImageButton(imageButtonMenuPressed, imageButtonMenuReleased, 50, 50, this);
     menu->addWidget(buttonMenu);
@@ -73,3 +74,8 @@ QLabel* HeaderMenu::getLabelTitre(){
 QLineEdit* HeaderMenu::getLineEdit(){
     return lineEdit;
 }
+
+QProgressBar* HeaderMenu::getProgressBar(){
+    return progressBar;
+}
+

@@ -14,9 +14,13 @@ void ImagesShowcase::fillShowCase(){
 }
 
 ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
-               :QWidget(parent), imageTab(imagesTab)
+               :QWidget(parent)
 {
     setupUi(this);
+    imageTab.clear();
+    for(int i = 0; i < 15 && i < imagesTab.size(); i++) {
+        imageTab.push_back(imagesTab[i]);
+    }
 
     leftButton = new ImageButton(imageLeftButtonHighlighted, imageLeftButton, 50,50, this);
     rightButton = new ImageButton(imageRightButtonHighlighted, imageRightButton, 50,50, this);
@@ -44,19 +48,19 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
     imageCorrupt = QPixmap(pathImageCorrupt);
     imageCorrupt = imageCorrupt.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
 
-    if(imagesTab.isEmpty()){
+    if(imageTab.isEmpty()){
         labelsImage[static_cast<int>(nbLabel/2)]->setPixmap(aucuneImage);
         leftButton->setDisabled(true);
         rightButton->setDisabled(true);
     } else {
-        for(int i = 0; i < imagesTab.size(); i++){
-            QPixmap pix = QPixmap();
-            bool validate = pix.load(imagesTab[i]->getPath());
+        for(int i = 0; i < imageTab.size(); i++){
+            QPixmap pix;
+            bool validate = pix.load(imageTab[i]->getPath());
             if(validate){
                 pix = pix.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
                 pixmapTab.push_back(pix);
             } else {
-                qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[i]->getPath() << "| Dans la fonction" << __FUNCTION__;
+                qDebug() << "Erreur : Lors du chargement de l'image >" << imageTab[i]->getPath() << "| Dans la fonction" << __FUNCTION__;
                 pixmapTab.push_back(QPixmap(imageCorrupt));
             }
         }
@@ -76,6 +80,9 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
 ImagesShowcase::~ImagesShowcase(){
     smartDeleteMrNovelli(leftButton);
     smartDeleteMrNovelli(rightButton);
+    for(int i = 0; i < imageTab.size(); i++) {
+        smartDeleteMrNovelli(imageTab[i]);
+    }
 }
 
 void ImagesShowcase::changeImageRight()
@@ -104,9 +111,16 @@ void ImagesShowcase::changeImageLeft()
 }
 
 void ImagesShowcase::newBDDRequest(QVector<Image*> imagesTab){
-    imageTab = imagesTab;
+
+
+    imageTab.clear();
+    for(int i = 0; i < 15 && i < imagesTab.size(); i++) {
+        imageTab.push_back(imagesTab[i]);
+    }
+
+//    qDebug() << imageTab.size() << " " << imagesTab.size();
     cursor = 0;
-    if(imagesTab.isEmpty()){
+    if(imageTab.isEmpty()){
         for(int i = 0; i< nbLabel; i++){
             if(i == static_cast<int>(nbLabel/2)){
                 labelsImage[static_cast<int>(nbLabel/2)]->setPixmap(aucuneImage);
@@ -118,14 +132,14 @@ void ImagesShowcase::newBDDRequest(QVector<Image*> imagesTab){
         rightButton->setDisabled(true);
     } else {
         QVector<QPixmap> pixmapTemp;
-        for(int i = 0; i < imagesTab.size(); i++){
-            QPixmap pix = QPixmap();
-            bool validate = pix.load(imagesTab[i]->getPath());
+        for(int i = 0; i < imageTab.size(); i++){
+            QPixmap pix;
+            bool validate = pix.load(imageTab[i]->getPath());
             if(validate){
                 pix = pix.scaled(LABEL_SIZE,LABEL_SIZE,Qt::KeepAspectRatio);
                 pixmapTemp.push_back(pix);
             } else {
-                qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[i]->getPath() << "| Dans la fonction" << __FUNCTION__;
+                qDebug() << "Erreur : Lors du chargement de l'image >" << imageTab[i]->getPath() << "| Dans la fonction" << __FUNCTION__;
                 pixmapTemp.push_back(QPixmap(imageCorrupt));
             }
         }

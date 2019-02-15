@@ -1,10 +1,10 @@
 #include "imagewindow.h"
 
-ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab, QWidget *parent) : QWidget(parent)
+ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressBar, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
     bdd = pbdd;
-
+    progressBar = p_progressBar;
     imageVide = QPixmap(pathImageVide);
 
     aucuneImage = QPixmap(pathAucuneImage);
@@ -33,7 +33,7 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab,
 
     grid = listPhoto;
 
-    newBDDRequest(imagesTab);
+    //newBDDRequest(imagesTab);
 
     connect(boutonAdd, SIGNAL(clicked()),this, SLOT(searchImage()));
     connect(buttonColorPicker, SIGNAL(clicked()), this, SLOT(openColorPicker()));
@@ -71,6 +71,15 @@ void ImageWindow::newColor(){
 
 ImageWindow::~ImageWindow(){
     smartDeleteMrNovelli(grid);
+    smartDeleteMrNovelli(buttonColorPicker);
+    smartDeleteMrNovelli(colorPicker);
+
+    smartDeleteMrNovelli(boutonAdd);
+    smartDeleteMrNovelli(boutonFav);
+    smartDeleteMrNovelli(boutonFeel);
+    smartDeleteMrNovelli(layoutBoutonDate);
+    smartDeleteMrNovelli(layoutBoutonAlpha);
+    smartDeleteMrNovelli(bdd);
 }
 
 void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
@@ -80,11 +89,18 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
     }
     int k = 0;
     if(!imagesTab.isEmpty()){
+        progressBar->setVisible(true);
+        progressBar->setRange(0,imagesTab.size()-1);
+        progressBar->setFormat("%v images chargées sur %m (%p%)");
+        int progressValue = 0;
+        progressBar->setValue(progressValue);
         for(int i = 0; i < static_cast<int>(imagesTab.size() / NB_IMAGES) + 1 ; i++){
             for (int j = 0; j < NB_IMAGES; j++) {
                 k = j + i * NB_IMAGES;
                 if(k < imagesTab.size()){
                     QLabel * label = new QLabel();
+                    progressValue += 1;
+                    progressBar->setValue(progressValue);
                     label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
                     label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
                     QPixmap pix = QPixmap();
@@ -113,6 +129,7 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
         label->setPixmap(QPixmap(aucuneImage));
         grid->addWidget(label, 0, 0);
     }
+    progressBar->setVisible(false);
 }
 
 void ImageWindow::initColors()

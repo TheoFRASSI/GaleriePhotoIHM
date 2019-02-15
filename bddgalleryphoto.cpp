@@ -17,6 +17,10 @@ BddGalleryPhoto::BddGalleryPhoto(QString path)
 
 BddGalleryPhoto::~BddGalleryPhoto()
 {
+    if (bdd.isOpen())
+        {
+            bdd.close();
+        }
 }
 
 QSqlDatabase BddGalleryPhoto::getBdd() const

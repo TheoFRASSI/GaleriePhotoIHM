@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QFileDialog>
+#include <QProgressBar>
 
 #include "bddgalleryphoto.h"
 #include "ui_imagewindow.h"
@@ -16,7 +17,7 @@ class ImageWindow : public QWidget, private Ui::ImageWindow
 {
     Q_OBJECT
 public:
-    explicit ImageWindow(const BddGalleryPhoto* pbdd, QVector<Image*> imagesTab, QWidget *parent = nullptr);
+    explicit ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar *progressBar, QWidget *parent = nullptr);
     ~ImageWindow();
     void newBDDRequest(QVector<Image *> imagesTab);
 
@@ -57,6 +58,7 @@ private:
     ImageButton* boutonFeel;
     ImageButton* boutonDate;
     ImageButton* boutonAlpha;
+    QProgressBar * progressBar;
 
     QMap<ColorButton*, QString> colors;
 
