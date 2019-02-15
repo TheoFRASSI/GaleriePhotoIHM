@@ -66,58 +66,58 @@ bool BddGalleryPhoto::insertImage(Image entry) const
 
 bool BddGalleryPhoto::deleteImageByName(QString name) const
 {
-bool success = true;
+    bool success = true;
 
-QSqlQuery query;
+    QSqlQuery query;
 
-if(name != nullptr) {
-    if(imageExists(name)) {
-        query.prepare("SELECT idImg FROM image WHERE name = :name ");
-        query.bindValue(":name", name);
+    if(name != nullptr) {
+        if(imageExists(name)) {
+            query.prepare("SELECT idImg FROM image WHERE name = :name ");
+            query.bindValue(":name", name);
 
-        if (!query.exec())
-        {
-            qDebug() << "Erreur : requete pour récupérer <idImg> dans la table <image> a échoué, dans" << __FUNCTION__;
-            success = false;
-        }
-        query.next();
-        int id = query.value(0).toInt();
+            if (!query.exec())
+            {
+                qDebug() << "Erreur : requete pour récupérer <idImg> dans la table <image> a échoué, dans" << __FUNCTION__;
+                success = false;
+            }
+            query.next();
+            int id = query.value(0).toInt();
 
-        query.prepare("DELETE FROM assoc WHERE idImg = :idImg");
-        query.bindValue(":idImg", id);
-
-        if (!query.exec())
-        {
-            qDebug() << "Erreur : la suppression des images dans la table <assoc> suivant le parametre <idImg> =" << id << "a échoué, dans" << __FUNCTION__;
-            success = false;
-        }else {
-            qDebug() << "delete image : " << name << endl;
-
-            query.prepare("DELETE FROM image WHERE idImg = :idImg");
+            query.prepare("DELETE FROM assoc WHERE idImg = :idImg");
             query.bindValue(":idImg", id);
 
             if (!query.exec())
             {
-                qDebug() << "Erreur : la suppression de l'image dans la table <image> suivant le parametre <idImg> =" << id << "a échoué, dans" << __FUNCTION__;
+                qDebug() << "Erreur : la suppression des images dans la table <assoc> suivant le parametre <idImg> =" << id << "a échoué, dans" << __FUNCTION__;
                 success = false;
-            } else {
-                if (!imageExists(name))
+            }else {
+                qDebug() << "delete image : " << name << endl;
+
+                query.prepare("DELETE FROM image WHERE idImg = :idImg");
+                query.bindValue(":idImg", id);
+
+                if (!query.exec())
                 {
-                    qDebug() << "Image" << name << "supprimée avec succes";
-                    return success;
-                } else {
                     qDebug() << "Erreur : la suppression de l'image dans la table <image> suivant le parametre <idImg> =" << id << "a échoué, dans" << __FUNCTION__;
                     success = false;
+                } else {
+                    if (!imageExists(name))
+                    {
+                        qDebug() << "Image" << name << "supprimée avec succes";
+                        return success;
+                    } else {
+                        qDebug() << "Erreur : la suppression de l'image dans la table <image> suivant le parametre <idImg> =" << id << "a échoué, dans" << __FUNCTION__;
+                        success = false;
+                    }
                 }
             }
-        }
         } else {
             qDebug() << "Erreur : L'image" << name << "n'existe pas dans la table <image>, dans" << __FUNCTION__;
             success = false;
         }
-        } else {
-            qDebug() << "Erreur : Le parametre <name> est NULL, dans" << __FUNCTION__;
-            success = false;
+    } else {
+        qDebug() << "Erreur : Le parametre <name> est NULL, dans" << __FUNCTION__;
+        success = false;
     }
     return success;
 }
