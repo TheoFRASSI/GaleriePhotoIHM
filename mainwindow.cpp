@@ -20,11 +20,14 @@ MainWindow::MainWindow(QWidget *parent) :
     helpW = new HelpWindow();
     settingsW = new SettingsWindow(bdd);
 
+    modifimageW = new ModifImageWindow(bdd);
+
     stackWidget->addWidget(accueilW);
     stackWidget->addWidget(albumW);
     stackWidget->addWidget(imageW);
     stackWidget->addWidget(helpW);
     stackWidget->addWidget(settingsW);
+    stackWidget->addWidget(modifimageW);
     stackWidget->setCurrentWidget(accueilW);
 
     initMap();
@@ -53,6 +56,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(albumW, SIGNAL(albumAutoClicked(QString)), imageW, SLOT(showAlbumAuto(QString)));
     connect(albumW, SIGNAL(albumClicked(QString)), this, SLOT(openImageW()));
     connect(albumW, SIGNAL(albumAutoClicked(QString)), this, SLOT(openImageW()));
+
+    connect(imageW, SIGNAL(imageClicked(QString)), modifimageW, SLOT(afficheImage(QString)));
+    connect(imageW, SIGNAL(imageClicked(QString)), this, SLOT(openModifImageW()));
 
 }
 
@@ -103,6 +109,10 @@ void MainWindow::addAlbum(){
 
 void MainWindow::openImageW(){
     stackWidget->setCurrentWidget(imageW);
+}
+
+void MainWindow::openModifImageW(){
+    stackWidget->setCurrentWidget(modifimageW);
 }
 
 void MainWindow::initMap(){

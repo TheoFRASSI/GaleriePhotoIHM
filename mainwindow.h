@@ -15,6 +15,7 @@
 #include "headermenu.h"
 #include "bddgalleryphoto.h"
 #include "smartdelete.h"
+#include "modifimagewindow.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -31,7 +32,17 @@ public:
     void initMap();
     //---------------------------------------------------------
 
+    //--Getters Setters----------------------------------------
+    //---------------------------------------------------------
+
+    //--Attributs----------------------------------------------
+
+    //---------------------------------------------------------
+
+
 private:
+    //--Fonctions----------------------------------------------
+    //---------------------------------------------------------
 
     //--Attributs----------------------------------------------
     QMap<QObject*, QWidget*> assoTab;
@@ -45,6 +56,7 @@ private:
     ModifImageWindow* modifimageW;
     AlbumWindow* albumW;
     BddGalleryPhoto* bdd;
+
     //---------------------------------------------------------
 
 public slots:
@@ -52,5 +64,6 @@ public slots:
     void openImageW();
     void addImage();
     void addAlbum();
+    void openModifImageW();
 };
 
