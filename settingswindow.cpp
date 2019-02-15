@@ -9,8 +9,6 @@ SettingsWindow::SettingsWindow(const BddGalleryPhoto* pbdd, QWidget *parent)
 
     connect(addPathPushButton, SIGNAL(clicked()), this, SLOT(addPath()));
     connect(supprPathPushButton, SIGNAL(clicked()), this, SLOT(suppressedPath()));
-    //paths = new QMap<QString*, QString*>;
-    //paths = new or<QString *>;
 
     selectedPath = nullptr;
 }
@@ -31,9 +29,8 @@ void SettingsWindow::addPath()
     if(directory_path != nullptr){
         paths.push_back(&directory_path);
         pathListWidget->addItem(*paths.last());
+        addImagesFromPath(paths.last());
     }
-
-    addImagesFromPath(paths.last());
 }
 
 void SettingsWindow::suppressedPath()
@@ -42,8 +39,6 @@ void SettingsWindow::suppressedPath()
         qDebug() << pathListWidget->currentItem()->text();
         selectedPath = new QString(pathListWidget->currentItem()->text());
         qDebug() << selectedPath;
-        //qDebug() << *paths->last();
-        //qDebug() << paths->indexOf(selectedPath);
 
         QList<QListWidgetItem*> items = pathListWidget->selectedItems();
         foreach(QListWidgetItem * item, items) {
@@ -60,18 +55,12 @@ void SettingsWindow::addImagesFromPath(QString * path)
     qDebug() << __FUNCTION__ << *path;
     QFileDialog dialogue;
     dialogue.setDirectory(*path);
-    //dialogue.setViewMode(QFileDialog::Detail);
-    //dialogue.exec();
     qDebug() << dialogue.directory();
 
     QDir dir(*path);
     if(!dir.exists()) {
         qWarning("Cannot find the directory");
     } else {
-
-        /*QStringList nameFilter;
-        nameFilter << "*.jpg";
-        dir.setNameFilters(nameFilter);*/
 
         dir.setFilter(QDir::Files);
         //dir.setSorting(QDir::Size | QDir::Reversed);
@@ -96,10 +85,6 @@ void SettingsWindow::deleteImagesFromPath(QString * path)
     if(!dir.exists()) {
         qWarning("Cannot find the directory");
     } else {
-
-        /*QStringList nameFilter;
-        nameFilter << "*.jpg";
-        dir.setNameFilters(nameFilter);*/
 
         dir.setFilter(QDir::Files);
         //dir.setSorting(QDir::Size | QDir::Reversed);

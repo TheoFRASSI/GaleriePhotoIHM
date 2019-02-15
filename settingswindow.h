@@ -20,10 +20,10 @@ public:
     QString searchDirectoryPath();
 
     void deleteImagesFromPath(QString *path);
+
 private:
     const BddGalleryPhoto* bdd;
 
-    //QMap<QString*, QString*> * paths;
     QVector<QString *> paths;
     QString * selectedPath;
 
@@ -34,6 +34,5 @@ public slots:
     void suppressedPath();
     void addImagesFromPath(QString * path);
     void addImageToBdd(QString pathImage, QString nameImage);
-    //void newBDDRequest(QVector<Image*> imagesTab);
 };
 
