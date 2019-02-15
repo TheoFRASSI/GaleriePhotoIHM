@@ -12,9 +12,8 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressB
     imageCorrupt = QPixmap(pathImageCorrupt);
 
     boutonAdd = new ImageButton(pathBoutonAddH, pathBoutonAdd, 200, 100, this);
-    boutonFav->setToolTip("Ajouter une image");
+    boutonAdd->setToolTip("Ajouter une image");
     boutonLayout->addWidget(boutonAdd);
-
     boutonFav = new ImageButton(pathFavH, pathFav, 100, 100, this);
     boutonFav->setToolTip("Filtrer les images par favoris");
     boutonFeel = new ImageButton(pathFeelH, pathFeel, 100, 100, this);

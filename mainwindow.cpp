@@ -6,16 +6,17 @@ MainWindow::MainWindow(QWidget *parent) :
     setupUi(this);
 
     QDir dir;
-    QString path = dir.currentPath()+"GalleryPhotoBDD.db";
+    QString path = dir.currentPath()+"GalleryPhotoBDD.db";    
     bdd = new BddGalleryPhoto(path);
 
-    mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);
+    mainmenu = new MainMenu(frameMainMenu, layoutButtonHome, layoutAlbumButton, layoutImageButton, layoutHelpButton);   
     progressBar->setVisible(false);
     headermenu = new HeaderMenu(headerMenuFrame, menu, layoutSearch, layoutNewAlbum, layoutNewPhoto, layoutAffichage, layoutSettings, horizontalSpacer, labelTitre, lineEdit, progressBar);
-
-    accueilW = new AccueilWindow(bdd);
+    accueilW = new AccueilWindow(bdd);    
     albumW = new AlbumWindow(bdd);
+
     imageW = new ImageWindow(bdd, progressBar);
+
     helpW = new HelpWindow();
     settingsW = new SettingsWindow(bdd);
 
