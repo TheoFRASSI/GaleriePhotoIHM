@@ -21,6 +21,7 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
 
     buttonColorPicker = new ColorButton(colorPicker->buttonjaune->imageHighlightedName, colorPicker->buttonjaune->imageName, colorPicker->buttonjaune->imageHighlightedName, colorPicker->buttonjaune->imageName, 40, 40, this);
     colorPicker->buttonjaune->setSelected(true);
+    colorPicker->setToolTip("Changer de couleur");
     layoutColor->addWidget(buttonColorPicker);
 
     initColors();

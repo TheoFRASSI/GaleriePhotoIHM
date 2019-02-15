@@ -183,7 +183,8 @@ bool BddGalleryPhoto::deleteAlbumByName(QString name) const{
 
     if(name != nullptr) {
         if(albumExists(name)) {
-            query.prepare("SELECT idAlb FROM album WHERE name = '%" +name +"%'");
+            query.prepare("SELECT idAlb FROM album WHERE name = :name ");
+            query.bindValue(":name", name);
 
             if (!query.exec())
             {
@@ -191,7 +192,8 @@ bool BddGalleryPhoto::deleteAlbumByName(QString name) const{
                 success = false;
             }
 
-            QString id = query.value(0).toString();
+            query.next();
+            int id = query.value(0).toInt();
 
             query.prepare("DELETE FROM assoc WHERE idAlb = :idAlb");
             query.bindValue(":idAlb", id);
@@ -201,7 +203,7 @@ bool BddGalleryPhoto::deleteAlbumByName(QString name) const{
                 qDebug() << "Erreur : la suppression des images dans la table <assoc> suivant le parametre <idAlb> =" << id << "a échoué, dans" << __FUNCTION__;
                 success = false;
             } else {
-                qDebug() << "delete image : " << name << endl;
+                qDebug() << "delete album : " << name << endl;
 
                 query.prepare("DELETE FROM album WHERE idAlb = :idAlb");
                 query.bindValue(":idAlb", id);
@@ -211,9 +213,7 @@ bool BddGalleryPhoto::deleteAlbumByName(QString name) const{
                     qDebug() << "Erreur : la suppression de l'album dans la table <album> suivant le parametre <idAlb> =" << id << "a échoué, dans" << __FUNCTION__;
                     success = false;
                 } else {
-                    query.prepare("SELECT idAlb FROM album WHERE name = '%" +name +"%'");
-
-                    if (query.value(0) == NULL)
+                    if (!albumExists(name))
                     {
                         qDebug() << "Album" << name << "supprimé avec succes";
                         return success;
@@ -297,7 +297,7 @@ QVector<Image*> BddGalleryPhoto::getAllImagesByColorAndAlbum(const QString& sear
 
 
     if(searchColor != nullptr) {
-        query.prepare("SELECT image.name, image.path, image.addDate, image.color, image.feeling, image.isFavorite FROM (image INNER JOIN assoc ON image.idImg = assoc.idImg) INNER JOIN album ON assoc.idAlb = album.idAlb WHERE color = '" + searchColor + "' AND album.name = '" + name + "'ORDER BY name");
+        query.prepare("SELECT image.name, image.path, image.addDate, image.color, image.feeling, image.isFavorite FROM (image INNER JOIN assoc ON image.idImg = assoc.idImg) INNER JOIN album ON assoc.idAlb = album.idAlb WHERE image.color = '" + searchColor + "' AND album.name = '" + name + "'ORDER BY image.name");
     }
 
     if (!query.exec())

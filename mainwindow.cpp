@@ -71,10 +71,8 @@ void MainWindow::changeWidget(){
     if(assoTab.value(sender()) == albumW) {
         headermenu->getLabelTitre()->setText("Albums");
     } else if(assoTab.value(sender()) == imageW) {
-        headermenu->getLabelTitre()->setText("Photos");
-        if(imageW->getModified() && lineEdit->text() != "") {
-            imageW->newBDDRequest(bdd->getAllImages("name", lineEdit->text()));
-        }
+        headermenu->getLabelTitre()->setText("Photos");        
+        imageW->newBDDRequest(bdd->getAllImages("name", lineEdit->text()));
     } else if (assoTab.value(sender()) == accueilW) {
         headermenu->getLabelTitre()->setText("Accueil");
         accueilW->initShowCase();
