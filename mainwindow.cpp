@@ -41,8 +41,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(headermenu->getButtonSettings(),SIGNAL(clicked()),this,SLOT(changeWidget()));
     connect(headermenu->getButtonSearch(),SIGNAL(clicked()),this,SLOT(changeWidget()));
-    connect(headermenu->getButtonNewAlbum(),SIGNAL(clicked()),this,SLOT(changeWidget()));
-    connect(headermenu->getButtonNewPhoto(),SIGNAL(clicked()),this,SLOT(changeWidget()));
+    connect(headermenu->getButtonNewAlbum(),SIGNAL(clicked()),this,SLOT(addAlbum()));
+    connect(headermenu->getButtonNewPhoto(),SIGNAL(clicked()),this,SLOT(addImage()));
 
     connect(headermenu->getButtonMenu(),SIGNAL(clicked()),mainmenu,SLOT(openMenu()));
 
@@ -70,8 +70,10 @@ void MainWindow::changeWidget(){
     stackWidget->setCurrentWidget(assoTab.value(sender()));
     if(assoTab.value(sender()) == albumW) {
         headermenu->getLabelTitre()->setText("Albums");
+        albumW->newBDDRequest(bdd->getAllAlbums());
     } else if(assoTab.value(sender()) == imageW) {
-        headermenu->getLabelTitre()->setText("Photos");        
+        headermenu->getLabelTitre()->setText("Photos");
+        imageW->getFrameAlbum()->setHidden(true);
         imageW->newBDDRequest(bdd->getAllImages("name", lineEdit->text()));
     } else if (assoTab.value(sender()) == accueilW) {
         headermenu->getLabelTitre()->setText("Accueil");
@@ -81,7 +83,21 @@ void MainWindow::changeWidget(){
     } else if (assoTab.value(sender()) == settingsW) {
         headermenu->getLabelTitre()->setText("Réglages");
     }
+}
 
+void MainWindow::addImage(){
+    headermenu->getLabelTitre()->setText("Photos");
+    stackWidget->setCurrentWidget(imageW);
+    imageW->getFrameAlbum()->setHidden(true);
+    imageW->searchImage();
+    imageW->newBDDRequest(bdd->getAllImages("name", lineEdit->text()));
+}
+
+void MainWindow::addAlbum(){
+    headermenu->getLabelTitre()->setText("Albums");
+    stackWidget->setCurrentWidget(albumW);
+    albumW->addAlbum();
+    albumW->newBDDRequest(bdd->getAllAlbums());
 }
 
 void MainWindow::openImageW(){
@@ -100,7 +116,5 @@ void MainWindow::initMap(){
     assoTab.insert(mainmenu->getButtonHelpLarge(), helpW);
 
     assoTab.insert(headermenu->getButtonSettings(), settingsW);
-    assoTab.insert(headermenu->getButtonNewAlbum(), albumW);
-    assoTab.insert(headermenu->getButtonNewPhoto(), imageW);
     assoTab.insert(headermenu->getButtonSearch(), imageW);
 }

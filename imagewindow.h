@@ -11,6 +11,7 @@
 #include "smartdelete.h"
 #include "imagebutton.h"
 #include "colorpicker.h"
+#include "clickablelabel.h"
 
 
 class ImageWindow : public QWidget, private Ui::ImageWindow
@@ -40,9 +41,11 @@ public:
         remove(layout, row, column, deleteWidgets);
       }
 
+      QFrame *getFrameAlbum() const;
+
 private:
 
-    const int NB_IMAGES = 6;
+      const int NB_IMAGES = 6;
     const int SIZE_IMAGE = 250;
 
     const BddGalleryPhoto* bdd;
@@ -59,6 +62,7 @@ private:
     ImageButton* boutonDate;
     ImageButton* boutonAlpha;
     QProgressBar * progressBar;
+    QFrame* frameAlbum;
 
     ImageButton* boutonFermer;
     ImageButton* boutonEditName;
@@ -123,6 +127,7 @@ private:
     }
 
 signals:
+    void imageClicked(QString name);
 
 public slots:
     void searchImage();
@@ -138,5 +143,7 @@ public slots:
     void addImages();
     void editName();
     void closeAlbum();
+
+    void imageClick();
 };
 

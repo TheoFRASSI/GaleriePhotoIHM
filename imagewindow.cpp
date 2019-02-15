@@ -32,7 +32,7 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressB
     colorPicker = new ColorPicker();
 
     initColors();
-    buttonColorPicker = new ColorButton(colorPicker->buttonvert->imageHighlightedName, colorPicker->buttonvert->imageName, colorPicker->buttonvert->imageHighlightedName, colorPicker->buttonvert->imageName, 80, 80, this);
+    buttonColorPicker = new ColorButton(colorPicker->buttonjaune->imageHighlightedName, colorPicker->buttonjaune->imageName, colorPicker->buttonjaune->imageHighlightedName, colorPicker->buttonjaune->imageName, 80, 80, this);
     colorPicker->buttonjaune->setSelected(true);
     buttonColorPicker->setToolTip("Filtrer les images par couleur");
     layoutBoutonColor->addWidget(buttonColorPicker);
@@ -53,6 +53,7 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressB
     boutonAddImages = new ImageButton(pathAddImagesH, pathAddImages, 50, 50, this);
     boutonAddImages->setToolTip("Ajouter des images à l'album");
     layoutAddImage->addWidget(boutonAddImages);
+    frameAlbum = frameAfficheAlbum;
     lineEditNameAlbum->hide();
     frameAfficheAlbum->hide();
 
@@ -250,7 +251,7 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
             for (int j = 0; j < NB_IMAGES; j++) {
                 k = j + i * NB_IMAGES;
                 if(k < imagesTab.size()){
-                    QLabel * label = new QLabel();
+                    ClickableLabel* label = new ClickableLabel();
                     progressValue += 1;
                     progressBar->setValue(progressValue);
                     label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
@@ -259,14 +260,18 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
                     bool validate = pix.load(imagesTab[k]->getPath());
                     if(validate){
                         pix = pix.scaled(SIZE_IMAGE,SIZE_IMAGE,Qt::KeepAspectRatio);
+                        label->setText(imagesTab[k]->getName());
                         label->setPixmap(pix);
+                        connect(label, SIGNAL(clicked()), this, SLOT(imageClick()));
                         grid->addWidget(label, i, j);
                     } else {
-                        QLabel * label = new QLabel();
+                        ClickableLabel* label = new ClickableLabel();
                         label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
                         label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
                         label->setScaledContents(true);
+                        label->setText(imagesTab[k]->getName());
                         label->setPixmap(QPixmap(imageCorrupt));
+                        connect(label, SIGNAL(clicked()), this, SLOT(imageClick()));
                         grid->addWidget(label, i, j);
                         qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[k]->getPath() << "| Dans la fonction" << __FUNCTION__;
                     }
@@ -282,6 +287,17 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
         grid->addWidget(label, 0, 0);
     }
     progressBar->setVisible(false);
+}
+
+QFrame *ImageWindow::getFrameAlbum() const
+{
+    return frameAlbum;
+}
+
+void ImageWindow::imageClick(){
+    ClickableLabel* lab = dynamic_cast<ClickableLabel*>(sender());
+    emit imageClicked(lab->text());
+    qDebug() << "SIGNAL imageClicked(QString name) emit";
 }
 
 void ImageWindow::initColors()
@@ -324,7 +340,7 @@ void ImageWindow::searchImage()
             bdd->insertImage(newImage);
         }
 
-
+        newBDDRequest(bdd->getAllImages());
     }
-    newBDDRequest(bdd->getAllImages());
+
 }
