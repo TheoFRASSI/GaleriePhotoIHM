@@ -118,7 +118,7 @@ void AlbumWindow::newBDDRequest(QVector<Album *> albTab)
                 k = j + i * NB_IMAGES;
                 if(k < albTab.size()){
                     QLabel* label = new QLabel();
-                    QLabel* labelName = new QLabel();
+                    ClickableLabel* labelName = new ClickableLabel();
                     QLabel* labelEtiquette = new QLabel();
                     label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
                     label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
@@ -142,6 +142,7 @@ void AlbumWindow::newBDDRequest(QVector<Album *> albTab)
                         listAlbum->addWidget(label, i, j);
                         listAlbum->addWidget(labelEtiquette,i ,j);
                         listAlbum->addWidget(labelName, i, j);
+                        connect(labelName, SIGNAL(clicked()), this, SLOT(clickAlbum()));
                     } else {
                         qDebug() << "Erreur : Lors du chargement de l'image de l'album >" << albTab[k]->getCover() << "| Dans la fonction" << __FUNCTION__;
                     }
@@ -173,10 +174,10 @@ void AlbumWindow::generateAlbumAuto() {
                               "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
 
     QVector<Image*> imagesFav = bdd->getAllImagesByFav();
-    //if(imagesFav.size() > 0) {
-      Album * albFav = new Album("Album des favoris", mapAlbums.value("FAVORIS"));
+    if(imagesFav.size() > 0) {
+      Album * albFav = new Album("Album des Favoris", mapAlbums.value("FAVORIS"));
       albTab.push_back(albFav);
-    //}
+    }
 
     for(int i = 0; i < colors.size(); i++) {
         QString colorImg = colors[i];
@@ -194,7 +195,7 @@ void AlbumWindow::generateAlbumAuto() {
                 k = j + i * NB_IMAGES;
                 if(k < albTab.size()){
                     QLabel* label = new QLabel();
-                    QLabel* labelName = new QLabel();
+                    ClickableLabel* labelName = new ClickableLabel();
                     QLabel* labelEtiquette = new QLabel();
                     label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
                     label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
@@ -218,6 +219,7 @@ void AlbumWindow::generateAlbumAuto() {
                         listAlbumAuto->addWidget(label, i, j);
                         listAlbumAuto->addWidget(labelEtiquette,i ,j);
                         listAlbumAuto->addWidget(labelName, i, j);
+                        connect(labelName, SIGNAL(clicked()), this, SLOT(clickAlbumAuto()));
                     } else {
                         qDebug() << "Erreur : Lors du chargement de l'image de l'album >" << albTab[k]->getCover() << "| Dans la fonction" << __FUNCTION__;
                     }
@@ -236,6 +238,19 @@ void AlbumWindow::generateAlbumAuto() {
         label->setPixmap(QPixmap());
         listAlbumAuto->addWidget(label, 0, 0);
     }
+}
+
+void AlbumWindow::clickAlbum(){
+    ClickableLabel* lab = dynamic_cast<ClickableLabel*>(sender());
+    emit albumClicked(lab->text());
+    qDebug() << "SIGNAL albumClicked(QString name) emit";
+}
+
+void AlbumWindow::clickAlbumAuto(){
+    ClickableLabel* lab = dynamic_cast<ClickableLabel*>(sender());
+    const QStringList name = lab->text().split("Album ");
+    emit albumAutoClicked(mapColors.key(name.last()));
+    qDebug() << "SIGNAL albumAutoClicked(QString name) emit";
 }
 
 void AlbumWindow::initMap(){
@@ -259,6 +274,7 @@ void AlbumWindow::initMap(){
     mapColors.insert("VERT_FONCE", "Vert Foncé");
     mapColors.insert("VERT_JAUNE", "Jaune Moutarde");
     mapColors.insert("VIOLET", "Violet");
+    mapColors.insert("FAVORIS", "des Favoris");
 
     mapAlbums.insert("BLEU", ":/img/window/albumBleu");
     mapAlbums.insert("BLEU_CLAIR_1", ":/img/window/albumBleuClair1");

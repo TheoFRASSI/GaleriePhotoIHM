@@ -43,7 +43,8 @@ SOURCES += \
     colorpicker.cpp \
     colorbutton.cpp \
     imagesshowcase.cpp \
-    formcreatealbum.cpp
+    formcreatealbum.cpp \
+    clickablelabel.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -64,7 +65,8 @@ HEADERS += \
     colorbutton.h \
     imagesshowcase.h \
     smartdelete.h \
-    formcreatealbum.h
+    formcreatealbum.h \
+    clickablelabel.h
 
 FORMS += \
         mainwindow.ui \

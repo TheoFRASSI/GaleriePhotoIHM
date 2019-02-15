@@ -36,10 +36,17 @@ public:
     QVector<Image *> getAllImagesByColor(const QString &searchColor) const;
     bool deleteImageByName(QString name) const;
     bool assocImageWithAlbum(const QVector<Image> images, const QString &nameAlb) const;
-    Image *getImageByAlbum(QString nameAlb) const;
+    QVector<Image *> getAllImageByAlbum(QString nameAlb) const;
+
+    bool deleteAlbumByName(QString name) const;
+    bool updateAlbumName(QString oldName, QString newName) const;
+
     QVector<Image *> getAllImagesByFav() const;
     QVector<Image *> getAllImagesByDate() const;
     void updateIsFavorite(bool fav, QString nameImg);
+    QVector<Image *> getAllImagesByColorAndAlbum(const QString &searchColor, QString name) const;
+    QVector<Image *> getAllImagesByFavAndAlbum(QString name) const;
+    QVector<Image *> getAllImagesByDateAndAlbum(QString name) const;
 private:
     QSqlDatabase bdd;
 };

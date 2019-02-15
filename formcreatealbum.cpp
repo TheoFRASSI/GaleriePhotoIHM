@@ -69,6 +69,7 @@ void FormCreateAlbum::clean(){
 
     lineEdit->setStyleSheet("border: 2px solid black;");
     labelNbImages->setStyleSheet("color: #FFFFFF;");
+    labelExisteDeja->hide();
 }
 
 void FormCreateAlbum::selectImages()
@@ -153,6 +154,15 @@ void FormCreateAlbum::validateChoices()
         filled = false;
     } else {
         labelNbImages->setStyleSheet("color: #FFFFFF;");
+    }
+
+    if(bdd->albumExists(lineEdit->text())){
+        labelExisteDeja->show();
+        lineEdit->setStyleSheet("border: 2px solid red;");
+        filled = false;
+    } else {
+        labelExisteDeja->hide();
+        lineEdit->setStyleSheet("border: 2px solid black;");
     }
     if(filled) {
         if(!bdd->imageExists(selectedCover.getName())) {
