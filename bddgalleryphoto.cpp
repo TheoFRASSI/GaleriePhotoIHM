@@ -82,6 +82,7 @@ bool BddGalleryPhoto::deleteImageByName(QString name) const
         }
     } else {
         qDebug() << "L'image n'existe pas : " << name << endl;
+        success = false;
     }
     return success;
 }
@@ -135,9 +136,10 @@ Image* BddGalleryPhoto::getImageByName(QString name) const
 
 }
 
-Image* BddGalleryPhoto::getImageByAlbum(QString nameAlb) const
+QVector<Image *> BddGalleryPhoto::getAllImageByAlbum(QString nameAlb) const
 {
     QSqlQuery getAlbQuery;
+    QVector<Image *> albVec;
     getAlbQuery.prepare("SELECT idAlb FROM album WHERE name = :nameAlb");
     getAlbQuery.bindValue(":nameAlb", nameAlb);
     if (!getAlbQuery.exec())
@@ -146,7 +148,7 @@ Image* BddGalleryPhoto::getImageByAlbum(QString nameAlb) const
     }
     if(!getAlbQuery.next()) {
         qDebug() << "cet album n'existe pas";
-        return nullptr;
+        return albVec;
     }
     int idAlb = getAlbQuery.value(0).toInt();
 
@@ -159,17 +161,107 @@ Image* BddGalleryPhoto::getImageByAlbum(QString nameAlb) const
         qDebug() << "get Image by album error";
     }
     if(query.size() != 0) {
-        query.next();
-        qDebug() << "Get Image : " << query.value(0).toString() << "  " << query.value(1).toString() << endl;
-        Image* res = new Image(query.value(0).toString(), // name
-                               query.value(1).toString(), // path
-                               query.value(3).toDate(), // addDate
-                               query.value(4).toString(), // color
-                               query.value(5).toString(),
-                               query.value(6).toBool()); // feeling
-        return res;
+        while(query.next()){
+            qDebug() << "Get Image : " << query.value(0).toString() << "  " << query.value(1).toString() << endl;
+            albVec.push_back(new Image(query.value(0).toString(), // name
+                                   query.value(1).toString(), // path
+                                   query.value(3).toDate(), // addDate
+                                   query.value(4).toString(), // color
+                                   query.value(5).toString(),
+                                   query.value(6).toBool())); // feeling
+        }
     }
-    return nullptr;
+    return albVec;
+
+}
+
+bool BddGalleryPhoto::deleteAlbumByName(QString name) const{
+
+    bool success = true;
+
+    QSqlQuery query;
+
+    if(name != nullptr) {
+        if(albumExists(name)) {
+            query.prepare("SELECT idAlb FROM album WHERE name = '%" +name +"%'");
+
+            if (!query.exec())
+            {
+                qDebug() << "Erreur : requete pour récupérer <idAlb> dans la table <albums> a échoué, dans" << __FUNCTION__;
+                success = false;
+            }
+
+            QString id = query.value(0).toString();
+
+            query.prepare("DELETE FROM assoc WHERE idAlb = :idAlb");
+            query.bindValue(":idAlb", id);
+
+            if (!query.exec())
+            {
+                qDebug() << "Erreur : la suppression des images dans la table <assoc> suivant le parametre <idAlb> =" << id << "a échoué, dans" << __FUNCTION__;
+                success = false;
+            } else {
+                qDebug() << "delete image : " << name << endl;
+
+                query.prepare("DELETE FROM album WHERE idAlb = :idAlb");
+                query.bindValue(":idAlb", id);
+
+                if (!query.exec())
+                {
+                    qDebug() << "Erreur : la suppression de l'album dans la table <album> suivant le parametre <idAlb> =" << id << "a échoué, dans" << __FUNCTION__;
+                    success = false;
+                } else {
+                    query.prepare("SELECT idAlb FROM album WHERE name = '%" +name +"%'");
+
+                    if (query.value(0) == NULL)
+                    {
+                        qDebug() << "Album" << name << "supprimé avec succes";
+                        return success;
+                    } else {
+                        qDebug() << "Erreur : la suppression de l'album dans la table <album> suivant le parametre <idAlb> =" << id << "a échoué, dans" << __FUNCTION__;
+                        success = false;
+                    }
+                }
+            }
+        } else {
+            qDebug() << "Erreur : L'album" << name << "n'existe pas dans la table <album>, dans" << __FUNCTION__;
+            success = false;
+        }
+    } else {
+        qDebug() << "Erreur : Le parametre <name> est NULL, dans" << __FUNCTION__;
+        success = false;
+    }
+
+    return success;
+}
+
+bool BddGalleryPhoto::updateAlbumName(QString oldName, QString newName) const{
+    bool success = true;
+    QSqlQuery query;
+
+    if(oldName != nullptr) {
+        if(albumExists(newName) == false) {
+            query.prepare("UPDATE album SET name = :newName WHERE name = :oldName");
+            query.bindValue(":oldName", oldName);
+            query.bindValue(":newName", newName);
+
+            if (!query.exec())
+            {
+                qDebug() << "Erreur : le renommage de l'album" << oldName << "dans la table <album> avec le nouveau nom :" << newName << "a échoué, dans" << __FUNCTION__;
+                success = false;
+            } else {
+                qDebug() << "Album" << oldName << "renommé avec succes en" << newName;
+                return success;
+            }
+        }else {
+            qDebug() << "Erreur : L'album" << newName << "existe deja dans la table <album>, dans" << __FUNCTION__;
+            success = false;
+        }
+    } else {
+        qDebug() << "Erreur : Le parametre <oldName> est NULL, dans" << __FUNCTION__;
+        success = false;
+    }
+    return success;
 
 }
 
@@ -186,6 +278,31 @@ QVector<Image*> BddGalleryPhoto::getAllImagesByColor(const QString& searchColor)
     if (!query.exec())
     {
         qDebug() << "get All images by Color error";
+    }
+    while(query.next()){
+        v.push_back(new Image(query.value(0).toString(), // name
+                              query.value(1).toString(), // path
+                              query.value(3).toDate(), // addDate
+                              query.value(4).toString(), // color
+                              query.value(5).toString(),
+                              query.value(6).toBool())); // feeling
+    }
+    return v;
+}
+
+QVector<Image*> BddGalleryPhoto::getAllImagesByColorAndAlbum(const QString& searchColor, QString name) const
+{
+    QVector<Image*> v;
+    QSqlQuery query;
+
+
+    if(searchColor != nullptr) {
+        query.prepare("SELECT image.name, image.path, image.addDate, image.color, image.feeling, image.isFavorite FROM (image INNER JOIN assoc ON image.idImg = assoc.idImg) INNER JOIN album ON assoc.idAlb = album.idAlb WHERE color = '" + searchColor + "' AND album.name = '" + name + "'ORDER BY name");
+    }
+
+    if (!query.exec())
+    {
+        qDebug() << "get All images by Color and Album error";
     }
     while(query.next()){
         v.push_back(new Image(query.value(0).toString(), // name
@@ -222,6 +339,30 @@ QVector<Image*> BddGalleryPhoto::getAllImagesByDate() const
     return v;
 }
 
+QVector<Image*> BddGalleryPhoto::getAllImagesByDateAndAlbum(QString name) const
+{
+    QVector<Image*> v;
+    QSqlQuery query;
+
+
+    query.prepare("SELECT image.name, image.path, image.addDate, image.color, image.feeling, image.isFavorite FROM (image INNER JOIN assoc ON image.idImg = assoc.idImg) INNER JOIN album ON assoc.idAlb = album.idAlb WHERE album.name = '" + name +"' ORDER BY image.addDate");
+
+
+    if (!query.exec())
+    {
+        qDebug() << "get All images by Date error";
+    }
+    while(query.next()){
+        v.push_back(new Image(query.value(0).toString(), // name
+                              query.value(1).toString(), // path
+                              query.value(3).toDate(), // addDate
+                              query.value(4).toString(), // color
+                              query.value(5).toString(),
+                              query.value(6).toBool())); // feeling
+    }
+    return v;
+}
+
 QVector<Image*> BddGalleryPhoto::getAllImagesByFav() const
 {
     QVector<Image*> v;
@@ -232,6 +373,28 @@ QVector<Image*> BddGalleryPhoto::getAllImagesByFav() const
     if (!query.exec())
     {
         qDebug() << "get All images by fav error";
+    }
+    while(query.next()){
+        v.push_back(new Image(query.value(0).toString(), // name
+                              query.value(1).toString(), // path
+                              query.value(3).toDate(), // addDate
+                              query.value(4).toString(), // color
+                              query.value(5).toString(), // feeling
+                              query.value(6).toBool())); // fav
+    }
+    return v;
+}
+
+QVector<Image*> BddGalleryPhoto::getAllImagesByFavAndAlbum(QString name) const
+{
+    QVector<Image*> v;
+    QSqlQuery query;
+
+    query.prepare("SELECT image.name, image.path, image.addDate, image.color, image.feeling, image.isFavorite FROM (image INNER JOIN assoc ON image.idImg = assoc.idImg) INNER JOIN album ON assoc.idAlb = album.idAlb WHERE image.isFavorite = 1 AND album.name = '" + name + "'");
+
+    if (!query.exec())
+    {
+        qDebug() << "get All images by fav and album error";
     }
     while(query.next()){
         v.push_back(new Image(query.value(0).toString(), // name

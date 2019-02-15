@@ -10,6 +10,7 @@
 #include "formcreatealbum.h"
 #include "smartdelete.h"
 #include "imagebutton.h"
+#include "clickablelabel.h"
 
 class AlbumWindow : public QWidget, private Ui::AlbumWindow
 {
@@ -48,8 +49,12 @@ private:
 
 
 signals:
+    void albumAutoClicked(QString name);
+    void albumClicked(QString name);
 
 public slots:
+    void clickAlbum();
+    void clickAlbumAuto();
     void changeTab();
     void addAlbum();
 private slots:

@@ -60,6 +60,11 @@ private:
     ImageButton* boutonAlpha;
     QProgressBar * progressBar;
 
+    ImageButton* boutonFermer;
+    ImageButton* boutonEditName;
+    ImageButton* boutonAddImages;
+    ImageButton* boutonDeleteAlbum;
+
     QMap<ColorButton*, QString> colors;
 
     void initColors();
@@ -80,6 +85,15 @@ private:
     QString pathDateH = ":/img/button/dateH";
     QString pathAlpha = ":/img/button/alpha";
     QString pathAlphaH = ":/img/button/alphaH";
+
+    QString pathFermer = ":/img/button/boutonQuitter";
+    QString pathFermerH = ":/img/button/boutonQuitterH";
+    QString pathEditName = ":/img/button/boutonEditName";
+    QString pathEditNameH = ":/img/button/boutonEditNameH";
+    QString pathAddImages = ":/img/button/boutonAddImagesInAlbum";
+    QString pathAddImagesH = ":/img/button/boutonAddImagesInAlbumH";
+    QString pathDeleteAlbum = ":/img/button/boutonDelete";
+    QString pathDeleteAlbumH = ":/img/button/boutonDeleteH";
 
       static void remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {
         for (int i = layout->count() - 1; i >= 0; i--) {
@@ -117,5 +131,12 @@ public slots:
     void alphaRequest();
     void dateRequest();
     void favRequest();
+    void showAlbumAuto(QString name);
+    void showAlbum(QString name);
+
+    void deleteAlbum();
+    void addImages();
+    void editName();
+    void closeAlbum();
 };
 

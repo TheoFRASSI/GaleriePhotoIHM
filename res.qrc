@@ -1,5 +1,5 @@
 <RCC>
-    <qresource lang="fr" prefix="/img/button">
+    <qresource prefix="/img/button" lang="fr">
         <file alias="album">img/button/boutonAlbum.png</file>
         <file alias="albumHighlighted">img/button/boutonAlbumHighlighted.png</file>
         <file alias="help">img/button/boutonHelp.png</file>
@@ -60,8 +60,14 @@
         <file alias="boutonOkH">img/button/okH.png</file>
         <file alias="boutonAddImages">img/button/boutonAddImages.png</file>
         <file alias="boutonAddImagesH">img/button/boutonAddImagesH.png</file>
+        <file alias="boutonAddImagesInAlbum">img/button/boutonAddImagesInAlbum.png</file>
+        <file alias="boutonAddImagesInAlbumH">img/button/boutonAddImagesInAlbumH.png</file>
+        <file alias="boutonDelete">img/button/boutonDelete.png</file>
+        <file alias="boutonDeleteH">img/button/boutonDeleteH.png</file>
+        <file alias="boutonEditName">img/button/boutonEditName.png</file>
+        <file alias="boutonEditNameH">img/button/boutonEditNameH.png</file>
     </qresource>
-    <qresource lang="fr" prefix="/img/window">
+    <qresource prefix="/img/window" lang="fr">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>
         <file alias="eye">img/window/eye.png</file>
         <file alias="star">img/window/star-1292832_960_720.png</file>
@@ -93,7 +99,7 @@
         <file alias="albumViolet">img/window/albumViolet.png</file>
         <file alias="albumFavoris">img/window/albumFavoris.png</file>
     </qresource>
-    <qresource lang="fr" prefix="/img/button/colors">
+    <qresource prefix="/img/button/colors" lang="fr">
         <file alias="bleu">img/button/Colors/couleurBleu.png</file>
         <file alias="bleuClair1">img/button/Colors/couleurBleuClair1.png</file>
         <file alias="bleuClair1Highlighted">img/button/Colors/couleurBleuClair1Highlighted.png</file>

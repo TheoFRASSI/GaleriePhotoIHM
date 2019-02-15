@@ -48,6 +48,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(headermenu->getButtonSearch(), SIGNAL(clicked()), this, SLOT(changeWidget()));
     connect(lineEdit, SIGNAL(returnPressed()), headermenu->getButtonSearch(), SIGNAL(clicked()));
+    connect(albumW, SIGNAL(albumClicked(QString)), imageW, SLOT(showAlbum(QString)));
+    connect(albumW, SIGNAL(albumAutoClicked(QString)), imageW, SLOT(showAlbumAuto(QString)));
+    connect(albumW, SIGNAL(albumClicked(QString)), this, SLOT(openImageW()));
+    connect(albumW, SIGNAL(albumAutoClicked(QString)), this, SLOT(openImageW()));
 
 }
 
@@ -80,6 +84,10 @@ void MainWindow::changeWidget(){
         headermenu->getLabelTitre()->setText("Réglages");
     }
 
+}
+
+void MainWindow::openImageW(){
+    stackWidget->setCurrentWidget(imageW);
 }
 
 void MainWindow::initMap(){
