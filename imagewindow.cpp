@@ -12,12 +12,17 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressB
     imageCorrupt = QPixmap(pathImageCorrupt);
 
     boutonAdd = new ImageButton(pathBoutonAddH, pathBoutonAdd, 200, 100, this);
+    boutonFav->setToolTip("Ajouter une image");
     boutonLayout->addWidget(boutonAdd);
 
     boutonFav = new ImageButton(pathFavH, pathFav, 100, 100, this);
+    boutonFav->setToolTip("Filtrer les images par favoris");
     boutonFeel = new ImageButton(pathFeelH, pathFeel, 100, 100, this);
+    boutonFeel->setToolTip("Filtrer les images par sentiments");
     boutonDate = new ImageButton(pathDateH, pathDate, 100, 100, this);
+    boutonDate->setToolTip("Trier les images par date d'ajout");
     boutonAlpha = new ImageButton(pathAlphaH, pathAlpha, 100, 100, this);
+    boutonAlpha->setToolTip("Trier les images par ordre alphabétique");
 
     layoutBoutonFav->addWidget(boutonFav);
     layoutBoutonFeel->addWidget(boutonFeel);
@@ -29,6 +34,7 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressB
     initColors();
     buttonColorPicker = new ColorButton(colorPicker->buttonvert->imageHighlightedName, colorPicker->buttonvert->imageName, colorPicker->buttonvert->imageHighlightedName, colorPicker->buttonvert->imageName, 80, 80, this);
     colorPicker->buttonjaune->setSelected(true);
+    buttonColorPicker->setToolTip("Filtrer les images par couleur");
     layoutBoutonColor->addWidget(buttonColorPicker);
 
     grid = listPhoto;
@@ -36,12 +42,16 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressB
     //newBDDRequest(imagesTab);
 
     boutonFermer = new ImageButton(pathFermerH, pathFermer, 50, 50, this);
+    boutonFermer->setToolTip("Fermer l'album");
     layoutBoutonFermer->addWidget(boutonFermer);
     boutonEditName = new ImageButton(pathEditNameH, pathEditName, 50, 50, this);
+    boutonEditName->setToolTip("Modfifier le nom de l'album");
     layoutEditName->addWidget(boutonEditName);
     boutonDeleteAlbum = new ImageButton(pathDeleteAlbumH, pathDeleteAlbum, 50, 50, this);
+    boutonDeleteAlbum->setToolTip("Supprimer l'album : IRREVERSIBLE");
     layoutDeleteAlbum->addWidget(boutonDeleteAlbum);
     boutonAddImages = new ImageButton(pathAddImagesH, pathAddImages, 50, 50, this);
+    boutonAddImages->setToolTip("Ajouter des images à l'album");
     layoutAddImage->addWidget(boutonAddImages);
     lineEditNameAlbum->hide();
     frameAfficheAlbum->hide();

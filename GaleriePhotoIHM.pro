@@ -37,7 +37,6 @@ SOURCES += \
     settingswindow.cpp \
     modifimagewindow.cpp \
     helpwindow.cpp \
-    listeimages.cpp \
     headermenu.cpp \
     bddgalleryphoto.cpp \
     colorpicker.cpp \
@@ -58,7 +57,6 @@ HEADERS += \
     settingswindow.h \
     modifimagewindow.h \
     helpwindow.h \
-    listeimages.h \
     headermenu.h \
     bddgalleryphoto.h \
     colorpicker.h \

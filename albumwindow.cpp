@@ -41,13 +41,17 @@ AlbumWindow::AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWidget
     bdd = pbdd;
 
     boutonAdd = new ImageButton(pathBoutonAddH, pathBoutonAdd, 200, 100, this);
+    boutonAdd->setToolTip("Créer un nouvel album");
     boutonSwitchD = new ImageButton(pathBoutonSwitchDroitH, pathBoutonSwitchDroit, 700, 80, this);
+    boutonSwitchD->setToolTip("Acceder à l'onglet Albums Automatiques");
     boutonSwitchD->loadImageEnable(pathBoutonSwitchDroit);
     boutonSwitchD->loadImageDisable(pathBoutonSwitchDroitH);
     boutonSwitchG = new ImageButton(pathBoutonSwitchGaucheH, pathBoutonSwitchGauche, 700, 80, this);
+    boutonSwitchG->setToolTip("Acceder à l'onglet mes albums");
     boutonSwitchG->loadImageEnable(pathBoutonSwitchGauche);
     boutonSwitchG->loadImageDisable(pathBoutonSwitchGaucheH);
     boutonSearch = new ImageButton(pathBoutonSearchH, pathBoutonSearch, 60, 100, this);
+    boutonSearch->setToolTip("Lancer la recherche");
 
     etiquette = QPixmap(pathEtiquette);
 

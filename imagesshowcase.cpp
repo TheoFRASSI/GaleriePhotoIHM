@@ -23,7 +23,9 @@ ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
     }
 
     leftButton = new ImageButton(imageLeftButtonHighlighted, imageLeftButton, 50,50, this);
+    leftButton->setToolTip("Précédent");
     rightButton = new ImageButton(imageRightButtonHighlighted, imageRightButton, 50,50, this);
+    rightButton->setToolTip("Suivant");
 
     leftButton->setDisabled(false);
     rightButton->setDisabled(false);

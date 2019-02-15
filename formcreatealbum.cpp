@@ -9,16 +9,19 @@ FormCreateAlbum::FormCreateAlbum(const BddGalleryPhoto * p_bdd, QWidget *parent)
     setWindowFlags(Qt::WindowTitleHint);
     setWindowTitle("Création d'album");
 
-    boutonOk = new ImageButton(pathBoutonOkH, pathBoutonOk, 200, 70, this);
+    boutonOk = new ImageButton(pathBoutonOkH, pathBoutonOk, 200, 70, this);    
     layoutBoutonOk->addWidget(boutonOk);
 
     boutonQuitter = new ImageButton(pathBoutonQuitterH, pathBoutonQuitter, 50, 50, this);
+    boutonQuitter->setToolTip("Annuler et fermer");
     layoutBoutonQuitter->addWidget(boutonQuitter);
 
     boutonAddCover = new ImageButton(pathBoutonAddCoverH, pathBoutonAddCover, 300, 100, this);
+    boutonAddCover->setToolTip("Choisir une image en tant que couverture pour l'album");
     layoutBoutonAddCover->addWidget(boutonAddCover);
 
     boutonAddImages = new ImageButton(pathBoutonAddImagesH, pathBoutonAddImages, 100, 100, this);
+    boutonAddImages->setToolTip("Choisir des images à ajouter à l'album");
     layoutBoutonAddImages->addWidget(boutonAddImages);
 
     clean();
