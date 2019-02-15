@@ -10,31 +10,31 @@ ModifImageWindow::ModifImageWindow(const BddGalleryPhoto* pbdd, QWidget *parent)
 
     imageCorrupt = QPixmap(pathImageCorrupt);
 
-    ImageButton* boutonFermer = new ImageButton(pathboutonFermerH, pathboutonFermer, 50, 50, this);
-    layoutBoutonFermer->addWidget(boutonFermer);
-    ImageButton* boutonEditName = new ImageButton(pathboutonEditNameH, pathboutonEditName, 50, 50, this);
+    boutonFermer = new ImageButton(pathboutonFermerH, pathboutonFermer, 70, 70, this);
+    layoutBoutonFermer_2->addWidget(boutonFermer);
+    boutonEditName = new ImageButton(pathboutonEditNameH, pathboutonEditName, 70, 70, this);
     layoutBoutonEditName->addWidget(boutonEditName);
-    ImageButton* boutonRogner = new ImageButton(pathboutonRognerH, pathboutonRogner, 50, 50, this);
+    boutonRogner = new ImageButton(pathboutonRognerH, pathboutonRogner, 70, 70, this);
     layoutRogner->addWidget(boutonRogner);
-    ImageButton* boutonRedim = new ImageButton(pathboutonRedimH, pathboutonRedim, 50, 50, this);
+    boutonRedim = new ImageButton(pathboutonRedimH, pathboutonRedim, 70, 70, this);
     layoutRedim->addWidget(boutonRedim);
-    ImageButton* boutonRotateG = new ImageButton(pathboutonRotateGH, pathboutonRotateG, 50, 50, this);
+    boutonRotateG = new ImageButton(pathboutonRotateGH, pathboutonRotateG, 70, 70, this);
     layoutRotateG->addWidget(boutonRotateG);
-    ImageButton* boutonRotateD = new ImageButton(pathboutonRotateDH, pathboutonRotateD, 50, 50, this);
+    boutonRotateD = new ImageButton(pathboutonRotateDH, pathboutonRotateD, 70, 70, this);
     layoutRotateD->addWidget(boutonRotateD);
-    ImageButton* boutonAddToAlbum = new ImageButton(pathboutonAddToAlbumH, pathboutonAddToAlbum, 50, 50, this);
+    boutonAddToAlbum = new ImageButton(pathboutonAddToAlbumH, pathboutonAddToAlbum, 70, 70, this);
     layoutAddInAlbum->addWidget(boutonAddToAlbum);
-    ImageButton* boutonDelete = new ImageButton(pathboutonDeleteH, pathboutonDelete, 50, 50, this);
+    boutonDelete = new ImageButton(pathboutonDeleteH, pathboutonDelete, 70, 70, this);
     layoutDelete->addWidget(boutonDelete);
-    ImageButton* boutonFavPlein = new ImageButton(pathboutonFavPleinH, pathboutonFavPlein, 50, 50, this);
+    boutonFavPlein = new ImageButton(pathboutonFavPleinH, pathboutonFavPlein, 70, 70, this);
     layoutFavoris->addWidget(boutonFavPlein);
-    ImageButton* boutonFavVide = new ImageButton(pathboutonFavVideH, pathboutonFavVide, 50, 50, this);
+    boutonFavVide = new ImageButton(pathboutonFavVideH, pathboutonFavVide, 70, 70, this);
     layoutFavoris->addWidget(boutonFavVide);
-    ImageButton* boutonFullScreen = new ImageButton(pathboutonFullScreenH, pathboutonFullScreen, 50, 50, this);
+    boutonFullScreen = new ImageButton(pathboutonFullScreenH, pathboutonFullScreen, 70, 70, this);
     layoutPleinEcran->addWidget(boutonFullScreen);
 
     lineEditName->hide();
-    boutonFavVide->hide();
+    boutonFavPlein->hide();
 
     connect(boutonFermer, SIGNAL(clicked()), this, SLOT(fermerFenetre()));
     connect(boutonEditName, SIGNAL(clicked()), this, SLOT(updateImageName()));
@@ -44,34 +44,26 @@ ModifImageWindow::ModifImageWindow(const BddGalleryPhoto* pbdd, QWidget *parent)
 }
 
 void ModifImageWindow::afficheImage(QString name) {
-    qDebug() << "name :" << name;
     Image* img = bdd->getImageByName(name);
-    qDebug() << "Coucou2";
     labelName->setText(img->getName());
-    qDebug() << "Coucou3";
     QPixmap pix = QPixmap();
     bool validate = pix.load(img->getPath());
     if(validate){
-        pix = pix.scaled(500,1000,Qt::KeepAspectRatio);
+        pix = pix.scaled(1500,1000,Qt::KeepAspectRatio);
         labelImage->setPixmap(pix);
     } else {
+        pix = QPixmap(imageCorrupt);
+        pix = pix.scaled(1500,1000,Qt::KeepAspectRatio);
+        labelImage->setPixmap(pix);
         qDebug() << "Erreur : Lors du chargement de l'image >" << img->getPath() << "| Dans la fonction" << __FUNCTION__;
     }
-    qDebug() << "Coucou4";
     if(img->getIsFavorite()){
-        qDebug() << "Coucou5";
-        //boutonFavPlein->show();
-        qDebug() << "Coucou5.5";
-        //boutonFavVide->hide();
-        qDebug() << "Coucou5.75";
+        boutonFavPlein->show();
+        boutonFavVide->hide();
     } else {
-        qDebug() << "Coucou6";
-        //boutonFavPlein->hide();
-        qDebug() << "Coucou6.5";
-        //boutonFavVide->show();
-        qDebug() << "Coucou6.75";
+        boutonFavPlein->hide();
+        boutonFavVide->show();
     }
-    qDebug() << "Coucou7";
 }
 
 void ModifImageWindow::fermerFenetre()

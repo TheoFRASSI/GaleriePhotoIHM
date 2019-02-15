@@ -295,6 +295,10 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
                     if(validate){
                         pix = pix.scaled(SIZE_IMAGE,SIZE_IMAGE,Qt::KeepAspectRatio);
                         labelName->setText(imagesTab[k]->getName());
+                        labelName->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
+                        labelName->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
+                        labelName->setWordWrap(true);
+                        labelName->setAlignment(Qt::AlignBottom);
                         label->setPixmap(pix);
                         connect(labelName, SIGNAL(clicked()), this, SLOT(imageClick()));
                         grid->addWidget(label, i, j);
@@ -303,6 +307,10 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
                         ClickableLabel* label = new ClickableLabel();
                         label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
                         label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
+                        labelName->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
+                        labelName->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
+                        labelName->setWordWrap(true);
+                        labelName->setAlignment(Qt::AlignBottom);
                         label->setScaledContents(true);
                         label->setPixmap(QPixmap(imageCorrupt));
                         labelName->setText(imagesTab[k]->getName());

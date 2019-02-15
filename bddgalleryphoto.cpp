@@ -643,6 +643,9 @@ void BddGalleryPhoto::updateIsFavorite(bool fav, QString nameImg) const {
     upQuery.prepare("UPDATE image SET isFavorite = :fav WHERE name = :nameImg");
     upQuery.bindValue(":nameImg", nameImg);
     upQuery.bindValue(":fav", fav);
+    if (!upQuery.exec()){
+        qDebug() << "update Favoris fail";
+    }
 }
 
 
