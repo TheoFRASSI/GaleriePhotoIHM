@@ -95,7 +95,7 @@ private:
     QString pathDeleteAlbum = ":/img/button/boutonDelete";
     QString pathDeleteAlbumH = ":/img/button/boutonDeleteH";
 
-      static void remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {
+    static void remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {
         for (int i = layout->count() - 1; i >= 0; i--) {
           int r, c, rs, cs;
           layout->getItemPosition(i, &r, &c, &rs, &cs);
@@ -120,7 +120,7 @@ private:
           }
         }
         delete item->widget();
-      }
+    }
 
 signals:
 

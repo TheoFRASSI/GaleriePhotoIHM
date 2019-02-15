@@ -15,15 +15,22 @@ class FormCreateAlbum : public QDialog, private Ui::FormCreateAlbum
     Q_OBJECT
 
 public:
+    //--Constructeur Destructeur------------------------------
     explicit FormCreateAlbum(const BddGalleryPhoto * bdd, QWidget *parent = nullptr);
     ~FormCreateAlbum();
+    //--------------------------------------------------------
 
+    //--Attributs---------------------------------------------
     const BddGalleryPhoto * bdd;
-    void clean();
+    //--------------------------------------------------------
 
+    //--Fonctions---------------------------------------------
+    void clean();
+    //--------------------------------------------------------
 
 private:
 
+    //--Attributs---------------------------------------------
     QString selectedName;
     QVector<Image> selectedImages;
     Image selectedCover;
@@ -50,6 +57,7 @@ private:
     QString pathImageObli = ":/img/window/imageObli";
     QString pathImageVide = ":/img/window/imageVide";
     QString pathImageCorrupt = ":/img/window/imageCorrupt";
+    //--------------------------------------------------------
 
 signals:
     void albumAdded();

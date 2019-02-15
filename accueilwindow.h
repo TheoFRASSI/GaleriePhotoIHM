@@ -14,7 +14,7 @@ class AccueilWindow : public QWidget, private Ui::AccueilWindow
     Q_OBJECT
 public:
 
-    //--Constructeur Desctructeur------------------------------
+    //--Constructeur Destructeur-------------------------------
     explicit AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent = nullptr);
     ~AccueilWindow();
     //---------------------------------------------------------
@@ -29,9 +29,6 @@ public:
 
     ImagesShowcase *getDominantColor() const;
     void setDominantColor(ImagesShowcase *value);
-    //---------------------------------------------------------
-
-    //--Attributs----------------------------------------------
     //---------------------------------------------------------
 
 private:

@@ -16,12 +16,18 @@ class AlbumWindow : public QWidget, private Ui::AlbumWindow
 {
     Q_OBJECT
 public:
+    //--Constructeur Destructeur------------------------------
     explicit AlbumWindow(const BddGalleryPhoto* pbdd, QWidget *parent = nullptr);
     ~AlbumWindow();
+    //---------------------------------------------------------
+
+    //--Fonctions----------------------------------------------
     void newBDDRequest(QVector<Album *> albTab);
     void generateAlbumAuto();
     void initMap();
+    //---------------------------------------------------------
 private:
+    //--Attributs----------------------------------------------
     const BddGalleryPhoto* bdd;
     FormCreateAlbum * formCreateAlbum;
 
@@ -46,6 +52,7 @@ private:
     QString pathBoutonAddH = ":/img/button/boutonAddH";
 
     QString pathEtiquette = ":/img/window/etiquette";
+    //-----------------------------------------------------------
 
 
 signals:
@@ -57,6 +64,7 @@ public slots:
     void clickAlbumAuto();
     void changeTab();
     void addAlbum();
+
 private slots:
     void searchRequest();
 };

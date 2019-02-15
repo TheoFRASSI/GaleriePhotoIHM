@@ -35,14 +35,7 @@ public:
     QProgressBar *getProgressBar();
     //---------------------------------------
 
-    //--Setters------------------------------
-    //---------------------------------------
-
-
 private:
-
-    //--Attributs Constants------------------
-    //---------------------------------------
 
     //--Attributs----------------------------
     QFrame* headerMenuFrame;
@@ -85,8 +78,4 @@ private:
     QString imageButtonSettingsPressed = ":/img/button/settingsHighlighted";
     //---------------------------------------
 
-    //--Fonctions----------------------------
-    //---------------------------------------
-
-public slots:
 };

@@ -7,18 +7,27 @@
 class Album
 {
 public:
+    //--Constructeur Destructeur------------------------------
     Album();
     Album(QString name);
     Album(QString name, QString cover);
+    //---------------------------------------------------------
 
-    QString getCover() const;
+    //--Getters Setters----------------------------------------
+    QString getCover() const;    
+    QString getName() const;
 
     void setCover(QString cover);
-    QString getName() const;
+    //---------------------------------------------------------
 private:
+    //--Attributs----------------------------------------------
     QString name;
     QString cover;
+    //---------------------------------------------------------
+
+
+    /*
     unsigned int nbImages = 1;
     QDate date;
-    bool isFavorite;
+    bool isFavorite;*/
 };
