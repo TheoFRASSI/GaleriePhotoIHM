@@ -56,6 +56,7 @@ ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressB
     lineEditNameAlbum->hide();
     frameAfficheAlbum->hide();
 
+
     connect(boutonAdd, SIGNAL(clicked()),this, SLOT(searchImage()));
     connect(buttonColorPicker, SIGNAL(clicked()), this, SLOT(openColorPicker()));
     connect(colorPicker, SIGNAL(aboutToChoose()), this, SLOT(newColor()));
@@ -252,7 +253,8 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
             for (int j = 0; j < NB_IMAGES; j++) {
                 k = j + i * NB_IMAGES;
                 if(k < imagesTab.size()){
-                    ClickableLabel* label = new ClickableLabel();
+                    QLabel* label = new QLabel();
+                    ClickableLabel* labelName = new ClickableLabel();
                     progressValue += 1;
                     progressBar->setValue(progressValue);
                     label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
@@ -261,19 +263,21 @@ void ImageWindow::newBDDRequest(QVector<Image *> imagesTab)
                     bool validate = pix.load(imagesTab[k]->getPath());
                     if(validate){
                         pix = pix.scaled(SIZE_IMAGE,SIZE_IMAGE,Qt::KeepAspectRatio);
-                        label->setText(imagesTab[k]->getName());
+                        labelName->setText(imagesTab[k]->getName());
                         label->setPixmap(pix);
-                        connect(label, SIGNAL(clicked()), this, SLOT(imageClick()));
+                        connect(labelName, SIGNAL(clicked()), this, SLOT(imageClick()));
                         grid->addWidget(label, i, j);
+                        grid->addWidget(labelName, i, j);
                     } else {
                         ClickableLabel* label = new ClickableLabel();
                         label->setMaximumSize(SIZE_IMAGE, SIZE_IMAGE);
                         label->setMinimumSize(SIZE_IMAGE, SIZE_IMAGE);
                         label->setScaledContents(true);
-                        label->setText(imagesTab[k]->getName());
                         label->setPixmap(QPixmap(imageCorrupt));
-                        connect(label, SIGNAL(clicked()), this, SLOT(imageClick()));
+                        labelName->setText(imagesTab[k]->getName());
+                        connect(labelName, SIGNAL(clicked()), this, SLOT(imageClick()));
                         grid->addWidget(label, i, j);
+                        grid->addWidget(labelName, i, j);
                         qDebug() << "Erreur : Lors du chargement de l'image >" << imagesTab[k]->getPath() << "| Dans la fonction" << __FUNCTION__;
                     }
                 }

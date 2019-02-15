@@ -66,6 +66,22 @@
         <file alias="boutonDeleteH">img/button/boutonDeleteH.png</file>
         <file alias="boutonEditName">img/button/boutonEditName.png</file>
         <file alias="boutonEditNameH">img/button/boutonEditNameH.png</file>
+        <file alias="boutonAddToAlbum">img/button/addToAlbum.png</file>
+        <file alias="boutonAddToAlbumH">img/button/addToAlbumH.png</file>
+        <file alias="boutonRedim">img/button/boutonRedim.png</file>
+        <file alias="boutonRedimH">img/button/boutonRedimH.png</file>
+        <file alias="boutonRogner">img/button/boutonRogner.png</file>
+        <file alias="boutonRognerH">img/button/boutonRognerH.png</file>
+        <file alias="boutonPleinEcran">img/button/pleinEcran.png</file>
+        <file alias="boutonPleinEcranH">img/button/pleinEcranH.png</file>
+        <file alias="boutonRotateD">img/button/rotateD.png</file>
+        <file alias="boutonRotateDH">img/button/rotateDH.png</file>
+        <file alias="boutonRotateG">img/button/rotateG.png</file>
+        <file alias="boutonRotateGH">img/button/rotateGH.png</file>
+        <file alias="boutonFavPlein">img/button/boutonFavPlein.png</file>
+        <file alias="boutonFavPleinH">img/button/boutonFavPleinH.png</file>
+        <file alias="boutonFavVide">img/button/boutonFavVide.png</file>
+        <file alias="boutonFavVideH">img/button/boutonFavVideH.png</file>
     </qresource>
     <qresource prefix="/img/window" lang="fr">
         <file alias="gallery-icon">img/window/gallery-icon.png</file>
