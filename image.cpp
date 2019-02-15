@@ -34,6 +34,11 @@ QString Image::getFeeling() const { return feeling; }
 
 bool Image::getIsFavorite() const { return isFavorite; }
 
+void Image::setPath(const QString &value)
+{
+    path = value;
+}
+
 /*void Image::setFeeling(const QString p_feeling)
 {
     feeling = p_feeling;
@@ -60,9 +65,6 @@ void Image::setResizedDim(const int p_height, const int p_width)
     width = p_width;
 }*/
 
-void Image::setPath(const QString &value)
-{
-    path = value;
-}
+
 
 

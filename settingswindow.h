@@ -14,20 +14,22 @@ class SettingsWindow : public QWidget, private Ui::SettingsWindow
 {
     Q_OBJECT
 public:
+    //--Constructeur Destructeur-------------------------------
     explicit SettingsWindow(const BddGalleryPhoto* pbdd, QWidget *parent = nullptr);
     ~SettingsWindow();
+    //---------------------------------------------------------
 
+    //--Fonctions----------------------------------------------
     QString searchDirectoryPath();
-
     void deleteImagesFromPath(QString *path);
+    //---------------------------------------------------------
 
 private:
+    //--Attributs----------------------------------------------
     const BddGalleryPhoto* bdd;
-
     QVector<QString *> paths;
     QString * selectedPath;
-
-signals:
+    //---------------------------------------------------------
 
 public slots:
     void addPath();

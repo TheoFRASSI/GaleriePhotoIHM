@@ -10,7 +10,6 @@ void ImagesShowcase::fillShowCase(){
         }
         j++;
     }
-
 }
 
 ImagesShowcase::ImagesShowcase(QVector<Image*> imagesTab, QWidget *parent)
@@ -89,7 +88,6 @@ ImagesShowcase::~ImagesShowcase(){
 
 void ImagesShowcase::changeImageRight()
 {
-
     if(cursor + nbLabel <= imageTab.size() - 1){
         cursor += nbLabel;
         fillShowCase();
@@ -114,13 +112,10 @@ void ImagesShowcase::changeImageLeft()
 
 void ImagesShowcase::newBDDRequest(QVector<Image*> imagesTab){
 
-
     imageTab.clear();
     for(int i = 0; i < 15 && i < imagesTab.size(); i++) {
         imageTab.push_back(imagesTab[i]);
     }
-
-//    qDebug() << imageTab.size() << " " << imagesTab.size();
     cursor = 0;
     if(imageTab.isEmpty()){
         for(int i = 0; i< nbLabel; i++){

@@ -48,7 +48,6 @@ ColorPicker::ColorPicker(QWidget *parent) :
     connect(buttonvertFonce, SIGNAL(clicked()), this, SLOT(chooseColor()));
     connect(buttonvertJaune, SIGNAL(clicked()), this, SLOT(chooseColor()));
     connect(buttonviolet, SIGNAL(clicked()), this, SLOT(chooseColor()));
-
 }
 
 ColorPicker::~ColorPicker(){

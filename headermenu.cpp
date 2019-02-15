@@ -1,6 +1,7 @@
 #include "headermenu.h"
 
-HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto, QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings,  QSpacerItem* horizontalSpacer, QLabel* labelTitre, QLineEdit* lineEdit, QProgressBar * progBar)
+HeaderMenu::HeaderMenu(QFrame* headerMenuFrame, QHBoxLayout* menu, QHBoxLayout* layoutSearch, QHBoxLayout* layoutNewAlbum, QHBoxLayout* layoutNewPhoto,
+                       QHBoxLayout* layoutDisplay, QHBoxLayout* layoutSettings,  QSpacerItem* horizontalSpacer, QLabel* labelTitre, QLineEdit* lineEdit, QProgressBar * progBar)
            :headerMenuFrame(headerMenuFrame),
             menu(menu),
             layoutSearch(layoutSearch),

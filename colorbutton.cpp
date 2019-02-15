@@ -17,8 +17,7 @@ ColorButton::ColorButton(const QString &colorHighlighted, const QString &color, 
     setStyleSheet("QPushButton{ border: none}");
 }
 
-ColorButton::~ColorButton(){
-
+ColorButton::~ColorButton() {
 }
 
 /**************
@@ -39,7 +38,6 @@ bool ColorButton::loadImageHighlighted(const QString &file)
 
 bool ColorButton::loadImageSelected(const QString &file)
 {
-
     return imageSelected.load(file);
 }
 

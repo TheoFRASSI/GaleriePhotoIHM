@@ -59,18 +59,14 @@ void SettingsWindow::addImagesFromPath(QString * path)
 
     QDir dir(*path);
     if(!dir.exists()) {
-        qWarning("Cannot find the directory");
+        qWarning("Impossible de trouver le répertoire");
     } else {
 
-        dir.setFilter(QDir::Files);
-        //dir.setSorting(QDir::Size | QDir::Reversed);
+        dir.setFilter(QDir::Files);        
         QFileInfoList list = dir.entryInfoList();        
         qsrand(static_cast<uint>(time(nullptr)));
         for (int i = 0; i < list.size(); i++) {
-            QFileInfo fileInfo = list.at(i);
-            /*qDebug() << qPrintable(QString("%1 %2")
-                                   .arg(fileInfo.size(), 10)
-                                   .arg(fileInfo.fileName()));*/
+            QFileInfo fileInfo = list.at(i);            
             addImageToBdd(qPrintable(QString("%1/%2")
                                      .arg(*path)
                                      .arg(fileInfo.fileName())),
@@ -83,11 +79,9 @@ void SettingsWindow::deleteImagesFromPath(QString * path)
 {
     QDir dir(*path);
     if(!dir.exists()) {
-        qWarning("Cannot find the directory");
+        qWarning("Impossible de trouver le répertoire");
     } else {
-
-        dir.setFilter(QDir::Files);
-        //dir.setSorting(QDir::Size | QDir::Reversed);
+        dir.setFilter(QDir::Files);        
         QFileInfoList list = dir.entryInfoList();
         for (int i = 0; i < list.size(); i++) {
             QFileInfo fileInfo = list.at(i);
@@ -101,7 +95,6 @@ void SettingsWindow::addImageToBdd(QString pathImage, QString nameImage)
     QVector<QString> colors = {"BLEU", "BLEU_CLAIR_1", "BLEU_CLAIR_2", "BLEU_CLAIR_3", "BLEU_GRIS",
                               "GRIS", "JAUNE", "JAUNE_FONCE", "MAGENTA", "MARRON", "NOIR", "ORANGE", "ORANGE_CLAIR",
                               "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
-
     QString colorImg = colors[qrand() % colors.size()];
     Image newImage(nameImage, pathImage, QDate::currentDate(), colorImg, "Cool", 0);
     bdd->insertImage(newImage);

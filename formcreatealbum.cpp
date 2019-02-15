@@ -88,7 +88,6 @@ void FormCreateAlbum::selectImages()
                               "ROSE", "ROUGE", "VERT", "VERT_CLAIR", "VERT_FONCE", "VERT_JAUNE", "VIOLET"};
     qsrand(static_cast<uint>(time(nullptr)));
 
-
     QVector<Image> selectedImages;
     const QStringList paths = QFileDialog::getOpenFileNames(this);
 
@@ -130,8 +129,6 @@ void FormCreateAlbum::selectCover()
             labelCover->setPixmap(imageCorrupt);
             selectedCover.setPath(pathImageCorrupt);
         }
-
-
     }
 }
 

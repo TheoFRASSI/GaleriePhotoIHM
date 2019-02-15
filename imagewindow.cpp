@@ -1,5 +1,37 @@
 #include "imagewindow.h"
 
+static void deleteChildWidgets(QLayoutItem *item) {
+  QLayout *layout = item->layout();
+  if (layout) {
+    int itemCount = layout->count();
+    for (int i = 0; i < itemCount; i++) {
+      deleteChildWidgets(layout->itemAt(i));
+    }
+  }
+  delete item->widget();
+}
+static void remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {
+    for (int i = layout->count() - 1; i >= 0; i--) {
+      int r, c, rs, cs;
+      layout->getItemPosition(i, &r, &c, &rs, &cs);
+      if (
+          (row == -1 || (r <= row && r + rs > row)) &&
+          (column == -1 || (c <= column && c + cs > column))) {
+        QLayoutItem *item = layout->takeAt(i);
+        if (deleteWidgets) {
+          deleteChildWidgets(item);
+        }
+        delete item;
+      }
+    }
+}
+// Removes the contents of the given layout cell.
+ static void removeCell(QGridLayout *layout, int row, int column, bool deleteWidgets = true) {
+   remove(layout, row, column, deleteWidgets);
+ }
+
+
+
 ImageWindow::ImageWindow(const BddGalleryPhoto* pbdd, QProgressBar * p_progressBar, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
@@ -186,7 +218,6 @@ void ImageWindow::showAlbumAuto(QString name){
         currentColor = colors.key(name);
         newBDDRequest(bdd->getAllImagesByColor(colors.value(currentColor)));
     }
-
 }
 
 void ImageWindow::showAlbum(QString name){
@@ -340,8 +371,6 @@ void ImageWindow::searchImage()
             Image newImage(names.last(), paths[i], QDate::currentDate(), colorImg, "Cool", 0);
             bdd->insertImage(newImage);
         }
-
         newBDDRequest(bdd->getAllImages());
     }
-
 }

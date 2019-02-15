@@ -12,7 +12,7 @@ ModifImageWindow::ModifImageWindow(const BddGalleryPhoto* pbdd, QWidget *parent)
 }
 
 void ModifImageWindow::afficheImage(QString name) {
-    Image* img = bdd->getImageByName(name);
+    Image* img = bdd->getImageByName(name);    
 }
 
 void ModifImageWindow::fermerFenetre()
