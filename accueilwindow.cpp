@@ -23,9 +23,10 @@ AccueilWindow::AccueilWindow(const BddGalleryPhoto* pbdd, QWidget *parent) : QWi
     colorPicker->buttonjaune->setSelected(true);
     colorPicker->setToolTip("Changer de couleur");
     layoutColor->addWidget(buttonColorPicker);
+    colorPicker->currentColor = colorPicker->buttonjaune;
 
     initColors();
-    dominantColor = new ImagesShowcase(bdd->getAllImagesByColor(colors.value(buttonColorPicker)));
+    dominantColor = new ImagesShowcase(bdd->getAllImagesByColor(colors.value(colorPicker->currentColor)));
     layoutImageColor->addWidget(dominantColor);
 
     buttonMail = new ImageButton(mailHighlighted, mail, 40, 40, this);

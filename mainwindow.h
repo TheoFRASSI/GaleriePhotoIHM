@@ -60,5 +60,7 @@ private:
 public slots:
     void changeWidget();
     void openImageW();
+    void addImage();
+    void addAlbum();
 };
 
